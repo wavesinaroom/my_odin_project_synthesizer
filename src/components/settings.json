@@ -1,0 +1,25 @@
+{
+  "carrier":{
+     "type":""     
+  },
+  "modulator":{
+    "type":"",
+    "frequency":0
+  },
+  "filter":{
+    "frequency":0,
+    "q":0
+  },
+  "lfo":{
+    "type":"",
+    "frequency":0,
+    "target":""
+  },
+  "envelope":{
+    "a":0,
+    "d":0,
+    "s":0,
+    "r":0
+  }
+}
+
