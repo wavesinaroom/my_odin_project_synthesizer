@@ -14,11 +14,11 @@ describe(`Rendering`, ()=>{
     expect(screen.getAllByRole(`radio`).length).toBe(4);
   });
 
-  it(`checks radio buttons label match waveform types`,()=>{
+  it(`checks radio buttons label match waveform types`,async()=>{
     render(<Carrier settings={Settings}/>);
 
-    waitFor(async()=>{
-    await (screen.getByRole(`radio`,{name:`sine`})).toBeInTheDocument();
-    });
+    await waitFor(()=>{
+     expect(screen.getByRole(`radio`,{name:`sine`})).toBeInTheDocument();
+    })
   });
 });
