@@ -17,8 +17,9 @@ describe(`Rendering`, ()=>{
   it(`checks radio buttons label match waveform types`,async()=>{
     render(<Carrier settings={Settings}/>);
 
-    await waitFor(()=>{
-     expect(screen.getByRole(`radio`,{name:`sine`})).toBeInTheDocument();
-    })
+    const sine = await screen.findByRole(`radio`, {name:`sine`});
+
+    expect(sine).toBeInTheDocument();
+
   });
 });
