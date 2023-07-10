@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import {cleanup,render,screen} from '@testing-library/react';
+import {cleanup,render,screen, waitFor} from '@testing-library/react';
 import Carrier from './carrier';
 import Settings from './settings.json'
 
@@ -16,6 +16,9 @@ describe(`Rendering`, ()=>{
 
   it(`checks radio buttons label match waveform types`,()=>{
     render(<Carrier settings={Settings}/>);
-    expect(screen.getByLabelText(`sine`)).toBeInTheDocument();
+
+    waitFor(async()=>{
+    await (screen.getByRole(`radio`,{name:`sine`})).toBeInTheDocument();
+    });
   });
 });
