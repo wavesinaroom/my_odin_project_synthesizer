@@ -1,23 +1,27 @@
 const Carrier = ({settings}) =>{
 
+  function handleWaveformChoice(e){
+    if(e.target.checked)
+      settings.carrier.type = e.target.value;
+  }
   return(
     <>
       <fieldset>
         <legend>Waveform</legend>
           <label>
-           <input name='sine' type='radio'/>
+           <input value='sine' name='sine' type='radio' onClick={handleWaveformChoice}/>
             sine
           </label>
           <label>
-           <input name='square' type='radio'/>
+           <input value='square' name='square' type='radio' onClick={handleWaveformChoice}/>
             square
           </label>
           <label>
-           <input name='triangle' type='radio'/>
+           <input value='triangle' name='triangle' type='radio' onClick={handleWaveformChoice}/>
             triangle
           </label>
           <label>
-           <input name='sawtooth' type='radio'/>
+           <input value='sawtooth' name='sawtooth' type='radio' onClick={handleWaveformChoice}/>
             sawtooth
           </label>
       </fieldset>
