@@ -1,16 +1,25 @@
 const Carrier = ({settings}) =>{
+
   return(
     <>
       <fieldset>
         <legend>Waveform</legend>
-        <label htmlFor='sine'>sine</label>
-        <input name='sine' type='radio'/>
-        <label htmlFor='triangle'>triangle</label>
-        <input name='triangle' type='radio'/>
-        <label htmlFor='square'>square</label>
-        <input name='square' type='radio'/>
-        <label htmlFor='sawtooth'>sawtooth</label>
-        <input name='sawtooth' type='radio'/>
+          <label>
+           <input name='sine' type='radio'/>
+            sine
+          </label>
+          <label>
+           <input name='square' type='radio'/>
+            square
+          </label>
+          <label>
+           <input name='triangle' type='radio'/>
+            triangle
+          </label>
+          <label>
+           <input name='sawtooth' type='radio'/>
+            sawtooth
+          </label>
       </fieldset>
     </>
   );

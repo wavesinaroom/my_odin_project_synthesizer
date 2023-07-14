@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import {cleanup,render,screen, waitFor} from '@testing-library/react';
+import {cleanup,getByTestId,render,screen, waitFor} from '@testing-library/react';
 import Carrier from './carrier';
 import Settings from './settings.json'
 
@@ -14,12 +14,11 @@ describe(`Rendering`, ()=>{
     expect(screen.getAllByRole(`radio`).length).toBe(4);
   });
 
-  it(`checks radio buttons label match waveform types`,async()=>{
+  it(`checks radio buttons label match waveform types`,()=>{
     render(<Carrier settings={Settings}/>);
-
-    const sine = await screen.findByRole(`radio`, {name:`sine`});
-
-    expect(sine).toBeInTheDocument();
-
+    expect(screen.getByRole(`radio`,{name:`sine`})).toBeInTheDocument(); 
+    expect(screen.getByRole(`radio`,{name:`square`})).toBeInTheDocument(); 
+    expect(screen.getByRole(`radio`,{name:`triangle`})).toBeInTheDocument(); 
+    expect(screen.getByRole(`radio`,{name:`sawtooth`})).toBeInTheDocument(); 
   });
 });
