@@ -4,6 +4,10 @@ const Carrier = ({settings}) =>{
     if(e.target.checked)
       settings.carrier.type = e.target.value;
   }
+
+  function handleVolumeChange(e){
+    settings.carrier.volume = Math.log10(e.target.value)*20;
+  }
   return(
     <>
       <fieldset>
@@ -24,6 +28,16 @@ const Carrier = ({settings}) =>{
            <input value='sawtooth' name='sawtooth' type='radio' onClick={handleWaveformChoice}/>
             sawtooth
           </label>
+      </fieldset>
+      <fieldset>
+        <label>
+          <input value='frequency' name='frequency' type='slider' min="20" max="20000"/>
+          frequency
+        </label>
+        <label>
+          <input value={settings.carrier.volume} name='volume' type='slider' min="0.0001" step="1" max="1" onChange={handleVolumeChange}/>
+          volume
+        </label>
       </fieldset>
     </>
   );

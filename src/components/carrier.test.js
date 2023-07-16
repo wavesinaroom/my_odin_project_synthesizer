@@ -41,4 +41,12 @@ describe(`Rendering`, ()=>{
     expect(Settings.carrier.type).toMatch(`square`);
     expect(Settings.carrier.type).not.toMatch(`sine`);
   })
+
+  it(`changes volume level`,()=>{
+    render(<Carrier settings={Settings}/>);
+    expect(Settings.carrier.volume).toEqual(0);
+
+    fireEvent.change(screen.getByRole(`range`,{name:`volume`}, {target:{value:`0.32`}}));
+    expect(Settings.carrier.type).toEqual(0.32);
+  })
 });

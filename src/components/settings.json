@@ -1,6 +1,7 @@
 {
   "carrier":{
-     "type":""     
+     "type":"",
+     "volume":1
   },
   "modulator":{
     "type":"",
