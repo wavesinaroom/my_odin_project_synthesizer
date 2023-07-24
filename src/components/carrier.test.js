@@ -44,9 +44,10 @@ describe(`Rendering`, ()=>{
 
   it(`changes volume level`,()=>{
     render(<Carrier settings={Settings}/>);
-    expect(Settings.carrier.volume).toEqual(0);
+    const volume = screen.getByRole(`slider`,{name:`volume`});
+    expect(Settings.carrier.volume).toEqual(1);
 
-    fireEvent.change(screen.getByRole(`range`,{name:`volume`}, {target:{value:`0.32`}}));
-    expect(Settings.carrier.type).toEqual(0.32);
+    fireEvent.change(volume, {target:{value:`0.32`}});
+    expect(Settings.carrier.volume).toEqual(-9.89700043360188);
   })
 });

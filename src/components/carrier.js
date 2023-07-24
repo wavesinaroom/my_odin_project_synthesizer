@@ -31,11 +31,7 @@ const Carrier = ({settings}) =>{
       </fieldset>
       <fieldset>
         <label>
-          <input value='frequency' name='frequency' type='slider' min="20" max="20000"/>
-          frequency
-        </label>
-        <label>
-          <input value={settings.carrier.volume} name='volume' type='slider' min="0.0001" step="1" max="1" onChange={handleVolumeChange}/>
+          <input value={settings.carrier.volume} name='volume' type='range' min="0.0001" step="1" max="1" onChange={handleVolumeChange}/>
           volume
         </label>
       </fieldset>
