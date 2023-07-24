@@ -1,4 +1,7 @@
+import {useState} from "react";
+
 const Carrier = ({settings}) =>{
+  const [volume, setVolume] = useState(0.75);
 
   function handleWaveformChoice(e){
     if(e.target.checked)
@@ -7,6 +10,7 @@ const Carrier = ({settings}) =>{
 
   function handleVolumeChange(e){
     settings.carrier.volume = Math.log10(e.target.value)*20;
+    setVolume(e.target.value);
   }
   return(
     <>
@@ -31,7 +35,7 @@ const Carrier = ({settings}) =>{
       </fieldset>
       <fieldset>
         <label>
-          <input value={settings.carrier.volume} name='volume' type='range' min="0.0001" step="1" max="1" onChange={handleVolumeChange}/>
+          <input value={volume} name='volume' type='range' min="0.0001" step="1" max="1" onChange={handleVolumeChange}/>
           volume
         </label>
       </fieldset>

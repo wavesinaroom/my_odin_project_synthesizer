@@ -49,5 +49,6 @@ describe(`Rendering`, ()=>{
 
     fireEvent.change(volume, {target:{value:`0.32`}});
     expect(Settings.carrier.volume).toEqual(-9.89700043360188);
+    expect(volume.value).toBe(`0.32`);
   })
 });
