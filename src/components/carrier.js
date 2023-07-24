@@ -33,12 +33,10 @@ const Carrier = ({settings}) =>{
             sawtooth
           </label>
       </fieldset>
-      <fieldset>
-        <label>
-          <input value={volume} name='volume' type='range' min="0.0001" step="1" max="1" onChange={handleVolumeChange}/>
-          volume
-        </label>
-      </fieldset>
+      <label>
+        <input value={volume} name='volume' type='range' min="0.0001" step="1" max="1" onChange={handleVolumeChange}/>
+        volume
+      </label>
     </>
   );
 }
