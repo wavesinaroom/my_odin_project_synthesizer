@@ -5,7 +5,8 @@
   },
   "modulator":{
     "type":"",
-    "frequency":0
+    "frequency":0,
+    "volume":1
   },
   "filter":{
     "frequency":0,

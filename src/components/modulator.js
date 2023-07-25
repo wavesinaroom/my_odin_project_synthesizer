@@ -2,19 +2,21 @@ import {useState} from "react";
 
 const Modulator = ({settings}) =>{
   const [volume, setVolume] = useState(0.75);
+  const {frequency, setFrequency} = useState(0);
 
   function handleWaveformChoice(e){
     if(e.target.checked)
-      settings.carrier.type = e.target.value;
+      settings.modulator.type = e.target.value;
   }
 
   function handleVolumeChange(e){
-    settings.carrier.volume = Math.log10(e.target.value)*20;
+    settings.modulator.volume = Math.log10(e.target.value)*20;
     setVolume(e.target.value);
   }
 
   function handleFrequencyRatio(e){
-    const modulation = settings.carrier.frequency * e.target.value;
+    setFrequency(e.target.value);
+    const modulation = settings.modulator.frequency * e.target.value;
     if(modulation>20000)
       settings.modulator.frequency = 20000;
     else if(modulation<20)
@@ -45,8 +47,8 @@ const Modulator = ({settings}) =>{
       </fieldset>
       <fieldset>
         <label>
-          <input name='frequency' type='range' min='1' max='10' step='0.5' onChange={handleFrequencyRatio}/> 
-          carrier frequency ratio
+          <input value={frequency} name='frequency' type='range' min='0' max='1' step='0.1' onChange={handleFrequencyRatio}/> 
+            frequency 
         </label>
         <label>
           <input value={volume} name='volume' type='range' min="0.0001" step="0.001" max="1" onChange={handleVolumeChange}/>
