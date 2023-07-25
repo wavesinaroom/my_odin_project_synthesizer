@@ -47,8 +47,18 @@ describe(`Rendering`, ()=>{
     const volume = screen.getByRole(`slider`,{name:`volume`});
     expect(Settings.modulator.volume).toEqual(1);
 
-    fireEvent.change(volume, {target:{value:`0.32`}});
+    fireEvent.change(volume, {target:{value:0.32}});
     expect(Settings.modulator.volume).toEqual(-9.89700043360188);
     expect(volume.value).toBe(`0.32`);
+  });
+
+  it(`sets ratio to modulate carrier`,()=>{
+    render(<Modulator settings={Settings}/>);
+    const frequency = screen.getByRole(`slider`,{name:`frequency ratio`});
+    expect(Settings.modulator.ratio).toEqual(0);
+
+    fireEvent.change(frequency, {target:{value:0.5}});
+    expect(Settings.modulator.ratio).toEqual(`0.5`);
+    expect(frequency.value).toEqual(`0.5`);
   });
 });
