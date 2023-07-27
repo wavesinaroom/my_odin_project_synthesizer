@@ -10,7 +10,10 @@
   },
   "filter":{
     "frequency":0,
-    "q":0
+    "detune":0,
+    "q":0,
+    "gain": 0,
+    "type": ""
   },
   "lfo":{
     "type":"",
