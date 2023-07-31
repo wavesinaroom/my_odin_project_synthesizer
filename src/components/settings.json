@@ -9,7 +9,7 @@
     "volume":1
   },
   "filter":{
-    "frequency":0,
+    "frequency":1000,
     "detune":0,
     "q":0,
     "gain": 0,
