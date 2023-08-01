@@ -9,7 +9,7 @@ const Filter = ({settings}) =>{
 
   function handleFrequencyChange(e){
     setFrequency(e.target.value);
-    settings.filter.frequency = frequency;
+    settings.filter.frequency = e.target.value;
   }
 
   function handleDetuneChange(e){
