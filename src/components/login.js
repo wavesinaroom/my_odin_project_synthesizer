@@ -1,9 +1,12 @@
 import supabase from '../config/supabaseClient'
 import { useState } from 'react';
+import {useEffect} from 'react';
 
 const Login = () =>{
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [user, setUser] = useState({});
+
 
   function handleEmail(e){
     setEmail(e.target.value);
@@ -12,6 +15,14 @@ const Login = () =>{
   function handlePassword(e){
     setPassword(e.target.value);
   }
+
+  function handleLogin(){
+    setUser({email:email, password:password});
+  }
+
+  useEffect(()=>{
+
+  },[user])
 
   return(
     <>
@@ -24,7 +35,7 @@ const Login = () =>{
           <label>Password:
             <input value={password} type='password' onChange={handlePassword} required/>
           </label>
-          <button>Login</button>
+          <button onClick={handleLogin}>Login</button>
           <button>Signup</button>
         </fieldset>
       </form>
