@@ -4,6 +4,7 @@ import {useEffect} from 'react';
 
 const Login = () =>{
   const [user, setUser] = useState({email:'', password:''});
+  const [exception, setException] = useState('');
 
   function handleEmail(e){
     setUser({...user,email: e.target.value});
@@ -22,9 +23,7 @@ const Login = () =>{
     )
 
     if(error)
-      alert(error)
-
-    console.log(data);
+      setException(error.message);
   }
 
   return(
@@ -38,6 +37,7 @@ const Login = () =>{
           <label>Password:
             <input value={user.password} type='password' onChange={handlePassword} required/>
           </label>
+          <p>{exception}</p>
           <input value='Login' type='submit' id='submit'/>
           <button>Signup</button>
         </fieldset>
