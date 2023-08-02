@@ -21,6 +21,11 @@ const Login = () =>{
   }
 
   useEffect(()=>{
+    async function signInWithEmail(){
+      const {data,error} = await supabase.auth.signInWithPassword(user);
+    }
+
+    signInWithEmail();
 
   },[user])
 
