@@ -17,11 +17,7 @@ const Login = () =>{
     setUser({...user,password: e.target.value});
   }
 
-  function handleAccountExists(){
-    setSignup(!signup);
-  }
-
-  function handleNoAccount(){
+  function handleSignupToggle(){
     setSignup(!signup);
   }
 
@@ -70,7 +66,7 @@ const Login = () =>{
             </label>
             <p>{exception}</p>
             <input value='Sign up' type='submit' id='submit'/>
-            <button onClick={handleAccountExists}>Login</button>
+            <button onClick={handleSignupToggle}>Login</button>
           </fieldset>
         </form>
         :
@@ -86,7 +82,7 @@ const Login = () =>{
             <p>{exception}</p>
             <input value='Login' type='submit' id='submit'/>
             <p>Don&apos;t have an account?</p>
-            <button onClick={handleNoAccount}>Signup</button>
+            <button onClick={handleSignupToggle}>Sign up</button>
           </fieldset>
         </form>
       }
