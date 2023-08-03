@@ -59,9 +59,9 @@ const Login = () =>{
   return(
     <>
       {signup?
-        <form onSubmit={handleSignup}>
+        <form name='signup' onSubmit={handleSignup}>
           <fieldset>
-            <legend>Please enter your e-mail and password to create your account</legend> 
+            <legend>Please enter e-mail and password to create an account</legend> 
             <label>E-mail:
               <input value={user.email}  name='email' type='email' onChange={handleEmail} autoFocus required/>
             </label>
