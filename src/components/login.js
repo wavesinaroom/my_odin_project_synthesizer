@@ -1,6 +1,8 @@
-import supabase from '../config/supabaseClient'
-import { useState } from 'react';
-import {useEffect} from 'react';
+import supabase from '../config/supabaseClient';
+import { useState, useContext } from 'react';
+import Default from './default.json';
+import Settings from './settings.json'; 
+'
 
 const Login = () =>{
   const [user, setUser] = useState({email:'', password:''});
@@ -26,12 +28,17 @@ const Login = () =>{
   async function handleLogin(e){
     e.preventDefault();
 
-    const {data, error} = await supabase.auth.signInWithPassword(
+    const {login, error} = await supabase.auth.signInWithPassword(
       {email:user.email,
       password:user.password}
     )
-    if(data)
-      console.log(`Logged in`);
+    if(login){
+      const [data, error] = await supabase.auth.getSession();
+      if(data)
+        Settings = JSON.stringify(JSON.parse(data.session));
+      else if(error)
+        setException(error.message);
+    }
     else if(error)
       setException(error.message);
   }
@@ -44,7 +51,7 @@ const Login = () =>{
         password:user.password}
     );
     if(data)
-      console.log(`Signed up`);
+      Settings = JSON.stringify(JSON.parse(Default));
     else if(error)
       setException(error.message)
   }
