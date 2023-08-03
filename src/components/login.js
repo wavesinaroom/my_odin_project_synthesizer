@@ -1,8 +1,8 @@
 import supabase from '../config/supabaseClient';
-import { useState, useContext } from 'react';
+import { useState} from 'react';
 import Default from './default.json';
-import Settings from './settings.json'; 
-'
+import Settings from './settings.json';
+
 
 const Login = () =>{
   const [user, setUser] = useState({email:'', password:''});
@@ -62,11 +62,11 @@ const Login = () =>{
         <form onSubmit={handleSignup}>
           <fieldset>
             <legend>Please enter your e-mail and password to create your account</legend> 
-            <label htmlFor='email'>E-mail:
+            <label>E-mail:
               <input value={user.email}  name='email' type='email' onChange={handleEmail} autoFocus required/>
             </label>
             <label>Password:
-              <input value={user.password} type='password' onChange={handlePassword} required/>
+              <input value={user.password} name='password' type='password' onChange={handlePassword} required/>
             </label>
             <p>{exception}</p>
             <input value='Sign up' type='submit' id='submit'/>
@@ -74,14 +74,14 @@ const Login = () =>{
           </fieldset>
         </form>
         :
-        <form onSubmit={handleLogin}>
+        <form name='login' onSubmit={handleLogin}>
           <fieldset>
             <legend>Please enter your e-mail and password</legend> 
-            <label htmlFor='email'>E-mail:
+            <label>E-mail:
               <input value={user.email}  name='email' type='email' onChange={handleEmail} autoFocus required/>
             </label>
             <label>Password:
-              <input value={user.password} type='password' onChange={handlePassword} required/>
+              <input value={user.password} name='password' type='password' onChange={handlePassword} required/>
             </label>
             <p>{exception}</p>
             <input value='Login' type='submit' id='submit'/>
