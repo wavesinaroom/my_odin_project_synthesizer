@@ -65,7 +65,7 @@ const Login = () =>{
               <input value={user.password} name='password' type='password' onChange={handlePassword} required/>
             </label>
             <p>{exception}</p>
-            <input value='Sign up' type='submit' id='submit'/>
+            <button type='submit'>Sign up</button>
             <button onClick={handleSignupToggle}>Login</button>
           </fieldset>
         </form>
@@ -80,7 +80,7 @@ const Login = () =>{
               <input value={user.password} name='password' type='password' onChange={handlePassword} required/>
             </label>
             <p>{exception}</p>
-            <input value='Login' type='submit' id='submit'/>
+            <button type='submit'>Login</button>
             <p>Don&apos;t have an account?</p>
             <button onClick={handleSignupToggle}>Sign up</button>
           </fieldset>

@@ -45,10 +45,10 @@ it(`comes back to login from sign up form`,()=>{
 
 it(`creates a new session for a new user`,()=>{
   render(<Login/>);
-  
-  fireEvent.click(screen.getByRole(`button`, {name:`Sign up`}));
 
+  fireEvent.click(screen.getByRole(`button`, {name:`Sign up`}));
   fireEvent.change(screen.getByRole(`textbox`, {name:`E-mail:`}), {target:{value:`jaureguij@javeriana.edu.co`}});
   fireEvent.change(screen.getByLabelText(`Password:`), {target:{value:`Op2n1beethoven`}});
-  fireEvent.click(screen.getByRole(`button`), {name:`Sign up`});
+  fireEvent.click(screen.getByRole(`button`,{name:`Sign up`}));
+
 })
