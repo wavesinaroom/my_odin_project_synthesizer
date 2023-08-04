@@ -24,15 +24,16 @@ const Login = () =>{
   async function handleLogin(e){
     e.preventDefault();
 
-    const {data, error} = await supabase.auth.signInWithPassword(
-      {email:user.email,
-      password:user.password}
-    )
-
-    if(error)
+    try{
+      const {data, error} = await supabase.auth.signInWithPassword(
+        {email:user.email,
+        password:user.password}
+      )
+      userProfile.info = fetchProfile(data.user, setException);
+      throw error;
+    }catch(error){
       setException(error.message);
-
-    userProfile.info = fetchProfile(data.user.id)
+    }
   }
 
   async function handleSignup(e){
@@ -45,14 +46,7 @@ const Login = () =>{
     );
     if(error)
       setException(error.message);
-
-    const {exception} = await supabase
-      .from('profiles')
-      .update({settings: Default})
-      .eq('id', data.user.id);
-
-    if(exception)
-      setException(exception.message);
+    createUser(data.user.id, setException)
   }
 
   return(
@@ -94,14 +88,28 @@ const Login = () =>{
 }
 export default Login;
 
-async function fetchProfile(userId){
+async function fetchProfile(userId, promptException){
+  try{
     const {data, error} = await supabase
       .from('profiles')
       .select('settings')
       .eq('id', userId)
-
     if(error)
-      return error;
+      throw error;
+    return data[0];
+  }catch(error){
+    promptException(error.message);
+  }  
+}
 
-    return data;
+async function createUser(userId, promptException){
+  try{
+    const {error} = await supabase
+      .from('profiles')
+      .update({settings: Default})
+      .eq('id',userId);
+    throw error;
+  }catch(error){
+    promptException(error.message);
+  }  
 }
