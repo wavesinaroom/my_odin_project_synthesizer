@@ -1,13 +1,13 @@
 import supabase from '../config/supabaseClient';
-import { useState} from 'react';
+import { useState, useContext} from 'react';
 import Default from './default.json';
-import Settings from './settings.json';
-
+import {profile} from './profile.js'
 
 const Login = () =>{
   const [user, setUser] = useState({email:'', password:''});
   const [exception, setException] = useState('');
   const [signup, setSignup] = useState(false);
+  const  userProfile = useContext(profile);
 
   function handleEmail(e){
     setUser({...user,email: e.target.value});
@@ -24,19 +24,15 @@ const Login = () =>{
   async function handleLogin(e){
     e.preventDefault();
 
-    const {login, error} = await supabase.auth.signInWithPassword(
+    const {data, error} = await supabase.auth.signInWithPassword(
       {email:user.email,
       password:user.password}
     )
-    if(login){
-      const {data, error} = await supabase.auth.getSession();
-      if(data)
-        Settings = JSON.stringify(JSON.parse(data.session));
-      else if(error)
-        setException(error.message);
-    }
-    else if(error)
+
+    if(error)
       setException(error.message);
+
+    userProfile.info = fetchProfile(data.user.id)
   }
 
   async function handleSignup(e){
@@ -96,5 +92,16 @@ const Login = () =>{
     </>
   )
 }
-
 export default Login;
+
+async function fetchProfile(userId){
+    const {data, error} = await supabase
+      .from('profiles')
+      .select('settings')
+      .eq('id', userId)
+
+    if(error)
+      return error;
+
+    return data;
+}
