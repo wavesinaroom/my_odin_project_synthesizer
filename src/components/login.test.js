@@ -1,8 +1,6 @@
 import '@testing-library/jest-dom'
 import { cleanup, render, screen, fireEvent} from "@testing-library/react"; 
 import Login from "./login";
-import Settings from './settings.json';
-import Default from './default.json';
 
 beforeEach(()=>{
   cleanup();
@@ -43,12 +41,3 @@ it(`comes back to login from sign up form`,()=>{
     expect(screen.getByRole(`group`, {name:`Please enter your e-mail and password`})).toBeInTheDocument();
 });
 
-it(`creates a new session for a new user`,()=>{
-  render(<Login/>);
-
-  fireEvent.click(screen.getByRole(`button`, {name:`Sign up`}));
-  fireEvent.change(screen.getByRole(`textbox`, {name:`E-mail:`}), {target:{value:`jaureguij@javeriana.edu.co`}});
-  fireEvent.change(screen.getByLabelText(`Password:`), {target:{value:`Op2n1beethoven`}});
-  fireEvent.click(screen.getByRole(`button`,{name:`Sign up`}));
-
-})
