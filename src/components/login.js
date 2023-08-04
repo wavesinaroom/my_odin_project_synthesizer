@@ -39,14 +39,17 @@ const Login = () =>{
   async function handleSignup(e){
     e.preventDefault();
 
-    const {data, error} = await supabase.auth.signUp(
-      {email:user.email,
-        password:user.password,
-      }
-    );
-    if(error)
+    try{
+      const {data, error} = await supabase.auth.signUp(
+        {email:user.email,
+          password:user.password,
+        }
+      );
+      createUser(data.user.id, setException)
+      throw error;
+    }catch(error){
       setException(error.message);
-    createUser(data.user.id, setException)
+    }
   }
 
   return(
