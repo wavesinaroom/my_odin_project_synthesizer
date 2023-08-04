@@ -29,7 +29,7 @@ const Login = () =>{
       password:user.password}
     )
     if(login){
-      const [data, error] = await supabase.auth.getSession();
+      const {data, error} = await supabase.auth.getSession();
       if(data)
         Settings = JSON.stringify(JSON.parse(data.session));
       else if(error)
@@ -42,14 +42,21 @@ const Login = () =>{
   async function handleSignup(e){
     e.preventDefault();
 
-    const [data, error] = await supabase.auth.signUp(
+    const {data, error} = await supabase.auth.signUp(
       {email:user.email,
-        password:user.password}
+        password:user.password,
+      }
     );
-    if(data)
-      Settings = JSON.stringify(JSON.parse(Default));
-    else if(error)
-      setException(error.message)
+    if(error)
+      setException(error.message);
+
+    const {exception} = await supabase
+      .from('profiles')
+      .update({settings: Default})
+      .eq('id', data.user.id);
+
+    if(exception)
+      setException(exception.message);
   }
 
   return(
