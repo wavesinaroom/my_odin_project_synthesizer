@@ -9,6 +9,8 @@ const Login = () =>{
   const [signup, setSignup] = useState(false);
   const  userProfile = useContext(profile);
 
+  let userId;
+
   function handleEmail(e){
     setUser({...user,email: e.target.value});
   }
@@ -24,8 +26,6 @@ const Login = () =>{
   async function handleLogin(e){
     e.preventDefault();
 
-    let userId;
-
     try{
       const {data, error} = await supabase.auth.signInWithPassword(
         {email:user.email,
@@ -34,6 +34,7 @@ const Login = () =>{
       if(error)
         throw error
       userId = data.user.id;
+      console.log(data.user.id);
     }catch(error){
       setException(error.message);
     }
@@ -60,8 +61,20 @@ const Login = () =>{
           password:user.password,
         }
       );
-      createUser(data.user.id, setException)
-      throw error;
+      if(error)
+        throw error;
+      userId = data.user.id;
+    }catch(error){
+      setException(error.message);
+    }
+
+    try{
+      const {error} = await supabase
+        .from('profiles')
+        .update({settings:Default})
+        .eq('id',userId);
+      if(error)
+        throw error
     }catch(error){
       setException(error.message);
     }
@@ -106,14 +119,3 @@ const Login = () =>{
 }
 export default Login;
 
-async function createUser(userId, promptException){
-  try{
-    const {error} = await supabase
-      .from('profiles')
-      .update({settings: Default})
-      .eq('id',userId);
-    throw error;
-  }catch(error){
-    promptException(error.message);
-  }  
-}

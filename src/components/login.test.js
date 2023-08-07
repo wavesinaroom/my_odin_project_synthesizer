@@ -53,7 +53,7 @@ it(`logs in existing user`,()=>{
   expect(screen.getByTestId(`exception`).textContent).toMatch(``);
 });
 
-it(`fails user log in due to wrong password`,async()=>{
+it(`fails user log in due to wrong password`,()=>{
   render(<Login/>);
   
   expect(screen.getByTestId(`exception`).textContent).toMatch(``);
@@ -61,5 +61,7 @@ it(`fails user log in due to wrong password`,async()=>{
   fireEvent.change(screen.getByRole(`textbox`,{target:{value:`jaureguij@javeriana.edu.co`}}));
   fireEvent.change(screen.getByLabelText(`Password:`, {target:{value:`NotAPassword`}}));
   fireEvent.click(screen.getByRole(`button`,{name:`Login`}));
+
+  expect(screen.getByTestId(`exception`).textContent).not.toMatch(``);
 
 });
