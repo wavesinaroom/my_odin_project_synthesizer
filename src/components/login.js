@@ -24,16 +24,31 @@ const Login = () =>{
   async function handleLogin(e){
     e.preventDefault();
 
+    let userId;
+
     try{
       const {data, error} = await supabase.auth.signInWithPassword(
         {email:user.email,
         password:user.password}
       )
-      userProfile.info = fetchProfile(data.user, setException);
-      throw error;
+      if(error)
+        throw error
+      userId = data.user.id;
     }catch(error){
       setException(error.message);
     }
+
+    try{
+      const {data, error} = await supabase
+        .from('profiles')
+        .select('settings')
+        .eq('id', userId)
+      if(error)
+        throw error;
+      userProfile.info = data[0];
+    }catch(error){
+      setException(error.message);
+    }  
   }
 
   async function handleSignup(e){
@@ -64,7 +79,7 @@ const Login = () =>{
             <label>Password:
               <input value={user.password} name='password' type='password' onChange={handlePassword} required/>
             </label>
-            <p>{exception}</p>
+            <p data-testid='exception'>{exception}</p>
             <button type='submit'>Sign up</button>
             <button onClick={handleSignupToggle}>Login</button>
           </fieldset>
@@ -79,7 +94,7 @@ const Login = () =>{
             <label>Password:
               <input value={user.password} name='password' type='password' onChange={handlePassword} required/>
             </label>
-            <p>{exception}</p>
+            <p data-testid='exception'>{exception}</p>
             <button type='submit'>Login</button>
             <p>Don&apos;t have an account?</p>
             <button onClick={handleSignupToggle}>Sign up</button>
@@ -90,20 +105,6 @@ const Login = () =>{
   )
 }
 export default Login;
-
-async function fetchProfile(userId, promptException){
-  try{
-    const {data, error} = await supabase
-      .from('profiles')
-      .select('settings')
-      .eq('id', userId)
-    if(error)
-      throw error;
-    return data[0];
-  }catch(error){
-    promptException(error.message);
-  }  
-}
 
 async function createUser(userId, promptException){
   try{
