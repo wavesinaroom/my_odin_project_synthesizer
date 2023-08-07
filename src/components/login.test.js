@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import { cleanup, render, screen, fireEvent} from "@testing-library/react"; 
+import { cleanup, render, screen, fireEvent, waitFor} from "@testing-library/react"; 
 import Login from "./login";
 
 beforeEach(()=>{
@@ -41,3 +41,25 @@ it(`comes back to login from sign up form`,()=>{
     expect(screen.getByRole(`group`, {name:`Please enter your e-mail and password`})).toBeInTheDocument();
 });
 
+it(`logs in existing user`,()=>{
+  render(<Login/>);
+
+  expect(screen.getByTestId(`exception`).textContent).toMatch(``);
+
+  fireEvent.change(screen.getByRole(`textbox`,{target:{value:`jaureguij@javeriana.edu.co`}}));
+  fireEvent.change(screen.getByLabelText(`Password:`, {target:{value:`Op2n1beethoven`}}));
+  fireEvent.click(screen.getByRole(`button`,{name:`Login`}));
+
+  expect(screen.getByTestId(`exception`).textContent).toMatch(``);
+});
+
+it(`fails user log in due to wrong password`,async()=>{
+  render(<Login/>);
+  
+  expect(screen.getByTestId(`exception`).textContent).toMatch(``);
+
+  fireEvent.change(screen.getByRole(`textbox`,{target:{value:`jaureguij@javeriana.edu.co`}}));
+  fireEvent.change(screen.getByLabelText(`Password:`, {target:{value:`NotAPassword`}}));
+  fireEvent.click(screen.getByRole(`button`,{name:`Login`}));
+
+});
