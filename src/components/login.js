@@ -34,9 +34,9 @@ const Login = () =>{
       if(error)
         throw error
       userId = data.user.id;
-      console.log(data.user.id);
     }catch(error){
       setException(error.message);
+      return;
     }
 
     try{
@@ -49,6 +49,7 @@ const Login = () =>{
       userProfile.info = data[0];
     }catch(error){
       setException(error.message);
+      return;
     }  
   }
 
@@ -66,6 +67,7 @@ const Login = () =>{
       userId = data.user.id;
     }catch(error){
       setException(error.message);
+      return;
     }
 
     try{
@@ -77,6 +79,7 @@ const Login = () =>{
         throw error
     }catch(error){
       setException(error.message);
+      return;
     }
   }
 
