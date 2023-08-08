@@ -1,12 +1,13 @@
 import '@testing-library/jest-dom'
 import { cleanup, render, screen, fireEvent, waitFor} from "@testing-library/react"; 
+import supabase from '../config/supabaseClient';
 import Login from "./login";
 
 beforeEach(()=>{
   cleanup();
 });
 
-it(`renders login form contents`,async()=>{
+it(`renders login form contents`,()=>{
   render(<Login/>);
 
   expect(screen.getByRole(`group`, {name:`Please enter your e-mail and password`})).toBeInTheDocument();
@@ -53,15 +54,21 @@ it(`logs in existing user`,()=>{
   expect(screen.getByTestId(`exception`).textContent).toMatch(``);
 });
 
-it(`fails user log in due to wrong password`,()=>{
+it(`fails user log in due to wrong password`,async()=>{
+  jest
+    .spyOn(supabase.auth, 'signInWithPassword')
+
   render(<Login/>);
+  const exception = screen.getByTestId(`exception`);
   
-  expect(screen.getByTestId(`exception`).textContent).toMatch(``);
+  expect(exception.textContent).toMatch(``);
 
   fireEvent.change(screen.getByRole(`textbox`,{target:{value:`jaureguij@javeriana.edu.co`}}));
   fireEvent.change(screen.getByLabelText(`Password:`, {target:{value:`NotAPassword`}}));
   fireEvent.click(screen.getByRole(`button`,{name:`Login`}));
+  expect(supabase.auth.signInWithPassword).toBeCalled();
 
-  expect(screen.getByTestId(`exception`).textContent).not.toMatch(``);
-
+  await waitFor(()=>{
+    expect(exception.textContent).toMatch(`Invalid login credentials`); 
+  });
 });
