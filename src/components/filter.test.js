@@ -1,28 +1,35 @@
 import '@testing-library/jest-dom' 
-import {cleanup,fireEvent,render,screen, waitFor} from "@testing-library/react";
+import {cleanup,fireEvent,render,screen} from "@testing-library/react";
 import Filter from "./filter";
-import Settings from "./settings.json"
+import Default from "./default.json"
 
 beforeEach(()=>{
   cleanup();
 });
 
-it(`renders all input elements`,()=>{
-  render(<Filter settings={Settings}/>);
+describe(`Rendering`,()=>{
 
-  expect(screen.getAllByRole(`slider`).length).toBe(4);
-  expect(screen.getAllByRole(`radio`).length).toBe(4);
-});
+  const profile = {info:Default};
 
-it(`changes frequency slider value`, async()=>{
-  render(<Filter settings={Settings}/>);
-  const frequency = screen.getByRole(`slider`, {name:`frequency`});
+  it(`renders all input elements`,()=>{
+    render(<Filter settings={profile}/>);
 
-  expect(Settings.filter.frequency).toBe(1000);
-  expect(frequency.value).toMatch(`1000`);
+    expect(screen.getAllByRole(`slider`).length).toBe(4);
+    expect(screen.getAllByRole(`radio`).length).toBe(8);
 
-  fireEvent.change(frequency, {target:{value:200}});
+    expect(screen.getByRole(`slider`,{name:`frequency`})).toBeInTheDocument();
+    expect(screen.getByRole(`slider`,{name:`detune`})).toBeInTheDocument();
+    expect(screen.getByRole(`slider`,{name:`q`})).toBeInTheDocument();
+    expect(screen.getByRole(`slider`,{name:`volume`})).toBeInTheDocument();
 
-  expect(frequency.value).toMatch(`200`);
-  expect(Settings.filter.frequency).toMatch(`200`);
-});
+    expect(screen.getByLabelText(`lowpass`)).toBeInTheDocument();
+    expect(screen.getByLabelText(`highpass`)).toBeInTheDocument();
+    expect(screen.getByLabelText(`bandpass`)).toBeInTheDocument();
+    expect(screen.getByLabelText(`lowshelf`)).toBeInTheDocument();
+    expect(screen.getByLabelText(`lowpass`)).toBeInTheDocument();
+    expect(screen.getByLabelText(`lowpass`)).toBeInTheDocument();
+    expect(screen.getByLabelText(`lowpass`)).toBeInTheDocument();
+  })
+})
+
+
