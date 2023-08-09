@@ -1,10 +1,10 @@
-import './App.css';
-import Login from './components/login';
+import { useContext } from "react";
+import {profile} from './profile.js'
 
 function App() {
+  const userProfile = useContext(profile);
   return(
     <>
-      <Login/>
     </>
   )
 }
