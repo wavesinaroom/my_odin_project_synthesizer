@@ -58,7 +58,7 @@ const Filter = ({settings})=>{
             lowpass
           </label>
           <label>
-            <input value='highpass' name='type' type='radio' onChange={handleEvent}/>
+            <input value='highpass' name='type' type='radio' onChange={handleEvent} checked={true}/>
             highpass
           </label>
           <label>

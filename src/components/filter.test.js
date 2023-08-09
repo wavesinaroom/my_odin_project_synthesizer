@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom' 
-import {cleanup,fireEvent,render,screen} from "@testing-library/react";
+import {cleanup,fireEvent,render,screen, waitFor} from "@testing-library/react";
 import Filter from "./filter";
 import Default from "./default.json"
 
@@ -29,7 +29,21 @@ describe(`Rendering`,()=>{
     expect(screen.getByLabelText(`lowpass`)).toBeInTheDocument();
     expect(screen.getByLabelText(`lowpass`)).toBeInTheDocument();
     expect(screen.getByLabelText(`lowpass`)).toBeInTheDocument();
-  })
-})
+  });
+  
+  it(`renders values from default.json file`,()=>{
+    render(<Filter settings={profile}/>);
+
+
+    expect(screen.getByRole(`slider`,{name:`frequency`}).value).toBe(`${profile.info.filter.frequency}`);
+    expect(screen.getByRole(`slider`,{name:`detune`}).value).toBe(`${profile.info.filter.detune}`);
+    expect(screen.getByRole(`slider`,{name:`q`}).value).toBe(`${profile.info.filter.q}`);
+    expect(screen.getByRole(`slider`,{name:`volume`}).value).toBe(`${profile.info.filter.volume}`);
+
+    expect(screen.getByLabelText(`highpass`)).toBeChecked();
+
+    expect(`${profile.info.filter.type}`).toBe(`highpass`);
+  });
+});
 
 
