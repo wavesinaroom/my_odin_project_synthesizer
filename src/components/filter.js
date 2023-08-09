@@ -2,7 +2,7 @@ import {useState} from "react"
 
 const Filter = ()=>{
   const [frequency, setFrequency] = useState(1000);
-  const [detune, setDetume] = useState(1);
+  const [detune, setDetune] = useState(1);
   const [q, setQ] = useState(1);
   const [volume, setVolume] = useState(0.75);
   const [type, setType] = useState('');
