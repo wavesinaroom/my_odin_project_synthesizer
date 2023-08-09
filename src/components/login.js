@@ -1,13 +1,13 @@
 import supabase from '../config/supabaseClient';
 import { useState, useContext} from 'react';
 import Default from './default.json';
-import {profile} from './profile.js'
+import {Profile} from './profile.js'
 
 const Login = () =>{
   const [user, setUser] = useState({email:'', password:''});
   const [exception, setException] = useState('');
   const [signup, setSignup] = useState(false);
-  const  userProfile = useContext(profile);
+  const  userProfile = useContext(Profile);
 
   let userId;
 
