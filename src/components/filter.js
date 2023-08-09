@@ -1,6 +1,6 @@
 import {useState} from "react"
 
-const Filter = ()=>{
+const Filter = ({settings})=>{
   const [frequency, setFrequency] = useState(1000);
   const [detune, setDetune] = useState(1);
   const [q, setQ] = useState(1);

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Envelope = ()=>{
+const Envelope = ({settings})=>{
   const [attack, setAttack] = useState(0);
   const [decay, setDecay] = useState(0);
   const [sustain, setSustain] = useState(0);
