@@ -1,74 +1,85 @@
-import {useState} from "react";
+import { useState} from "react"
 
-const Filter = ({settings}) =>{
-  const [frequency, setFrequency] = useState(settings.filter.frequency);
-  const [detune, setDetune] = useState(settings.filter.detune);
-  const [q, setQ] = useState(settings.filter.q);
-  const [gain, setGain] = useState(settings.filter.gain);
-  const [type, setType] = useState(settings.filter.type); 
-
-  function handleFrequencyChange(e){
-    setFrequency(e.target.value);
-    settings.filter.frequency = e.target.value;
-  }
-
-  function handleDetuneChange(e){
-    setDetune(e.target.value);
-    settings.filter.detune = detune;
-  }
-
-  function handleQChange(e){
-    setQ(e.target.value);
-    settings.filter.q = q;
-  }
-
-  function handleGainChange(e){
-    setGain(e.target.value);
-    settings.filter.gain = gain;
-  }
-
-  function handleTypeChange(e){
-    if(e.target.checked){
-      setType(e.target.value);
-      settings.carrier.type = e.target.value;
+const Filter = ({settings})=>{
+  const [frequency, setFrequency] = useState(1000);
+  const [detune, setDetune] = useState(1);
+  const [q, setQ] = useState(1);
+  const [volume, setVolume] = useState(0.75);
+  const [type, setType] = useState('');
+  
+  function  handleEvent(e){
+    switch(e.target.name){
+      case 'frequency':
+        setFrequency(e.target.value);
+        settings.info.filter.frequency = frequency;
+        break;
+      case 'detune':
+        setDetune(e.target.value);
+        settings.info.filter.detune = detune;
+        break;
+      case 'q':
+        setQ(e.target.value);
+        settings.info.filter.q = q;
+        break;
+      case 'volume':
+        setVolume(e.target.value);
+        settings.info.filter.volume = volume;
+        break;
+      case 'type':
+        setType(e.target.value);
+        settings.info.filter.type = type;
+        break;
+      default:
+        throw new Error(`Invalid action`);
     }
   }
-
   return(
     <>
       <label>
-        <input value={frequency} name='frequency' type='range' min={20} max={20000} step={1} onChange={handleFrequencyChange}/> 
+        <input value={frequency} name='frequency' type='range' min='20' max='20000' step='1' onChange={handleEvent}/>
         frequency
       </label>
       <label>
-        <input value={detune} name='detune' type='range' min={0} max={100} step={1} onChange={handleDetuneChange}/>
+        <input value={detune} name='detune' type='range' min='0.0001' max='100' step='1' onChange={handleEvent}/>
         detune
       </label>
       <label>
-        <input value={q} name='q' type='range' min={0} max={100} step={1} onChange={handleQChange}/>
-        q
+        <input value={q} name='q' type='range' min='0.0001' max='1000' step='1' onChange={handleEvent}/>
+        q 
       </label>
       <label>
-        <input value={gain} name='gain' type='range' min={-40} max={40} step={1} onChange={handleGainChange}/>
-        gain
+        <input value={volume} name='volume' type='range' min='0.0001' max='1' step='0.1' onChange={handleEvent}/>
+        volume
       </label>
       <fieldset>
-        <legend>type</legend>
+        <legend>Type</legend>
           <label>
-           <input value='sine' name='sine' type='radio' onClick={handleTypeChange}/>
-            sine
+            <input value='lowpass' name='type' type='radio' onChange={handleEvent}/>
+            lowpass
           </label>
           <label>
-           <input value='square' name='square' type='radio' onClick={handleTypeChange}/>
-            square
+            <input value='highpass' name='type' type='radio' onChange={handleEvent}/>
+            highpass
           </label>
           <label>
-           <input value='triangle' name='triangle' type='radio' onClick={handleTypeChange}/>
-            triangle
+            <input value='bandpass' name='type' type='radio' onChange={handleEvent}/>
+            bandpass
           </label>
           <label>
-           <input value='sawtooth' name='sawtooth' type='radio' onClick={handleTypeChange}/>
-            sawtooth
+            <input value='lowshelf' name='type' type='radio' onChange={handleEvent}/>
+            lowshelf
+          </label>
+          <label>
+            <input value='peaking' name='type' type='radio' onChange={handleEvent}/>
+            peaking
+          </label>
+          <label>
+            <input value='notch' name='type' type='radio' onChange={handleEvent}/>
+            notch
+          </label>
+          <label>
+            <input value='allpass' name='type' type='radio' onChange={handleEvent}/>
+            allpass
           </label>
       </fieldset>
     </>
