@@ -16,8 +16,9 @@
     "type":"highpass"
   },
   "lfo":{
-    "type":"",
     "frequency":0,
+    "detune":0,
+    "type":"",
     "target":""
   },
   "envelope":{
