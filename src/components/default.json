@@ -10,14 +10,15 @@
   },
   "filter":{
     "frequency":1000,
-    "detune":0,
-    "q":0,
-    "gain": 0,
-    "type": "peaking"
+    "detune":1,
+    "q":1,
+    "volume":0.75,
+    "type":"highpass"
   },
   "lfo":{
-    "type":"",
     "frequency":0,
+    "detune":0,
+    "type":"",
     "target":""
   },
   "envelope":{
