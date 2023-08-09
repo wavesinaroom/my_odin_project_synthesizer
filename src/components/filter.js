@@ -1,11 +1,11 @@
 import { useState} from "react"
 
 const Filter = ({settings})=>{
-  const [frequency, setFrequency] = useState(1000);
-  const [detune, setDetune] = useState(1);
-  const [q, setQ] = useState(1);
-  const [volume, setVolume] = useState(0.75);
-  const [type, setType] = useState('');
+  const [frequency, setFrequency] = useState(settings.info.filter.frequency);
+  const [detune, setDetune] = useState(settings.info.filter.detune);
+  const [q, setQ] = useState(settings.info.filter.q);
+  const [volume, setVolume] = useState(settings.info.filter.volume);
+  const [type, setType] = useState(settings.info.filter.type);
   
   function  handleEvent(e){
     switch(e.target.name){
@@ -30,7 +30,7 @@ const Filter = ({settings})=>{
         settings.info.filter.type = type;
         break;
       default:
-        throw new Error(`Invalid action`);
+        throw new Error(`Invalid name`);
     }
   }
   return(
@@ -68,6 +68,10 @@ const Filter = ({settings})=>{
           <label>
             <input value='lowshelf' name='type' type='radio' onChange={handleEvent}/>
             lowshelf
+          </label>
+          <label>
+            <input value='highshelf' name='type' type='radio' onChange={handleEvent}/>
+            highshelf
           </label>
           <label>
             <input value='peaking' name='type' type='radio' onChange={handleEvent}/>
