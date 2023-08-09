@@ -23,3 +23,5 @@ const Envelope = ({settings})=>{
     </>
   )
 }
+
+export default Envelope; 

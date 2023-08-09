@@ -64,3 +64,5 @@ const Filter = ({settings})=>{
     </>
   );
 }
+
+export default Filter;
