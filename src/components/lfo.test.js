@@ -57,9 +57,14 @@ describe(`Interaction`,()=>{
   it(`changes target value in profile`,()=>{
     render(<LFO settings={profile}/>);
     const envelope = screen.getByRole(`radio`,{name:`envelope`});
+    const modulator = screen.getByRole(`radio`,{name:`modulator`});
 
     fireEvent.click(envelope);
 
     expect(profile.info.lfo.target).toBe(`envelope`);
+
+    fireEvent.click(modulator);
+
+    expect(profile.info.lfo.target).toBe(`modulator`);
   });
 });
