@@ -31,15 +31,15 @@ const Envelope = ({settings}) =>{
       </label>
       <label>
         <input value={decay} type='range' min='0' max='1' step='0.1' onChange={handleDecay}/>      
-        attack
+        decay
       </label>
       <label>
         <input value={sustain} type='range' min='0' max='1' step='0.1' onChange={handleSustain}/>      
-        attack
+        sustain
       </label>
       <label>
         <input value={release} type='range' min='0' max='1' step='0.1' onChange={handleRelease}/>      
-        attack
+        release
       </label>
     </>
   );
