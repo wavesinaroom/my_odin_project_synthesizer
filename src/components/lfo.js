@@ -15,13 +15,20 @@ const LFO = ({settings}) =>{
     settings.info.lfo.frequency = e.target.value;
   }
 
-  function handleFrequency(e){
+  function handleTarget(e){
     setFrequency(e.target.value);
     settings.info.lfo.target = e.target.value;
   }
 
   return(
     <>
+      <fieldset>
+        <legend>Type</legend>
+          <input value='sine' type='radio' onChange={handleType} checked='true'/> 
+          <input value='square' type='radio' onChange={handleType}/> 
+          <input value='sawtooth' type='radio' onChange={handleType}/> 
+          <input value='triangle' type='radio' onChange={handleType}/> 
+      </fieldset>
     </>
   )
 }
