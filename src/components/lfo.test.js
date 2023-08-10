@@ -33,3 +33,33 @@ describe(`Rendering`,()=>{
     expect(screen.getByRole(`radio`,{name:`none`})).toBeInTheDocument();
   });
 });
+
+describe(`Interaction`,()=>{
+  const profile = {info:Default};
+
+  it(`changes type value in profile`,()=>{
+    render(<LFO settings={profile}/>);
+    const type = screen.getByRole(`radio`,{name:`square`});
+
+    fireEvent.click(type);
+
+    expect(profile.info.lfo.type).toBe(`square`);
+  });
+
+  it(`changes frequency value in profile`,()=>{
+    render(<LFO settings={profile}/>);
+    const frequency = screen.getByRole(`slider`,{name:`frequency`});
+
+    fireEvent.change(frequency, {target:{value:10}});
+
+    expect(profile.info.lfo.frequency).toBe(`10`);
+  });
+  it(`changes target value in profile`,()=>{
+    render(<LFO settings={profile}/>);
+    const envelope = screen.getByRole(`radio`,{name:`envelope`});
+
+    fireEvent.click(envelope);
+
+    expect(profile.info.lfo.target).toBe(`envelope`);
+  });
+});
