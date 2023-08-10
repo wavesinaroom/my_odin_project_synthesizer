@@ -32,6 +32,13 @@ const LFO = ({settings}) =>{
       <label>
         <input value={frequency} type='range' onChange={handleFrequency} min='0.0001' max='20' step='1'/>
       </label>
+      <fieldset>
+        <legend>Target</legend>
+          <input value='carrier' type='radio' onChange={handleTarget}/>
+          <input value='modulator' type='radio' onChange={handleTarget}/>
+          <input value='envelope' type='radio' onChange={handleTarget}/>
+          <input value='none' type='radio' onChange={handleTarget}/>
+      </fieldset>
     </>
   )
 }
