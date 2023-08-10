@@ -1,15 +1,14 @@
 import {useState} from "react";
 
 const Carrier = ({settings}) =>{
-  const [volume, setVolume] = useState(0.75);
+  const [volume, setVolume] = useState(settings.info.carrier.volume);
 
   function handleWaveformChoice(e){
-    if(e.target.checked)
-      settings.carrier.type = e.target.value;
+      settings.info.carrier.type = e.target.value;
   }
 
   function handleVolumeChange(e){
-    settings.carrier.volume = Math.log10(e.target.value)*20;
+    settings.info.carrier.volume = Math.log10(e.target.value)*20;
     setVolume(e.target.value);
   }
   return(
