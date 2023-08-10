@@ -82,9 +82,9 @@ describe(`Interaction`,()=>{
     render(<Filter settings={profile}/>);
     const slider = screen.getByRole(`slider`,{name:`volume`});
 
-    fireEvent.change(slider, {target:{value:0.6}});
+    fireEvent.change(slider, {target:{value:0.3}});
 
-    expect(profile.info.filter.volume).toBe(`0.6`);
+    expect(profile.info.filter.volume).toBe(`-10.46`);
   });
 
   it(`checks only one filter type`,()=>{

@@ -22,8 +22,9 @@ const Filter = ({settings})=>{
   } 
 
   function handleVolume(e){
-    setVolume(e.target.value);
-    settings.info.filter.volume = e.target.value;
+    const gain = (Math.log10(e.target.value)*20).toFixed(2);
+    setVolume(gain);
+    settings.info.filter.volume = gain;
   }
 
   function handleType(e){
