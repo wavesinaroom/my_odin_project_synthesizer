@@ -5,84 +5,82 @@ const Filter = ({settings})=>{
   const [detune, setDetune] = useState(settings.info.filter.detune);
   const [q, setQ] = useState(settings.info.filter.q);
   const [volume, setVolume] = useState(settings.info.filter.volume);
-  const [type, setType] = useState(settings.info.filter.type);
   
-  function  handleEvent(e){
-    switch(e.target.name){
-      case 'frequency':
-        setFrequency(e.target.value);
-        settings.info.filter.frequency = frequency;
-        break;
-      case 'detune':
-        setDetune(e.target.value);
-        settings.info.filter.detune = detune;
-        break;
-      case 'q':
-        setQ(e.target.value);
-        settings.info.filter.q = q;
-        break;
-      case 'volume':
-        setVolume(e.target.value);
-        settings.info.filter.volume = volume;
-        break;
-      case 'type':
-        setType(e.target.value);
-        settings.info.filter.type = type;
-        break;
-      default:
-        throw new Error(`Invalid name`);
-    }
+  function handleFrequency(e){
+    setFrequency(e.target.value);
+    settings.info.filter.frequency = e.target.value;
   }
+
+  function handleDetune(e){
+    setDetune(e.target.value);
+    settings.info.filter.detune = e.target.value;
+  }
+
+  function handleQ(e){
+    setQ(e.target.value); 
+    settings.info.filter.q = e.target.value;
+  } 
+
+  function handleVolume(e){
+    setVolume(e.target.value);
+    settings.info.filter.volume = e.target.value;
+  }
+
+  function handleType(e){
+    if(e.target.checked)
+      settings.info.filter.type = e.target.value;
+  }
+  
   return(
     <>
       <label>
-        <input value={frequency} name='frequency' type='range' min='20' max='20000' step='1' onChange={handleEvent}/>
+        <input value={frequency} name='frequency' type='range' min='20' max='20000' step='1' onChange={handleFrequency}/>
         frequency
       </label>
       <label>
-        <input value={detune} name='detune' type='range' min='0.0001' max='100' step='1' onChange={handleEvent}/>
+        <input value={detune} name='detune' type='range' min='0.0001' max='100' step='1' onChange={handleDetune}/>
         detune
       </label>
       <label>
-        <input value={q} name='q' type='range' min='0.0001' max='1000' step='1' onChange={handleEvent}/>
+        <input value={q} name='q' type='range' min='0.0001' max='1000' step='1' onChange={handleQ}/>
         q 
       </label>
       <label>
-        <input value={volume} name='volume' type='range' min='0.0001' max='1' step='0.1' onChange={handleEvent}/>
+        <input value={volume} name='volume' type='range' min='0.0001' max='1' step='0.1' onChange={handleVolume}/>
         volume
       </label>
       <fieldset>
         <legend>Type</legend>
           <label>
-            <input value='lowpass' name='type' type='radio' onChange={handleEvent}/>
+            <input value='lowpass' name='type' type='radio' onChange={handleType}/>
             lowpass
           </label>
           <label>
-            <input value='highpass' name='type' type='radio' onChange={handleEvent} checked={true}/>
+            <input value='highpass' name='type' type='radio' onChange={handleType} checked={true}/>
             highpass
           </label>
           <label>
-            <input value='bandpass' name='type' type='radio' onChange={handleEvent}/>
+            <input value='bandpass' name='type' type='radio' onChange={handleType}/>
             bandpass
           </label>
           <label>
-            <input value='lowshelf' name='type' type='radio' onChange={handleEvent}/>
+            <input value='lowshelf' name='type' type='radio' onChange={handleType}/>
             lowshelf
           </label>
           <label>
-            <input value='highshelf' name='type' type='radio' onChange={handleEvent}/>
+            <input value='highshelf' name='type' type='radio' onChange={handleType}/>
             highshelf
           </label>
           <label>
-            <input value='peaking' name='type' type='radio' onChange={handleEvent}/>
+            <input value='peaking' name='type' type='radio' onChange={handleType}/>
             peaking
           </label>
           <label>
-            <input value='notch' name='type' type='radio' onChange={handleEvent}/>
+            <input value='notch' name='type' type='radio' onChange={handleType}/>
             notch
           </label>
           <label>
-            <input value='allpass' name='type' type='radio' onChange={handleEvent}/>
+            <input value='allpass' name='type' type='radio' onChange={handleType}/>
             allpass
           </label>
       </fieldset>
