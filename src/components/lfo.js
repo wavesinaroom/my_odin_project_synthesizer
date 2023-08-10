@@ -20,7 +20,7 @@ const LFO = ({settings}) =>{
     <>
       <fieldset>
         <legend>Type</legend>
-          <input value='sine' type='radio' onChange={handleType} checked='true'/> 
+          <input value='sine' type='radio' onChange={handleType} checked={true}/> 
           <input value='square' type='radio' onChange={handleType}/> 
           <input value='sawtooth' type='radio' onChange={handleType}/> 
           <input value='triangle' type='radio' onChange={handleType}/> 
