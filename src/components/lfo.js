@@ -29,6 +29,9 @@ const LFO = ({settings}) =>{
           <input value='sawtooth' type='radio' onChange={handleType}/> 
           <input value='triangle' type='radio' onChange={handleType}/> 
       </fieldset>
+      <label>
+        <input value={frequency} type='range' onChange={handleFrequency} min='0.0001' max='20' step='1'/>
+      </label>
     </>
   )
 }
