@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const Profile = createContext({info:{}}); 
+export const Profile = createContext({settings:{}}); 
