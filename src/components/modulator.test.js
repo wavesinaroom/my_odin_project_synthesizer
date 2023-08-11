@@ -7,15 +7,16 @@ beforeEach(()=>{
   cleanup();
 })
 
-describe(`Rendering`, ()=>{
+describe.only(`Rendering`, ()=>{
   const profile = {info: Default};
   it(`renders waveform type radio buttons`,()=>{
     render(<Modulator settings={profile}/>);
 
     expect(screen.getAllByRole(`radio`).length).toBe(4);
+    expect(screen.getAllByRole(`slider`).length).toBe(2);
   });
 
-  it(`checks radio buttons label match waveform types`,()=>{
+  it(`check input labels`,()=>{
     render(<Modulator settings={profile}/>);
 
     expect(screen.getByRole(`radio`,{name:`sine`})).toBeInTheDocument(); 
@@ -23,6 +24,10 @@ describe(`Rendering`, ()=>{
     expect(screen.getByRole(`radio`,{name:`triangle`})).toBeInTheDocument(); 
     expect(screen.getByRole(`radio`,{name:`sawtooth`})).toBeInTheDocument(); 
   });
+});
+
+describe(`Interaction`,()=>{
+  const profile= {info:Default};
 
   it(`chooses a waveform and updates JSON file`,()=>{
     render(<Modulator settings={profile}/>);
@@ -32,7 +37,7 @@ describe(`Rendering`, ()=>{
     expect(profile.info.modulator.type).toMatch(`triangle`);
   });
 
-  it.only(`changes volume level`,()=>{
+  it(`changes volume level`,()=>{
     render(<Modulator settings={profile}/>);
     const volume = screen.getByRole(`slider`,{name:`volume`});
 
