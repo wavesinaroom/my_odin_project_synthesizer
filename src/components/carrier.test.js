@@ -9,7 +9,7 @@ beforeEach(()=>{
 });
 
 describe(`Rendering`, ()=>{
-  const profile = {info:Default};
+  const profile = {settings:Default};
   it(`renders waveform type radio buttons`,()=>{
     render(
       <Profile.Provider value={profile}>

@@ -1,17 +1,15 @@
-import {useState, useContext} from "react";
+import { useContext} from "react";
 import {Profile} from './profile'
 
 const Carrier = () =>{
   const profile = useContext(Profile);
-  const [volume, setVolume] = useState(1);
 
   function handleWaveformChoice(e){
-      profile.settings.carrier.type = e.target.value;
+    profile.settings.carrier.type = e.target.value;
   }
 
   function handleVolumeChange(e){
     profile.settings.carrier.volume = (Math.log10(e.target.value)*20).toFixed(2);
-    setVolume(e.target.value);
   }
   return(
     <>
@@ -35,7 +33,7 @@ const Carrier = () =>{
           </label>
       </fieldset>
       <label>
-        <input value={volume} name='volume' type='range' min="0.0001" step="1" max="1" onChange={handleVolumeChange}/>
+        <input value={profile.settings.carrier.volume} name='volume' type='range' min="0.0001" step="1" max="1" onChange={handleVolumeChange}/>
         volume
       </label>
     </>
