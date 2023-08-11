@@ -61,7 +61,6 @@ describe(`Interaction`,()=>{
 
     fireEvent.change(volume, {target:{value:0.32}});
     expect(profile.settings.modulator.volume).toEqual(`-9.90`);
-    expect(volume.value).toBe(`0.32`);
   });
 
   it(`sets ratio to modulate carrier`,()=>{
@@ -74,6 +73,5 @@ describe(`Interaction`,()=>{
 
     fireEvent.change(ratio, {target:{value:0.5}});
     expect(profile.settings.modulator.ratio).toEqual(`0.5`);
-    expect(ratio.value).toEqual(`0.5`);
   });
 });

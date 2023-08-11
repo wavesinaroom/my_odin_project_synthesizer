@@ -1,10 +1,8 @@
-import {useState, useContext} from "react";
+import { useContext} from "react";
 import {Profile} from './profile'
 
 
 const Modulator = () =>{
-  const [volume, setVolume] = useState(0.75);
-  const [frequency, setFrequency] = useState(1)
   const profile = useContext(Profile);
 
   function handleWaveformChoice(e){
@@ -13,11 +11,9 @@ const Modulator = () =>{
 
   function handleVolumeChange(e){
     profile.settings.modulator.volume = (Math.log10(e.target.value)*20).toFixed(2);
-    setVolume(e.target.value);
   }
 
   function handleFrequencyRatio(e){
-    setFrequency(e.target.value);
     profile.settings.modulator.ratio = e.target.value;
   }
   return(
@@ -43,11 +39,11 @@ const Modulator = () =>{
       </fieldset>
       <fieldset>
         <label>
-          <input value={frequency} name='frequency' type='range' min='0' max='1' step='0.1' onChange={handleFrequencyRatio}/> 
+          <input value={profile.settings.modulator.frequency} name='frequency' type='range' min='0' max='1' step='0.1' onChange={handleFrequencyRatio}/> 
             frequency ratio 
         </label>
         <label>
-          <input value={volume} name='volume' type='range' min="0.0001" step="0.001" max="1" onChange={handleVolumeChange}/>
+          <input value={profile.settings.modulator.volume} name='volume' type='range' min="0.0001" step="0.001" max="1" onChange={handleVolumeChange}/>
           volume
         </label>
       </fieldset>
