@@ -1,14 +1,16 @@
-import {useState} from "react";
+import {useState, useContext} from "react";
+import {Profile} from './profile'
 
-const Carrier = ({settings}) =>{
-  const [volume, setVolume] = useState(settings.info.carrier.volume);
+const Carrier = () =>{
+  const profile = useContext(Profile);
+  const [volume, setVolume] = useState(1);
 
   function handleWaveformChoice(e){
-      settings.info.carrier.type = e.target.value;
+      profile.settings.carrier.type = e.target.value;
   }
 
   function handleVolumeChange(e){
-    settings.info.carrier.volume = (Math.log10(e.target.value)*20).toFixed(2);
+    profile.settings.carrier.volume = (Math.log10(e.target.value)*20).toFixed(2);
     setVolume(e.target.value);
   }
   return(
