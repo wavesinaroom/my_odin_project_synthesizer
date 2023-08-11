@@ -9,7 +9,7 @@ const Modulator = ({settings}) =>{
   }
 
   function handleVolumeChange(e){
-    settings.modulator.volume = Math.log10(e.target.value)*20;
+    settings.info.modulator.volume = (Math.log10(e.target.value)*20).toFixed(2);
     setVolume(e.target.value);
   }
 

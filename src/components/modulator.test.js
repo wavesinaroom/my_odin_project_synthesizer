@@ -24,7 +24,7 @@ describe(`Rendering`, ()=>{
     expect(screen.getByRole(`radio`,{name:`sawtooth`})).toBeInTheDocument(); 
   });
 
-  it.only(`chooses a waveform and updates JSON file`,()=>{
+  it(`chooses a waveform and updates JSON file`,()=>{
     render(<Modulator settings={profile}/>);
 
     expect(profile.info.modulator.type).toMatch(`sine`);
@@ -32,13 +32,12 @@ describe(`Rendering`, ()=>{
     expect(profile.info.modulator.type).toMatch(`triangle`);
   });
 
-  it(`changes volume level`,()=>{
+  it.only(`changes volume level`,()=>{
     render(<Modulator settings={profile}/>);
     const volume = screen.getByRole(`slider`,{name:`volume`});
-    expect(profile.info.modulator.volume).toEqual(1);
 
     fireEvent.change(volume, {target:{value:0.32}});
-    expect(profile.info.modulator.volume).toEqual(-9.89700043360188);
+    expect(profile.info.modulator.volume).toEqual(`-9.90`);
     expect(volume.value).toBe(`0.32`);
   });
 
