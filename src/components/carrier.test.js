@@ -31,20 +31,10 @@ describe(`Interaction`,()=>{
   it(`chooses a waveform and updates JSON file`,()=>{
     render(<Carrier settings={profile}/>);
 
-    fireEvent.click(screen.getByRole(`radio`,{name:`sine`}));
-    expect(profile.info.carrier.type).toMatch(`sine`);
-  });
-
-  it(`chooses one waveform only`,()=>{
-    render(<Carrier settings={profile}/>);
-
-    fireEvent.click(screen.getByRole(`radio`,{name:`sine`}));
-    expect(profile.info.carrier.type).toMatch(`sine`);
-
+    expect(profile.info.carrier.type).toMatch(`sine`);  
     fireEvent.click(screen.getByRole(`radio`,{name:`square`}));
     expect(profile.info.carrier.type).toMatch(`square`);
-    expect(profile.info.carrier.type).not.toMatch(`sine`);
-  })
+  });
 
   it(`changes volume level`,()=>{
     render(<Carrier settings={profile}/>);

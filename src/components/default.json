@@ -1,6 +1,6 @@
 {
   "carrier":{
-     "type":"",
+     "type":"sine",
      "volume":1
   },
   "modulator":{
