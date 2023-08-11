@@ -15,7 +15,7 @@ const Modulator = ({settings}) =>{
 
   function handleFrequencyRatio(e){
     setFrequency(e.target.value);
-    settings.modulator.ratio = e.target.value;
+    settings.info.modulator.ratio = e.target.value;
   }
   return(
     <>

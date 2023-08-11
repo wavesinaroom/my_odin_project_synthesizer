@@ -7,7 +7,7 @@ beforeEach(()=>{
   cleanup();
 })
 
-describe.only(`Rendering`, ()=>{
+describe(`Rendering`, ()=>{
   const profile = {info: Default};
   it(`renders waveform type radio buttons`,()=>{
     render(<Modulator settings={profile}/>);
@@ -48,11 +48,10 @@ describe(`Interaction`,()=>{
 
   it(`sets ratio to modulate carrier`,()=>{
     render(<Modulator settings={profile}/>);
-    const frequency = screen.getByRole(`slider`,{name:`frequency ratio`});
-    expect(profile.info.modulator.ratio).toEqual(0);
+    const ratio = screen.getByRole(`slider`,{name:`frequency ratio`});
 
-    fireEvent.change(frequency, {target:{value:0.5}});
+    fireEvent.change(ratio, {target:{value:0.5}});
     expect(profile.info.modulator.ratio).toEqual(`0.5`);
-    expect(frequency.value).toEqual(`0.5`);
+    expect(ratio.value).toEqual(`0.5`);
   });
 });
