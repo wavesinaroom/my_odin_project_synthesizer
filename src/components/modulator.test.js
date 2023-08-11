@@ -11,14 +11,22 @@ beforeEach(()=>{
 describe(`Rendering`, ()=>{
   const profile = {settings: Default};
   it(`renders waveform type radio buttons`,()=>{
-    render(<Modulator settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Modulator/>
+      </Profile.Provider>
+    )
 
     expect(screen.getAllByRole(`radio`).length).toBe(4);
     expect(screen.getAllByRole(`slider`).length).toBe(2);
   });
 
   it(`check input labels`,()=>{
-    render(<Modulator settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Modulator/>
+      </Profile.Provider>
+    )
 
     expect(screen.getByRole(`radio`,{name:`sine`})).toBeInTheDocument(); 
     expect(screen.getByRole(`radio`,{name:`square`})).toBeInTheDocument(); 
