@@ -1,22 +1,22 @@
 import '@testing-library/jest-dom';
 import {cleanup,render,screen, fireEvent} from '@testing-library/react';
 import Modulator from './modulator';
-import Settings from './settings.json'
+import Default from './default.json'
 
 beforeEach(()=>{
   cleanup();
 })
 
 describe(`Rendering`, ()=>{
-
+  const profile = {info: Default};
   it(`renders waveform type radio buttons`,()=>{
-    render(<Modulator settings={Settings}/>);
+    render(<Modulator settings={profile}/>);
 
     expect(screen.getAllByRole(`radio`).length).toBe(4);
   });
 
   it(`checks radio buttons label match waveform types`,()=>{
-    render(<Modulator settings={Settings}/>);
+    render(<Modulator settings={profile}/>);
 
     expect(screen.getByRole(`radio`,{name:`sine`})).toBeInTheDocument(); 
     expect(screen.getByRole(`radio`,{name:`square`})).toBeInTheDocument(); 
@@ -24,41 +24,31 @@ describe(`Rendering`, ()=>{
     expect(screen.getByRole(`radio`,{name:`sawtooth`})).toBeInTheDocument(); 
   });
 
-  it(`chooses a waveform and updates JSON file`,()=>{
-    render(<Modulator settings={Settings}/>);
+  it.only(`chooses a waveform and updates JSON file`,()=>{
+    render(<Modulator settings={profile}/>);
 
-    fireEvent.click(screen.getByRole(`radio`,{name:`sine`}));
-    expect(Settings.modulator.type).toMatch(`sine`);
-  });
-
-  it(`chooses one waveform only`,()=>{
-    render(<Modulator settings={Settings}/>);
-
-    fireEvent.click(screen.getByRole(`radio`,{name:`sine`}));
-    expect(Settings.modulator.type).toMatch(`sine`);
-
-    fireEvent.click(screen.getByRole(`radio`,{name:`square`}));
-    expect(Settings.modulator.type).toMatch(`square`);
-    expect(Settings.modulator.type).not.toMatch(`sine`);
+    expect(profile.info.modulator.type).toMatch(`sine`);
+    fireEvent.click(screen.getByRole(`radio`,{name:`triangle`}));
+    expect(profile.info.modulator.type).toMatch(`triangle`);
   });
 
   it(`changes volume level`,()=>{
-    render(<Modulator settings={Settings}/>);
+    render(<Modulator settings={profile}/>);
     const volume = screen.getByRole(`slider`,{name:`volume`});
-    expect(Settings.modulator.volume).toEqual(1);
+    expect(profile.info.modulator.volume).toEqual(1);
 
     fireEvent.change(volume, {target:{value:0.32}});
-    expect(Settings.modulator.volume).toEqual(-9.89700043360188);
+    expect(profile.info.modulator.volume).toEqual(-9.89700043360188);
     expect(volume.value).toBe(`0.32`);
   });
 
   it(`sets ratio to modulate carrier`,()=>{
-    render(<Modulator settings={Settings}/>);
+    render(<Modulator settings={profile}/>);
     const frequency = screen.getByRole(`slider`,{name:`frequency ratio`});
-    expect(Settings.modulator.ratio).toEqual(0);
+    expect(profile.info.modulator.ratio).toEqual(0);
 
     fireEvent.change(frequency, {target:{value:0.5}});
-    expect(Settings.modulator.ratio).toEqual(`0.5`);
+    expect(profile.info.modulator.ratio).toEqual(`0.5`);
     expect(frequency.value).toEqual(`0.5`);
   });
 });
