@@ -5,37 +5,36 @@ const Modulator = ({settings}) =>{
   const [frequency, setFrequency] = useState(1)
 
   function handleWaveformChoice(e){
-    if(e.target.checked)
-      settings.modulator.type = e.target.value;
+      settings.info.modulator.type = e.target.value;
   }
 
   function handleVolumeChange(e){
-    settings.modulator.volume = Math.log10(e.target.value)*20;
+    settings.info.modulator.volume = (Math.log10(e.target.value)*20).toFixed(2);
     setVolume(e.target.value);
   }
 
   function handleFrequencyRatio(e){
     setFrequency(e.target.value);
-    settings.modulator.ratio = e.target.value;
+    settings.info.modulator.ratio = e.target.value;
   }
   return(
     <>
       <fieldset>
         <legend>Waveform</legend>
           <label>
-           <input value='sine' name='sine' type='radio' onClick={handleWaveformChoice}/>
+           <input value='sine' name='sine' type='radio' onChange={handleWaveformChoice} checked={true}/>
             sine
           </label>
           <label>
-           <input value='square' name='square' type='radio' onClick={handleWaveformChoice}/>
+           <input value='square' name='square' type='radio' onChange={handleWaveformChoice}/>
             square
           </label>
           <label>
-           <input value='triangle' name='triangle' type='radio' onClick={handleWaveformChoice}/>
+           <input value='triangle' name='triangle' type='radio' onChange={handleWaveformChoice}/>
             triangle
           </label>
           <label>
-           <input value='sawtooth' name='sawtooth' type='radio' onClick={handleWaveformChoice}/>
+           <input value='sawtooth' name='sawtooth' type='radio' onChange={handleWaveformChoice}/>
             sawtooth
           </label>
       </fieldset>

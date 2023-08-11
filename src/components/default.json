@@ -4,7 +4,7 @@
      "volume":1
   },
   "modulator":{
-    "type":"",
+    "type":"sine",
     "ratio":0,
     "volume":1
   },
