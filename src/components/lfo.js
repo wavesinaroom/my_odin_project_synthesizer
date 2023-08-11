@@ -1,51 +1,66 @@
-
 import {useState} from "react";
 
 const LFO = ({settings}) =>{
-  const [frequency, setFrequency] = useState(0.75);
-  const [detune, setDetune] = useState(1);
-  const [type, setType] = useState('');
-  const [target, setTarget] = useState('');
+  const [frequency, setFrequency] = useState(settings.info.lfo.frequency);
+
+  function handleType(e){
+    settings.info.lfo.type = e.target.value;
+  }
+
+  function handleFrequency(e){
+    setFrequency(e.target.value);
+    settings.info.lfo.frequency = e.target.value;
+  }
+
+  function handleTarget(e){
+    settings.info.lfo.target = e.target.value;
+  }
 
   return(
     <>
-      <label>
-        <input value={frequency} name='frequency' type='range' min='20' max='20000' step='1'/>
-        frequency
-      </label>
-      <label>
-        <input value={detune} name='detune' type='range' min='0.0001' max='100' step='1'/>
-        detune
-      </label>
       <fieldset>
-        <legend>type</legend>
+        <legend>Type</legend>
           <label>
-           <input value='sine' name='sine' type='radio'/>
+            <input value='sine' type='radio' onChange={handleType} checked={true}/> 
             sine
           </label>
           <label>
-           <input value='square' name='square' type='radio'/>
+            <input value='square' type='radio' onChange={handleType}/> 
             square
           </label>
           <label>
-           <input value='triangle' name='triangle' type='radio'/>
-            triangle
-          </label>
-          <label>
-           <input value='sawtooth' name='sawtooth' type='radio'/>
+            <input value='sawtooth' type='radio' onChange={handleType}/> 
             sawtooth
           </label>
-      </fieldset>
-      <fieldset>
-        <legend>target</legend>
           <label>
-            <input value='carrier' name='carrier' type='radio'/>
-            <input value='modulator' name='modulator' type='radio'/>
+            <input value='triangle' type='radio' onChange={handleType}/> 
+            triangle
+          </label>
+      </fieldset>
+      <label>
+        <input value={frequency} type='range' onChange={handleFrequency} min='0.0001' max='20' step='1'/>
+        frequency
+      </label>
+      <fieldset>
+        <legend>Target</legend>
+          <label>
+            <input value='carrier' type='radio' onChange={handleTarget}/>
+            carrier
+          </label>
+          <label>
+            <input value='modulator' type='radio' onChange={handleTarget}/>
+            modulator
+          </label>
+          <label>
+            <input value='envelope' type='radio' onChange={handleTarget}/>
+            envelope
+          </label>
+          <label>
+            <input value='none' type='radio' onChange={handleTarget}/>
+            none
           </label>
       </fieldset>
     </>
-  );
+  )
 }
-
 export default LFO;
-
