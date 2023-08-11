@@ -8,7 +8,7 @@ const Carrier = ({settings}) =>{
   }
 
   function handleVolumeChange(e){
-    settings.info.carrier.volume = Math.log10(e.target.value)*20;
+    settings.info.carrier.volume = (Math.log10(e.target.value)*20).toFixed(2);
     setVolume(e.target.value);
   }
   return(
