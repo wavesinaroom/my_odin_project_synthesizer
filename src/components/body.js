@@ -5,11 +5,11 @@ import Filter from './filter'
 import LFO from './lfo'
 import Envelope from './envelope'
 
-const Body = ({settings})=>{
+const Body = ()=>{
 
   return(
     <>
-      <Profile.Provider value={settings}>
+      <Profile.Provider>
         <Carrier/>
         <Modulator/>
         <Filter/>
