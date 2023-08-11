@@ -2,13 +2,14 @@ import '@testing-library/jest-dom';
 import {cleanup,render,screen, fireEvent} from '@testing-library/react';
 import Modulator from './modulator';
 import Default from './default.json'
+import { Profile } from './profile';
 
 beforeEach(()=>{
   cleanup();
 })
 
 describe(`Rendering`, ()=>{
-  const profile = {info: Default};
+  const profile = {settings: Default};
   it(`renders waveform type radio buttons`,()=>{
     render(<Modulator settings={profile}/>);
 
@@ -27,31 +28,44 @@ describe(`Rendering`, ()=>{
 });
 
 describe(`Interaction`,()=>{
-  const profile= {info:Default};
+  const profile= {settings:Default};
 
   it(`chooses a waveform and updates JSON file`,()=>{
-    render(<Modulator settings={profile}/>);
 
-    expect(profile.info.modulator.type).toMatch(`sine`);
+    render(
+      <Profile.Provider value={profile}>
+        <Modulator/>
+      </Profile.Provider>
+    )
+
+    expect(profile.settings.modulator.type).toMatch(`sine`);
     fireEvent.click(screen.getByRole(`radio`,{name:`triangle`}));
-    expect(profile.info.modulator.type).toMatch(`triangle`);
+    expect(profile.settings.modulator.type).toMatch(`triangle`);
   });
 
   it(`changes volume level`,()=>{
-    render(<Modulator settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Modulator/>
+      </Profile.Provider>
+    )
     const volume = screen.getByRole(`slider`,{name:`volume`});
 
     fireEvent.change(volume, {target:{value:0.32}});
-    expect(profile.info.modulator.volume).toEqual(`-9.90`);
+    expect(profile.settings.modulator.volume).toEqual(`-9.90`);
     expect(volume.value).toBe(`0.32`);
   });
 
   it(`sets ratio to modulate carrier`,()=>{
-    render(<Modulator settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Modulator/>
+      </Profile.Provider>
+    )
     const ratio = screen.getByRole(`slider`,{name:`frequency ratio`});
 
     fireEvent.change(ratio, {target:{value:0.5}});
-    expect(profile.info.modulator.ratio).toEqual(`0.5`);
+    expect(profile.settings.modulator.ratio).toEqual(`0.5`);
     expect(ratio.value).toEqual(`0.5`);
   });
 });
