@@ -1,21 +1,24 @@
-import {useState} from "react";
+import {useState, useContext} from "react";
+import {Profile} from './profile'
 
-const Modulator = ({settings}) =>{
+
+const Modulator = () =>{
   const [volume, setVolume] = useState(0.75);
   const [frequency, setFrequency] = useState(1)
+  const profile = useContext(Profile);
 
   function handleWaveformChoice(e){
-      settings.info.modulator.type = e.target.value;
+      profile.settings.modulator.type = e.target.value;
   }
 
   function handleVolumeChange(e){
-    settings.info.modulator.volume = (Math.log10(e.target.value)*20).toFixed(2);
+    profile.settings.modulator.volume = (Math.log10(e.target.value)*20).toFixed(2);
     setVolume(e.target.value);
   }
 
   function handleFrequencyRatio(e){
     setFrequency(e.target.value);
-    settings.info.modulator.ratio = e.target.value;
+    profile.settings.modulator.ratio = e.target.value;
   }
   return(
     <>
