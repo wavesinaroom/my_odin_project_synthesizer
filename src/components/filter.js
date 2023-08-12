@@ -27,19 +27,19 @@ const Filter = ()=>{
   return(
     <>
       <label>
-        <input value={profile.settings.filter.frequency} name='frequency' type='range' min='20' max='20000' step='1' onChange={handleFrequency}/>
+        <input name='frequency' type='range' min='20' max='20000' step='1' onChange={handleFrequency}/>
         frequency
       </label>
       <label>
-        <input value={profile.settings.filter.detune} name='detune' type='range' min='0.0001' max='100' step='1' onChange={handleDetune}/>
+        <input name='detune' type='range' min='0.0001' max='100' step='1' onChange={handleDetune}/>
         detune
       </label>
       <label>
-        <input value={profile.settings.filter.q} name='q' type='range' min='0.0001' max='1000' step='1' onChange={handleQ}/>
+        <input name='q' type='range' min='0.0001' max='1000' step='1' onChange={handleQ}/>
         q 
       </label>
       <label>
-        <input value={profile.settings.filter.volume} name='volume' type='range' min='0.0001' max='1' step='0.1' onChange={handleVolume}/>
+        <input name='volume' type='range' min='0.0001' max='1' step='0.1' onChange={handleVolume}/>
         volume
       </label>
       <fieldset>
