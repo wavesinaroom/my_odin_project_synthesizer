@@ -2,6 +2,7 @@ import '@testing-library/jest-dom'
 import {cleanup,fireEvent,render,screen} from "@testing-library/react";
 import Filter from "./filter";
 import Default from "./default.json"
+import { Profile } from './profile';
 
 beforeEach(()=>{
   cleanup();
@@ -12,7 +13,11 @@ describe(`Rendering`,()=>{
   const profile = {info:Default};
 
   it(`renders all input elements`,()=>{
-    render(<Filter settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Filter/>
+      </Profile.Provider>
+    )
 
     expect(screen.getAllByRole(`slider`).length).toBe(4);
     expect(screen.getAllByRole(`radio`).length).toBe(8);
@@ -32,7 +37,11 @@ describe(`Rendering`,()=>{
   });
   
   it(`renders values from default.json file`,()=>{
-    render(<Filter settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Filter/>
+      </Profile.Provider>
+    )
 
 
     expect(screen.getByRole(`slider`,{name:`frequency`}).value).toBe(`${profile.info.filter.frequency}`);
@@ -51,7 +60,11 @@ describe(`Interaction`,()=>{
   const profile = {info:Default};
 
   it(`sets frequency slider to a specific value`,()=>{
-    render(<Filter settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Filter/>
+      </Profile.Provider>
+    )
     const slider = screen.getByRole(`slider`,{name:`frequency`});
 
     fireEvent.change(slider, {target:{value: 3000}});
@@ -61,7 +74,11 @@ describe(`Interaction`,()=>{
   });
 
   it(`sets detune slider to a specific value`, ()=>{
-    render(<Filter settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Filter/>
+      </Profile.Provider>
+    )
     const slider = screen.getByRole(`slider`,{name:`detune`});
 
     fireEvent.change(slider, {target:{value:50}});
@@ -70,7 +87,11 @@ describe(`Interaction`,()=>{
   });
 
   it(`sets q slide to a specific value`, ()=>{
-    render(<Filter settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Filter/>
+      </Profile.Provider>
+    )
     const slider = screen.getByRole(`slider`,{name:`q`});
 
     fireEvent.change(slider, {target:{value:200}});
@@ -79,7 +100,11 @@ describe(`Interaction`,()=>{
   });
 
   it(`sets volume slide to a specific value`, ()=>{
-    render(<Filter settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Filter/>
+      </Profile.Provider>
+    )
     const slider = screen.getByRole(`slider`,{name:`volume`});
 
     fireEvent.change(slider, {target:{value:0.3}});
@@ -88,7 +113,11 @@ describe(`Interaction`,()=>{
   });
 
   it(`checks only one filter type`,()=>{
-    render(<Filter settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Filter/>
+      </Profile.Provider>
+    )
     const lowpass = screen.getByLabelText(`lowpass`);
 
     expect(profile.info.filter.type).toMatch(`highpass`);
