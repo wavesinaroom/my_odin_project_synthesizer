@@ -1,19 +1,19 @@
-import {useState} from "react";
+import {useContext} from "react";
+import {Profile} from "./profile"
 
-const LFO = ({settings}) =>{
-  const [frequency, setFrequency] = useState(settings.info.lfo.frequency);
+const LFO = () =>{
+  const profile = useContext(Profile);
 
   function handleType(e){
-    settings.info.lfo.type = e.target.value;
+    profile.settings.lfo.type = e.target.value;
   }
 
   function handleFrequency(e){
-    setFrequency(e.target.value);
-    settings.info.lfo.frequency = e.target.value;
+    profile.settings.lfo.frequency = e.target.value;
   }
 
   function handleTarget(e){
-    settings.info.lfo.target = e.target.value;
+    profile.settings.lfo.target = e.target.value;
   }
 
   return(
@@ -38,7 +38,7 @@ const LFO = ({settings}) =>{
           </label>
       </fieldset>
       <label>
-        <input value={frequency} type='range' onChange={handleFrequency} min='0.0001' max='20' step='1'/>
+        <input value={profile.settings.frequency} type='range' onChange={handleFrequency} min='0.0001' max='20' step='1'/>
         frequency
       </label>
       <fieldset>
