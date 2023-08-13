@@ -10,7 +10,7 @@ beforeEach(()=>{
 
 describe(`Rendering`,()=>{
 
-  const profile = {info:Default};
+  const profile = {settings:Default};
 
   it(`renders all input elements`,()=>{
     render(
@@ -43,21 +43,20 @@ describe(`Rendering`,()=>{
       </Profile.Provider>
     )
 
-
-    expect(screen.getByRole(`slider`,{name:`frequency`}).value).toBe(`${profile.info.filter.frequency}`);
-    expect(screen.getByRole(`slider`,{name:`detune`}).value).toBe(`${profile.info.filter.detune}`);
-    expect(screen.getByRole(`slider`,{name:`q`}).value).toBe(`${profile.info.filter.q}`);
-    expect(screen.getByRole(`slider`,{name:`volume`}).value).toBe(`${profile.info.filter.volume}`);
+    expect(screen.getByRole(`slider`,{name:`frequency`}).value).toBe(`${profile.settings.filter.frequency}`);
+    expect(screen.getByRole(`slider`,{name:`detune`}).value).toBe(`${profile.settings.filter.detune}`);
+    expect(screen.getByRole(`slider`,{name:`q`}).value).toBe(`${profile.settings.filter.q}`);
+    expect(screen.getByRole(`slider`,{name:`volume`}).value).toBe(`${profile.settings.filter.volume}`);
 
     expect(screen.getByLabelText(`highpass`)).toBeChecked();
 
-    expect(`${profile.info.filter.type}`).toBe(`highpass`);
+    expect(`${profile.settings.filter.type}`).toBe(`highpass`);
   });
 });
 
 describe(`Interaction`,()=>{
 
-  const profile = {info:Default};
+  const profile = {settings:Default};
 
   it(`sets frequency slider to a specific value`,()=>{
     render(
@@ -69,7 +68,7 @@ describe(`Interaction`,()=>{
 
     fireEvent.change(slider, {target:{value: 3000}});
 
-    expect(profile.info.filter.frequency).toBe(`3000`);
+    expect(profile.settings.filter.frequency).toBe(`3000`);
     
   });
 
@@ -83,7 +82,7 @@ describe(`Interaction`,()=>{
 
     fireEvent.change(slider, {target:{value:50}});
 
-    expect(profile.info.filter.detune).toBe(`50`);
+    expect(profile.settings.filter.detune).toBe(`50`);
   });
 
   it(`sets q slide to a specific value`, ()=>{
@@ -96,7 +95,7 @@ describe(`Interaction`,()=>{
 
     fireEvent.change(slider, {target:{value:200}});
 
-    expect(profile.info.filter.q).toBe(`200`);
+    expect(profile.settings.filter.q).toBe(`200`);
   });
 
   it(`sets volume slide to a specific value`, ()=>{
@@ -109,7 +108,7 @@ describe(`Interaction`,()=>{
 
     fireEvent.change(slider, {target:{value:0.3}});
 
-    expect(profile.info.filter.volume).toBe(`-10.46`);
+    expect(profile.settings.filter.volume).toBe(`-10.46`);
   });
 
   it(`checks only one filter type`,()=>{
@@ -120,11 +119,11 @@ describe(`Interaction`,()=>{
     )
     const lowpass = screen.getByLabelText(`lowpass`);
 
-    expect(profile.info.filter.type).toMatch(`highpass`);
+    expect(profile.settings.filter.type).toMatch(`highpass`);
 
     fireEvent.click(lowpass);
 
-    expect(profile.info.filter.type).toMatch(`lowpass`)
+    expect(profile.settings.filter.type).toMatch(`lowpass`)
 
   })
 });
