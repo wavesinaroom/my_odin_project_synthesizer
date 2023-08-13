@@ -9,10 +9,10 @@
     "volume":1
   },
   "filter":{
-    "frequency":0,
-    "detune":0,
-    "q":0,
-    "volume":0,
+    "frequency":20,
+    "detune":0.0001,
+    "q":0.0001,
+    "volume":0.0001,
     "type":"highpass"
   },
   "lfo":{
