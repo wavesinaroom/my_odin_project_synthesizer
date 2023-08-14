@@ -1,4 +1,3 @@
-import {Profile} from './profile'
 import Carrier from './carrier'
 import Modulator from './modulator'
 import Filter from './filter'
@@ -9,13 +8,11 @@ const Body = ()=>{
 
   return(
     <>
-      <Profile.Provider>
-        <Carrier/>
-        <Modulator/>
-        <Filter/>
-        <LFO/>
-        <Envelope/>
-      </Profile.Provider>
+      <Carrier/>
+      <Modulator/>
+      <Filter/>
+      <LFO/>
+      <Envelope/>
     </>
   )
 }
