@@ -20,7 +20,7 @@ const Logout = () =>{
         .from('profiles')
         .update('settings')
         .eq('id', userId)
-        .match(JSON.stringify(profile));
+        .match(profile);
       if(error)
         throw error
     }catch(error){
