@@ -1,6 +1,14 @@
-import { useState } from "react";
+import {useEffect} from "react";
 
 const Keyboard = () =>{
+  
+  function handleKeycode(e){
+    console.log(e.key);
+  }
+
+  useEffect(()=>{
+    window.addEventListener('keydown', handleKeycode)
+  });
   return(
     <>
       <svg>
@@ -21,3 +29,4 @@ const Keyboard = () =>{
     </>
   )
 }
+ export default Keyboard;
