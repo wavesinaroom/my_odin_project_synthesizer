@@ -28,7 +28,7 @@ const Body = ()=>{
 
   return(
     <>
-      <Profile.Provider>
+      <Profile.Provider value={profile}>
         <Carrier/>
         <Modulator/>
         <Filter/>
