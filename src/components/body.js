@@ -20,6 +20,7 @@ const Body = ()=>{
     setCarrier(profile.settings.carrier, carrier);
     setModulator(profile.settings.modulator, modulator);
     setLFO(profile.settings.lfo, lfo);
+    setEnvelope(profile.settings.envelope, envelope);
     setFilter(profile.settings.filter, filter);
 
   },[profile])
@@ -53,6 +54,18 @@ function setLFO(settings, node){
   node.frequency = settings.frequency;
 }
 
+function setEnvelope(settings, node){
+  node.gain = settings.volume;
+}
+
+function setFilter(settings, node){
+  node.frequency = settings.frequency;
+  node.detune = settings.detune;
+  node.q = settings.q;
+  node.volume = settings.volume;
+  node.type = settings.type;
+}
+
 function envelopeOn(settings, node, context){
   let now = context.currentTime;
 
@@ -68,11 +81,4 @@ function envelopeOff(settings, node, context){
   node.cancelScheduledValues(0);
   node.setValueAtTime(node.value,now);
   node.linearRampToValueAtTime(0, now + settings.r);
-}
-function setFilter(settings, node){
-  node.frequency = settings.frequency;
-  node.detune = settings.detune;
-  node.q = settings.q;
-  node.volume = settings.volume;
-  node.type = settings.type;
 }
