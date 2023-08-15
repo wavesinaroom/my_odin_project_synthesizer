@@ -1,9 +1,48 @@
 import {useEffect} from "react";
 
-const Keyboard = () =>{
+const Keyboard = ({setFrequency}) =>{
   
   function handleKeycode(e){
-    console.log(e.key);
+    switch(e.key){
+      case "s":
+        setFrequency(261.63);
+        break;
+      case "e":
+        setFrequency(277.18);
+        break;
+      case "d":
+        setFrequency(293.66);
+        break;
+      case "r":
+        setFrequency(311.13);
+        break;
+      case "f":
+        setFrequency(329.63);
+        break;
+      case "j":
+        setFrequency(349.32);
+        break;
+      case "u":
+        setFrequency(369.99);
+        break;
+      case "k":
+        setFrequency(392);
+        break;
+      case "i":
+        setFrequency(415.3);
+        break;
+      case "l":
+        setFrequency(440);
+        break;
+      case "o":
+        setFrequency(466.16);
+        break;
+      case "ñ":
+        setFrequency(493.88);
+        break;
+      default:
+        break;
+    }
   }
 
   useEffect(()=>{
