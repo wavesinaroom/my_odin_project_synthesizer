@@ -2,7 +2,7 @@ import {useEffect} from "react";
 
 const Keyboard = ({setFrequency}) =>{
   
-  function handleKeycode(e){
+  function handlKeyCode(e){
     switch(e.key){
       case "s":
         setFrequency(261.63);
@@ -46,7 +46,10 @@ const Keyboard = ({setFrequency}) =>{
   }
 
   useEffect(()=>{
-    window.addEventListener('keydown', handleKeycode)
+    window.addEventListener('keydown', handlKeyCode)
+    return(()=>{
+      window.removeEventListener('keydown', handlKeyCode)
+    })
   });
   return(
     <>
