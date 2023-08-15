@@ -20,7 +20,6 @@ const Body = ()=>{
     setCarrier(profile.settings.carrier, carrier);
     setModulator(profile.settings.modulator, modulator);
     setLFO(profile.settings.lfo, lfo);
-    setEnvelope(profile.settings.envelope, envelope);
     setFilter(profile.settings.filter, filter);
 
   },[profile])
@@ -41,21 +40,39 @@ const Body = ()=>{
 export default Body;
 
 function setCarrier(settings, node){
-
+  node.type = settings.type;
+  node.detune = settings.detune;
 }
 
 function setModulator(settings, node){
-
+  node.type =  settings.type;
 }
 
 function setLFO(settings, node){
-
+  node.type = settings.type;
+  node.frequency = settings.frequency;
 }
 
-function setEnvelope(settings, node){
+function envelopeOn(settings, node, context){
+  let now = context.currentTime;
 
+  node.cancelScheduledValues(0);
+  node.setValueAtTime(0,now);
+  node.linearRampToValueAtTime(1, now + settings.a);
+  node.linearRampToValueAtTime(settings.s, now + settings.a + settings.d);
 }
 
+function envelopeOff(settings, node, context){
+  let now = context.currentTime;
+
+  node.cancelScheduledValues(0);
+  node.setValueAtTime(node.value,now);
+  node.linearRampToValueAtTime(0, now + settings.r);
+}
 function setFilter(settings, node){
-
+  node.frequency = settings.frequency;
+  node.detune = settings.detune;
+  node.q = settings.q;
+  node.volume = settings.volume;
+  node.type = settings.type;
 }
