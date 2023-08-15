@@ -23,6 +23,22 @@ const Body = ()=>{
     setEnvelope(profile.settings.envelope, envelope);
     setFilter(profile.settings.filter, filter);
 
+    modulator.connect(carrier).connect(envelope).filter.connect(audioCtx.destination);
+
+    switch(profile.settings.lfo.target){
+      case "carrier":
+        lfo.connect(carrier);
+        break;
+      case "modulator":
+        lfo.connect(modulator)
+        break;
+      case "envelope":
+        lfo.connect(envelope);
+        break;
+      default:
+        break;
+    }
+
   },[profile])
 
   return(
