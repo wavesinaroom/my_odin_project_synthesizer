@@ -1,12 +1,11 @@
 {
   "carrier":{
      "type":"sine",
-     "volume":1
+     "detune":"0.0001"
   },
   "modulator":{
     "type":"sine",
-    "ratio":0,
-    "volume":1
+    "ratio":0
   },
   "filter":{
     "frequency":20,
@@ -18,7 +17,7 @@
   "lfo":{
     "type":"",
     "frequency":0,
-    "target":""
+    "target":"carrier"
   },
   "envelope":{
     "a":0,
