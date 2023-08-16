@@ -1,4 +1,4 @@
- const Audio = ()=>{
+ const Audio = (()=>{
   const audioCtx = window.AudioContext;
   const carrier = audioCtx.createOscillator();
   const modulator = audioCtx.createOscillator();
@@ -64,6 +64,17 @@
         break;
       }
    }
-}
+
+   return {
+     setCarrier,
+     setModulator,
+     setFilter,
+     setEnvelope,
+     setLFO,
+     envelopeOn,
+     envelopeOff,
+     plugLFO
+   }
+ })();
 
 export default Audio;
