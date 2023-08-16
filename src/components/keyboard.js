@@ -1,9 +1,12 @@
-import {useEffect} from "react";
+import {useEffect,useContext} from "react";
 import Audio from './audio'
+import Profile from './profile'
 
 const Keyboard = () =>{
+  const profile = useContext(Profile); 
   let frequency; 
-  function handlKeyCode(e){
+
+  function handleKeyDown(e){
     switch(e.key){
       case "s":
         frequency = 261.63;
@@ -47,16 +50,24 @@ const Keyboard = () =>{
 
     Audio.carrier.frequency = frequency;
     Audio.carrier.start();
-    Audio.envelopeOn();
+    Audio.envelopeOn(profile.settings);
     
   }
 
+  function handleKeyUp(){
+    Audio.envelopeOff(profile.settings);  
+    Audio.carrier.stop();
+  }
+
   useEffect(()=>{
-    window.addEventListener('keydown', handlKeyCode)
+    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('keyup', handleKeyUp);
     return(()=>{
-      window.removeEventListener('keydown', handlKeyCode)
+      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('keyup', handleKeyUp);
     })
   });
+
   return(
     <>
       <svg>
