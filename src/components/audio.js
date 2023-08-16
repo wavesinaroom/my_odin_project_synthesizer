@@ -1,5 +1,5 @@
  const Audio = (()=>{
-  const audioCtx = window.AudioContext;
+  const audioCtx = new AudioContext(); 
   const carrier = audioCtx.createOscillator();
   const modulator = audioCtx.createOscillator();
   const lfo = audioCtx.createOscillator();
