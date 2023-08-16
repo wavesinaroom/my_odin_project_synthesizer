@@ -1,4 +1,5 @@
-import { useContext} from "react";
+import { useContext, useEffect} from "react";
+import Audio from "./audio";
 import {Profile} from './profile'
 
 const Carrier = () =>{
@@ -8,9 +9,10 @@ const Carrier = () =>{
     profile.settings.carrier.type = e.target.value;
   }
 
-  function handleVolumeChange(e){
-    profile.settings.carrier.volume = (Math.log10(e.target.value)*20).toFixed(2);
-  }
+  useEffect(()=>{
+    Audio.setCarrier(profile.settings.carrier);
+  }, [profile.settings.carrier])
+
   return(
     <>
       <fieldset>
