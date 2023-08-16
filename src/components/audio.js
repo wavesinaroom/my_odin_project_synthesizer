@@ -35,20 +35,16 @@
   }
 
   function envelopeOn(settings){
-    let now = audioCtx.currentTime;
-
     envelope.cancelScheduledValues(0);
-    envelope.setValueAtTime(0,now);
-    envelope.linearRampToValueAtTime(1, now + settings.a);
-    envelope.linearRampToValueAtTime(settings.s, now + settings.a + settings.d);
+    envelope.setValueAtTime(0,audioCtx.currentTime);
+    envelope.linearRampToValueAtTime(1, audioCtx.currentTime + settings.a);
+    envelope.linearRampToValueAtTime(settings.s, audioCtx.currentTime + settings.a + settings.d);
   }
 
   function envelopeOff(settings){
-    let now = audioCtx.currentTime;
-
     envelope.cancelScheduledValues(0);
-    envelope.setValueAtTime(envelope.value,now);
-    envelope.linearRampToValueAtTime(0, now + settings.r);
+    envelope.setValueAtTime(envelope.value,audioCtx.currentTime);
+    envelope.linearRampToValueAtTime(0, audioCtx.currentTime + settings.r);
   }
 
    function plugLFO(settings){

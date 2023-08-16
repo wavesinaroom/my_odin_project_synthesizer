@@ -23,8 +23,12 @@ yarn-debug.log*
 yarn-error.log*
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # vim
 =======
 #vim
 >>>>>>> a1503671b48694b113b81ec3240dbe63ad11bbe5
+=======
+# vim
+>>>>>>> 2faf0fd232bd4171b39e9c3640fa973eac94bcca
 *.swp
