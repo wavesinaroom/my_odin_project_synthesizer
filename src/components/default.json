@@ -1,7 +1,7 @@
 {
   "carrier":{
      "type":"sine",
-     "volume":1
+     "detune":0.0001
   },
   "modulator":{
     "type":"sine",
