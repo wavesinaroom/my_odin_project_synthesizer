@@ -64,6 +64,6 @@
         break;
       }
    }
-}
+})();
 
 export default Audio;
