@@ -1,12 +1,16 @@
-import { useContext } from "react";
-import {profile} from './profile.js'
+import {Profile} from './components/profile.js'
+import Carrier from "./components/carrier.js";
+import Default from "./components/default.json"
 
 function App() {
-  const userProfile = useContext(profile);
+
   return(
     <>
+      <Profile.Provider value={Default}>
+        <Carrier/>
+      </Profile.Provider>
     </>
-  )
+  );
 }
 
 export default App;
