@@ -1,16 +1,8 @@
-<<<<<<< HEAD
- const Audio = ()=>{
-  const audioCtx = window.AudioContext;
-  const carrier = audioCtx.createOscillator();
-  const modulator = audioCtx.createOscillator();
-  const lfo = audioCtx.createOscillator();
-=======
  const Audio = (()=>{
   const audioCtx = new AudioContext();
   const carrier = new OscillatorNode(audioCtx);
   const modulator = new OscillatorNode(audioCtx);
   const lfo = new OscillatorNode(audioCtx);
->>>>>>> ac534ec... [Task] Make sure code compiles correctly without a test suite
   const envelope = new GainNode(audioCtx);
   const filter = new BiquadFilterNode(audioCtx);
 
