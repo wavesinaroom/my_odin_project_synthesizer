@@ -1,10 +1,10 @@
  const Audio = (()=>{
-  const audioCtx = window.AudioContext;
-  const carrier = audioCtx.createOscillator();
-  const modulator = audioCtx.createOscillator();
-  const lfo = audioCtx.createOscillator();
-  const envelope = audioCtx.createGain();
-  const filter = audioCtx.createBiqueadFilter();
+  const audioCtx = new AudioContext();
+  const carrier = new OscillatorNode(audioCtx);
+  const modulator = new OscillatorNode(audioCtx);
+  const lfo = new OscillatorNode(audioCtx);
+  const envelope = new GainNode(audioCtx);
+  const filter = new BiquadFilterNode(audioCtx);
 
   modulator.connect(carrier).connect(envelope).filter.connect(audioCtx.destination);
 
