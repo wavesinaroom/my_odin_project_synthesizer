@@ -6,7 +6,7 @@ function App() {
 
   return(
     <>
-      <Profile.Provider value={Default}>
+      <Profile.Provider value={{settings:Default}}>
         <Carrier/>
       </Profile.Provider>
     </>
