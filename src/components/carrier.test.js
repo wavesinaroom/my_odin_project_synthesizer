@@ -1,13 +1,14 @@
 import '@testing-library/jest-dom';
 import {cleanup,render,screen, fireEvent} from '@testing-library/react';
-import { AudioContext } from 'standardized-audio-context-mock';
 import Carrier from './carrier';
 import Default from './default.json'
 import { Profile } from './profile';
 
+jest.mock('./audio',()=>{
+  return{setCarrier:jest.fn()}
+})
 beforeEach(()=>{
   cleanup();
-  window.AudioContext = new AudioContext();
 });
 
 describe(`Rendering`, ()=>{
