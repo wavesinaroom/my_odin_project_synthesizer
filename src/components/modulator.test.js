@@ -65,7 +65,9 @@ describe(`Interaction`,()=>{
     )
     const ratio = screen.getByRole(`slider`,{name:`frequency ratio`});
 
+    expect(profile.settings.modulator.ratio).toEqual(0);
     fireEvent.change(ratio, {target:{value:0.5}});
     expect(profile.settings.modulator.ratio).toEqual(`0.5`);
+    expect(Audio.setModulator).toBeCalled();
   });
 });
