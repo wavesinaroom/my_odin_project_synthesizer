@@ -1,4 +1,5 @@
-import { useContext} from "react";
+import { useContext, useEffect} from "react";
+import Audio from "./audio";
 import {Profile} from './profile'
 
 
@@ -16,6 +17,11 @@ const Modulator = () =>{
   function handleFrequencyRatio(e){
     profile.settings.modulator.ratio = e.target.value;
   }
+
+  useEffect(()=>{
+    Audio.setModulator(profile.settings.modulator);
+  },[profile.settings.modulator])
+
   return(
     <>
       <fieldset>
