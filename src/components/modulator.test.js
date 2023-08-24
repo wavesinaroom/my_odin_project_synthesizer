@@ -1,8 +1,13 @@
 import '@testing-library/jest-dom';
 import {cleanup,render,screen, fireEvent} from '@testing-library/react';
+import Audio from './audio';
 import Modulator from './modulator';
 import Default from './default.json'
 import { Profile } from './profile';
+
+jest.mock('./audio',()=>{
+  return {setModulator: jest.fn()}
+})
 
 beforeEach(()=>{
   cleanup();
@@ -18,7 +23,7 @@ describe(`Rendering`, ()=>{
     )
 
     expect(screen.getAllByRole(`radio`).length).toBe(4);
-    expect(screen.getAllByRole(`slider`).length).toBe(2);
+    expect(screen.getAllByRole(`slider`).length).toBe(1);
   });
 
   it(`check input labels`,()=>{
@@ -49,18 +54,7 @@ describe(`Interaction`,()=>{
     expect(profile.settings.modulator.type).toMatch(`sine`);
     fireEvent.click(screen.getByRole(`radio`,{name:`triangle`}));
     expect(profile.settings.modulator.type).toMatch(`triangle`);
-  });
-
-  it(`changes volume level`,()=>{
-    render(
-      <Profile.Provider value={profile}>
-        <Modulator/>
-      </Profile.Provider>
-    )
-    const volume = screen.getByRole(`slider`,{name:`volume`});
-
-    fireEvent.change(volume, {target:{value:0.32}});
-    expect(profile.settings.modulator.volume).toEqual(`-9.90`);
+    expect(Audio.setModulator).toBeCalled();
   });
 
   it(`sets ratio to modulate carrier`,()=>{

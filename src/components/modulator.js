@@ -10,10 +10,6 @@ const Modulator = () =>{
       profile.settings.modulator.type = e.target.value;
   }
 
-  function handleVolumeChange(e){
-    profile.settings.modulator.volume = (Math.log10(e.target.value)*20).toFixed(2);
-  }
-
   function handleFrequencyRatio(e){
     profile.settings.modulator.ratio = e.target.value;
   }
@@ -47,10 +43,6 @@ const Modulator = () =>{
         <label>
           <input value={profile.settings.modulator.frequency} name='frequency' type='range' min='0' max='1' step='0.1' onChange={handleFrequencyRatio}/> 
             frequency ratio 
-        </label>
-        <label>
-          <input value={profile.settings.modulator.volume} name='volume' type='range' min="0.0001" step="0.001" max="1" onChange={handleVolumeChange}/>
-          volume
         </label>
       </fieldset>
     </>
