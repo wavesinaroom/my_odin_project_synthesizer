@@ -23,19 +23,21 @@ describe(`Rendering`, ()=>{
     )
 
     expect(screen.getAllByRole(`radio`).length).toBe(4);
+    expect(screen.getByRole(`radio`,{name:`sine`})).toBeInTheDocument(); 
+    expect(screen.getByRole(`radio`,{name:`square`})).toBeInTheDocument(); 
+    expect(screen.getByRole(`radio`,{name:`triangle`})).toBeInTheDocument(); 
+    expect(screen.getByRole(`radio`,{name:`sawtooth`})).toBeInTheDocument(); 
   });
 
-  it(`checks radio buttons label match waveform types`,()=>{
+  it(`renders values from profile`,()=>{
     render(
       <Profile.Provider value={profile}>
         <Carrier/>
       </Profile.Provider>
     )
+    expect(screen.getByRole(`radio`,{name:`${profile.settings.carrier.type}`})).toBeChecked(); 
+    expect(screen.getByRole(`slider`,{name:`detune`}).value).toBe(`${profile.settings.carrier.detune}`)
 
-    expect(screen.getByRole(`radio`,{name:`sine`})).toBeInTheDocument(); 
-    expect(screen.getByRole(`radio`,{name:`square`})).toBeInTheDocument(); 
-    expect(screen.getByRole(`radio`,{name:`triangle`})).toBeInTheDocument(); 
-    expect(screen.getByRole(`radio`,{name:`sawtooth`})).toBeInTheDocument(); 
   });
 });
 
@@ -60,7 +62,7 @@ describe(`Interaction`,()=>{
         <Carrier/>
       </Profile.Provider>
     )
-    const volume = screen.getByRole(`slider`,{name:`volume`});
+    const volume = screen.getByRole(`slider`,{name:`detune`});
 
     expect(profile.settings.carrier.detune).toEqual(0.0001)
     fireEvent.change(volume, {target:{value:32}});

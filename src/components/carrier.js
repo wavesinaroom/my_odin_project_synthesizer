@@ -40,7 +40,7 @@ const Carrier = () =>{
       </fieldset>
       <label>
         <input value={profile.settings.carrier.detune} name='detune' type='range' min="0.0001" step="1" max="100" onChange={handleDetune}/>
-        volume
+        detune
       </label>
     </>
   );
