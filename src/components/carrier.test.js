@@ -51,6 +51,7 @@ describe(`Interaction`,()=>{
     expect(profile.settings.carrier.type).toMatch(`sine`);  
     fireEvent.click(screen.getByRole(`radio`,{name:`square`}));
     expect(profile.settings.carrier.type).toMatch(`square`);
+    expect(Audio.setCarrier).toBeCalled();
   });
 
   it(`changes detune value`,()=>{
