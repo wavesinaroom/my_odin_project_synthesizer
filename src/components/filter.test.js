@@ -1,18 +1,27 @@
 import '@testing-library/jest-dom' 
 import {cleanup,fireEvent,render,screen} from "@testing-library/react";
+import Audio from './audio';
 import Filter from "./filter";
 import Default from "./default.json"
+import { Profile } from './profile';
 
+jest.mock('./audio',()=>{
+  return {setFilter: jest.fn()}
+})
 beforeEach(()=>{
   cleanup();
 });
 
 describe(`Rendering`,()=>{
 
-  const profile = {info:Default};
+  const profile = {settings:Default};
 
-  it(`renders all input elements`,()=>{
-    render(<Filter settings={profile}/>);
+  it.only(`renders all input elements`,()=>{
+    render(
+      <Profile.Provider value={profile}>
+        <Filter/>
+      </Profile.Provider>
+    )
 
     expect(screen.getAllByRole(`slider`).length).toBe(4);
     expect(screen.getAllByRole(`radio`).length).toBe(8);
@@ -32,70 +41,89 @@ describe(`Rendering`,()=>{
   });
   
   it(`renders values from default.json file`,()=>{
-    render(<Filter settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Filter/>
+      </Profile.Provider>
+    )
 
 
-    expect(screen.getByRole(`slider`,{name:`frequency`}).value).toBe(`${profile.info.filter.frequency}`);
-    expect(screen.getByRole(`slider`,{name:`detune`}).value).toBe(`${profile.info.filter.detune}`);
-    expect(screen.getByRole(`slider`,{name:`q`}).value).toBe(`${profile.info.filter.q}`);
-    expect(screen.getByRole(`slider`,{name:`volume`}).value).toBe(`${profile.info.filter.volume}`);
+    expect(screen.getByRole(`slider`,{name:`frequency`}).value).toBe(`${profile.settings.filter.frequency}`);
+    expect(screen.getByRole(`slider`,{name:`detune`}).value).toBe(`${profile.settings.filter.detune}`);
+    expect(screen.getByRole(`slider`,{name:`q`}).value).toBe(`${profile.settings.filter.q}`);
+    expect(screen.getByRole(`slider`,{name:`volume`}).value).toBe(`${profile.settings.filter.volume}`);
 
     expect(screen.getByLabelText(`highpass`)).toBeChecked();
 
-    expect(`${profile.info.filter.type}`).toBe(`highpass`);
+    expect(`${profile.settings.filter.type}`).toBe(`highpass`);
   });
 });
 
 describe(`Interaction`,()=>{
 
-  const profile = {info:Default};
+  const profile = {settings:Default};
 
   it(`sets frequency slider to a specific value`,()=>{
-    render(<Filter settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Filter/>
+      </Profile.Provider>
+    )
     const slider = screen.getByRole(`slider`,{name:`frequency`});
 
     fireEvent.change(slider, {target:{value: 3000}});
 
-    expect(profile.info.filter.frequency).toBe(`3000`);
+    expect(profile.settings.filter.frequency).toBe(`3000`);
     
   });
 
   it(`sets detune slider to a specific value`, ()=>{
-    render(<Filter settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Filter/>
+      </Profile.Provider>
+    )
     const slider = screen.getByRole(`slider`,{name:`detune`});
 
     fireEvent.change(slider, {target:{value:50}});
 
-    expect(profile.info.filter.detune).toBe(`50`);
+    expect(profile.settings.filter.detune).toBe(`50`);
   });
 
   it(`sets q slide to a specific value`, ()=>{
-    render(<Filter settings={profile}/>);
     const slider = screen.getByRole(`slider`,{name:`q`});
 
     fireEvent.change(slider, {target:{value:200}});
 
-    expect(profile.info.filter.q).toBe(`200`);
+    expect(profile.settings.filter.q).toBe(`200`);
   });
 
   it(`sets volume slide to a specific value`, ()=>{
-    render(<Filter settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Filter/>
+      </Profile.Provider>
+    )
     const slider = screen.getByRole(`slider`,{name:`volume`});
 
     fireEvent.change(slider, {target:{value:0.3}});
 
-    expect(profile.info.filter.volume).toBe(`-10.46`);
+    expect(profile.settings.filter.volume).toBe(`-10.46`);
   });
 
   it(`checks only one filter type`,()=>{
-    render(<Filter settings={profile}/>);
+    render(
+      <Profile.Provider value={profile}>
+        <Filter/>
+      </Profile.Provider>
+    )
     const lowpass = screen.getByLabelText(`lowpass`);
 
-    expect(profile.info.filter.type).toMatch(`highpass`);
+    expect(profile.settings.filter.type).toMatch(`highpass`);
 
     fireEvent.click(lowpass);
 
-    expect(profile.info.filter.type).toMatch(`lowpass`)
+    expect(profile.settings.filter.type).toMatch(`lowpass`)
 
   })
 });

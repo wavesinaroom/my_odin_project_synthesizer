@@ -2,28 +2,24 @@ import { useContext, useEffect, useState} from "react"
 import Audio from "./audio";
 import { Profile } from "./profile";
 
-const Filter = ({settings})=>{
+const Filter = ()=>{
   const profile = useContext(Profile);
   
   function handleFrequency(e){
-    setFrequency(e.target.value);
     profile.settings.filter.frequency = e.target.value;
   }
 
   function handleDetune(e){
-    setDetune(e.target.value);
     profile.settings.filter.detune = e.target.value;
   }
 
   function handleQ(e){
-    setQ(e.target.value); 
     profile.settings.filter.q = e.target.value;
   } 
 
   function handleVolume(e){
     const gain = (Math.log10(e.target.value)*20).toFixed(2);
-    setVolume(gain);
-    profile.settings.filter.volume = gain;
+    profile.settings.filter.gain = gain;
   }
 
   function handleType(e){
