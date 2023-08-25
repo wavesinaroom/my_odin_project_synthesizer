@@ -32,7 +32,7 @@ const Filter = ()=>{
 
   useEffect(()=>{
     profile.settings.filter = filter;
-    Audio.setFilter(filter);
+    Audio.setFilter(profile.settings.filter);
   },[profile.settings, filter])
   
   return(

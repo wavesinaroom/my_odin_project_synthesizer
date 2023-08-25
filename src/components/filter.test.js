@@ -76,7 +76,7 @@ describe(`Interaction`,()=>{
     expect(profile.settings.filter.frequency).toBe(`3000`);
     expect(slider.value).toBe(`3000`)
 
-    expect(Audio.setFilter).toBeCalled();
+    expect(Audio.setFilter).toBeCalledWith(profile.settings.filter);
     
   });
 
@@ -96,7 +96,7 @@ describe(`Interaction`,()=>{
     expect(profile.settings.filter.detune).toBe(`50`);
     expect(slider.value).toBe(`50`);
 
-    expect(Audio.setFilter).toBeCalled();
+    expect(Audio.setFilter).toBeCalledWith(profile.settings.filter);
   });
 
 
@@ -116,7 +116,7 @@ describe(`Interaction`,()=>{
     expect(profile.settings.filter.q).toBe(`500`);
     expect(slider.value).toBe(`500`);
 
-    expect(Audio.setFilter).toBeCalled();
+    expect(Audio.setFilter).toBeCalledWith(profile.settings.filter);
   });
 
   it(`sets gain slider to a specific value`, ()=>{
@@ -135,7 +135,7 @@ describe(`Interaction`,()=>{
     expect(profile.settings.filter.gain).toBe(`0.5`);
     expect(slider.value).toBe(`0.5`);
 
-    expect(Audio.setFilter).toBeCalled();
+    expect(Audio.setFilter).toBeCalledWith(profile.settings.filter);
   });
 
   it(`set filter type`, ()=>{
@@ -154,6 +154,6 @@ describe(`Interaction`,()=>{
     expect(profile.settings.filter.type).toBe(`lowpass`);
     expect(screen.getByRole(`radio`, {name:`lowpass`})).toBeChecked();
 
-    expect(Audio.setFilter).toBeCalled();
+    expect(Audio.setFilter).toBeCalledWith(profile.settings.filter);
   });
 });
