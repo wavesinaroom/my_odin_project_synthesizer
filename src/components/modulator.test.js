@@ -15,7 +15,7 @@ beforeEach(()=>{
 
 describe(`Rendering`, ()=>{
   const profile = {settings: Default};
-  it(`renders waveform type radio buttons`,()=>{
+  it(`renders all elements`,()=>{
     render(
       <Profile.Provider value={profile}>
         <Modulator/>
@@ -24,19 +24,22 @@ describe(`Rendering`, ()=>{
 
     expect(screen.getAllByRole(`radio`).length).toBe(4);
     expect(screen.getAllByRole(`slider`).length).toBe(1);
+    expect(screen.getByRole(`radio`,{name:`sine`})).toBeInTheDocument(); 
+    expect(screen.getByRole(`radio`,{name:`square`})).toBeInTheDocument(); 
+    expect(screen.getByRole(`radio`,{name:`triangle`})).toBeInTheDocument(); 
+    expect(screen.getByRole(`radio`,{name:`sawtooth`})).toBeInTheDocument(); 
   });
 
-  it(`check input labels`,()=>{
+  it.only(`renders values from profile JSON file`,()=>{
     render(
       <Profile.Provider value={profile}>
         <Modulator/>
       </Profile.Provider>
     )
+    
+    expect(screen.getByRole(`radio`,{name:`${profile.settings.modulator.type}`})).toBeChecked();
+    expect(screen.getByRole(`slider`,{name:`frequency ratio`}).value).toBe(`${profile.settings.modulator.ratio}`);
 
-    expect(screen.getByRole(`radio`,{name:`sine`})).toBeInTheDocument(); 
-    expect(screen.getByRole(`radio`,{name:`square`})).toBeInTheDocument(); 
-    expect(screen.getByRole(`radio`,{name:`triangle`})).toBeInTheDocument(); 
-    expect(screen.getByRole(`radio`,{name:`sawtooth`})).toBeInTheDocument(); 
   });
 });
 
