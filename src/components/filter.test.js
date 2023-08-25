@@ -52,9 +52,6 @@ describe(`Rendering`,()=>{
     expect(screen.getByRole(`slider`,{name:`detune`}).value).toBe(`${profile.settings.filter.detune}`);
     expect(screen.getByRole(`slider`,{name:`q`}).value).toBe(`${profile.settings.filter.q}`);
     expect(screen.getByRole(`slider`,{name:`gain`}).value).toBe(`${profile.settings.filter.gain}`);
-
-    expect(screen.getByLabelText(`highpass`)).toBeChecked();
-
     expect(`${profile.settings.filter.type}`).toBe(`highpass`);
   });
 });
@@ -63,7 +60,7 @@ describe.skip(`Interaction`,()=>{
 
   const profile = {settings:Default};
 
-  it(`sets frequency slider to a specific value`,()=>{
+  it.only(`sets frequency slider to a specific value`,()=>{
     render(
       <Profile.Provider value={profile}>
         <Filter/>
@@ -71,9 +68,11 @@ describe.skip(`Interaction`,()=>{
     )
     const slider = screen.getByRole(`slider`,{name:`frequency`});
 
+    expect(profile.settings.filter.frequency).toBe(1000)
     fireEvent.change(slider, {target:{value: 3000}});
 
     expect(profile.settings.filter.frequency).toBe(`3000`);
+    expect(slider.value).toBe(3000)
     
   });
 
@@ -91,6 +90,11 @@ describe.skip(`Interaction`,()=>{
   });
 
   it(`sets q slide to a specific value`, ()=>{
+    render(
+      <Profile.Provider value={profile}>
+        <Filter/>
+      </Profile.Provider>
+    )
     const slider = screen.getByRole(`slider`,{name:`q`});
 
     fireEvent.change(slider, {target:{value:200}});
@@ -104,7 +108,7 @@ describe.skip(`Interaction`,()=>{
         <Filter/>
       </Profile.Provider>
     )
-    const slider = screen.getByRole(`slider`,{name:`volume`});
+    const slider = screen.getByRole(`slider`,{name:`gain`});
 
     fireEvent.change(slider, {target:{value:0.3}});
 

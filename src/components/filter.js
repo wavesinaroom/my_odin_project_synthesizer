@@ -4,6 +4,11 @@ import { Profile } from "./profile";
 
 const Filter = ()=>{
   const profile = useContext(Profile);
+  const [filter, setFilter] = useState ({frequency: profile.settings.filter.frequency,
+                                         detune: profile.settings.filter.detune,
+                                         q: profile.settings.filter.q,
+                                         gain: profile.settings.filter.gain,
+                                         type: profile.settings.filter.type})
   
   function handleFrequency(e){
     profile.settings.filter.frequency = e.target.value;
@@ -34,19 +39,19 @@ const Filter = ()=>{
   return(
     <>
       <label>
-        <input value={profile.settings.filter.frequency} name='frequency' type='range' min='20' max='20000' step='1' onChange={handleFrequency}/>
+        <input value={filter.frequency} name='frequency' type='range' min='20' max='20000' step='1' onChange={handleFrequency}/>
         frequency
       </label>
       <label>
-        <input value={profile.settings.filter.detune} name='detune' type='range' min='0.0001' max='100' step='1' onChange={handleDetune}/>
+        <input value={filter.detune} name='detune' type='range' min='0.0001' max='100' step='1' onChange={handleDetune}/>
         detune
       </label>
       <label>
-        <input value={profile.settings.filter.q} name='q' type='range' min='0.0001' max='1000' step='1' onChange={handleQ}/>
+        <input value={filter.q} name='q' type='range' min='0.0001' max='1000' step='1' onChange={handleQ}/>
         q 
       </label>
       <label>
-        <input value={profile.settings.filter.gain} name='volume' type='range' min='0.0001' max='1' step='0.1' onChange={handleVolume}/>
+        <input value={filter.gain} name='volume' type='range' min='0.0001' max='1' step='0.1' onChange={handleVolume}/>
         gain
       </label>
       <fieldset>
