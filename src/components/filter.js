@@ -11,30 +11,29 @@ const Filter = ()=>{
                                          type: profile.settings.filter.type})
   
   function handleFrequency(e){
-    profile.settings.filter.frequency = e.target.value;
+    setFilter({...filter, frequency:e.target.value});
   }
 
   function handleDetune(e){
-    profile.settings.filter.detune = e.target.value;
+    setFilter({...filter, detune: e.target.value});
   }
 
   function handleQ(e){
-    profile.settings.filter.q = e.target.value;
+    setFilter({...filter, q: e.target.value});
   } 
 
   function handleVolume(e){
-    const gain = (Math.log10(e.target.value)*20).toFixed(2);
-    profile.settings.filter.gain = gain;
+    setFilter({...filter, gain: e.target.value})
   }
 
   function handleType(e){
-    if(e.target.checked)
-      profile.settings.filter.type = e.target.value;
+    setFilter({...filter, type: e.target.value});
   }
 
   useEffect(()=>{
-    Audio.setFilter(profile.settings.filter);
-  },[profile.settings.filter])
+    profile.settings.filter = filter;
+    Audio.setFilter(filter);
+  },[profile.settings.filter, filter])
   
   return(
     <>
