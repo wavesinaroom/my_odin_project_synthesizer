@@ -30,7 +30,7 @@ describe(`Rendering`, ()=>{
     expect(screen.getByRole(`radio`,{name:`sawtooth`})).toBeInTheDocument(); 
   });
 
-  it.only(`renders values from profile JSON file`,()=>{
+  it(`renders values from profile JSON file`,()=>{
     render(
       <Profile.Provider value={profile}>
         <Modulator/>
