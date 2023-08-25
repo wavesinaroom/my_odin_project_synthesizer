@@ -12,7 +12,7 @@
     "frequency":1000,
     "detune":1,
     "q":1,
-    "gain":0,
+    "gain":0.0001,
     "type":"highpass"
   },
   "lfo":{
