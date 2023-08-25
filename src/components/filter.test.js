@@ -56,11 +56,11 @@ describe(`Rendering`,()=>{
   });
 });
 
-describe.skip(`Interaction`,()=>{
+describe(`Interaction`,()=>{
 
   const profile = {settings:Default};
 
-  it.only(`sets frequency slider to a specific value`,()=>{
+  it(`sets frequency slider to a specific value`,()=>{
     render(
       <Profile.Provider value={profile}>
         <Filter/>
@@ -69,10 +69,14 @@ describe.skip(`Interaction`,()=>{
     const slider = screen.getByRole(`slider`,{name:`frequency`});
 
     expect(profile.settings.filter.frequency).toBe(1000)
+    expect(slider.value).toBe(`1000`)
+
     fireEvent.change(slider, {target:{value: 3000}});
 
     expect(profile.settings.filter.frequency).toBe(`3000`);
-    expect(slider.value).toBe(3000)
+    expect(slider.value).toBe(`3000`)
+
+    expect(Audio.setFilter).toBeCalled();
     
   });
 
@@ -84,12 +88,19 @@ describe.skip(`Interaction`,()=>{
     )
     const slider = screen.getByRole(`slider`,{name:`detune`});
 
+    expect(profile.settings.filter.detune).toBe(1)
+    expect(slider.value).toBe(`1`);
+
     fireEvent.change(slider, {target:{value:50}});
 
     expect(profile.settings.filter.detune).toBe(`50`);
+    expect(slider.value).toBe(`50`);
+
+    expect(Audio.setFilter).toBeCalled();
   });
 
-  it(`sets q slide to a specific value`, ()=>{
+
+  it(`sets q slider to a specific value`, ()=>{
     render(
       <Profile.Provider value={profile}>
         <Filter/>
@@ -97,12 +108,18 @@ describe.skip(`Interaction`,()=>{
     )
     const slider = screen.getByRole(`slider`,{name:`q`});
 
-    fireEvent.change(slider, {target:{value:200}});
+    expect(profile.settings.filter.q).toBe(1)
+    expect(slider.value).toBe(`1`);
 
-    expect(profile.settings.filter.q).toBe(`200`);
+    fireEvent.change(slider, {target:{value:500}});
+
+    expect(profile.settings.filter.q).toBe(`500`);
+    expect(slider.value).toBe(`500`);
+
+    expect(Audio.setFilter).toBeCalled();
   });
 
-  it(`sets volume slide to a specific value`, ()=>{
+  it(`sets gain slider to a specific value`, ()=>{
     render(
       <Profile.Provider value={profile}>
         <Filter/>
@@ -110,24 +127,33 @@ describe.skip(`Interaction`,()=>{
     )
     const slider = screen.getByRole(`slider`,{name:`gain`});
 
-    fireEvent.change(slider, {target:{value:0.3}});
+    expect(profile.settings.filter.gain).toBe(1)
+    expect(slider.value).toBe(`1`);
 
-    expect(profile.settings.filter.gain).toBe(`-10.46`);
+    fireEvent.change(slider, {target:{value:0.5}});
+
+    expect(profile.settings.filter.gain).toBe(`0.5`);
+    expect(slider.value).toBe(`0.5`);
+
+    expect(Audio.setFilter).toBeCalled();
   });
 
-  it(`checks only one filter type`,()=>{
+  it(`set filter type`, ()=>{
     render(
       <Profile.Provider value={profile}>
         <Filter/>
       </Profile.Provider>
     )
-    const lowpass = screen.getByLabelText(`lowpass`);
+    const radio = screen.getByRole(`radio`,{name:`lowpass`});
 
-    expect(profile.settings.filter.type).toMatch(`highpass`);
+    expect(profile.settings.filter.type).toBe(`highpass`);
+    expect(screen.getByRole(`radio`, {name:`${profile.settings.filter.type}`})).toBeChecked();
 
-    fireEvent.click(lowpass);
+    fireEvent.click(radio);
 
-    expect(profile.settings.filter.type).toMatch(`lowpass`)
+    expect(profile.settings.filter.type).toBe(`lowpass`);
+    expect(screen.getByRole(`radio`, {name:`lowpass`})).toBeChecked();
 
-  })
+    expect(Audio.setFilter).toBeCalled();
+  });
 });

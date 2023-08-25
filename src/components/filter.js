@@ -33,7 +33,7 @@ const Filter = ()=>{
   useEffect(()=>{
     profile.settings.filter = filter;
     Audio.setFilter(filter);
-  },[profile.settings.filter, filter])
+  },[profile.settings, filter])
   
   return(
     <>
@@ -54,37 +54,37 @@ const Filter = ()=>{
         gain
       </label>
       <fieldset>
-        <legend>Type</legend>
+        <legend>type</legend>
           <label>
-            <input value='lowpass' name='type' type='radio' onChange={handleType} checked={profile.settings.filter.type === 'lowpass'}/>
+            <input value='lowpass' name='type' type='radio' onChange={handleType} checked={filter.type === 'lowpass'}/>
             lowpass
           </label>
           <label>
-            <input value='highpass' name='type' type='radio' onChange={handleType} checked={profile.settings.filter.type === 'highpass'}/>
+            <input value='highpass' name='type' type='radio' onChange={handleType} checked={filter.type === 'highpass'}/>
             highpass
           </label>
           <label>
-            <input value='bandpass' name='type' type='radio' onChange={handleType} checked={profile.settings.filter.type === 'bandpass'}/>
+            <input value='bandpass' name='type' type='radio' onChange={handleType} checked={filter.type === 'bandpass'}/>
             bandpass
           </label>
           <label>
-            <input value='lowshelf' name='type' type='radio' onChange={handleType} checked={profile.settings.filter.type === 'lowshelf'}/>
+            <input value='lowshelf' name='type' type='radio' onChange={handleType} checked={filter.type === 'lowshelf'}/>
             lowshelf
           </label>
           <label>
-            <input value='highshelf' name='type' type='radio' onChange={handleType} checked={profile.settings.filter.type === 'highshelf'}/>
+            <input value='highshelf' name='type' type='radio' onChange={handleType} checked={filter.type === 'highshelf'}/>
             highshelf
           </label>
           <label>
-            <input value='peaking' name='type' type='radio' onChange={handleType} checked={profile.settings.filter.type === 'peaking'}/>
+            <input value='peaking' name='type' type='radio' onChange={handleType} checked={filter.type === 'peaking'}/>
             peaking
           </label>
           <label>
-            <input value='notch' name='type' type='radio' onChange={handleType} checked={profile.settings.filter.type === 'notch'}/>
+            <input value='notch' name='type' type='radio' onChange={handleType} checked={filter.type === 'notch'}/>
             notch
           </label>
           <label>
-            <input value='allpass' name='type' type='radio' onChange={handleType} checked={profile.settings.filter.type === 'allpass'}/>
+            <input value='allpass' name='type' type='radio' onChange={handleType} checked={filter.type === 'allpass'}/>
             allpass
           </label>
       </fieldset>
