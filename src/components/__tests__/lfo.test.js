@@ -1,14 +1,20 @@
 import '@testing-library/jest-dom'
 import {render, screen, fireEvent, cleanup} from '@testing-library/react'
-import Default from './default.json'
-import LFO from './lfo'
-import { Profile } from './profile';
+import Audio from '../audio'
+import Default from '../default.json'
+import LFO from '../lfo'
+import { Profile } from '../profile';
+
+jest.mock('../audio',()=>{
+  return{setLFO: jest.fn(),
+         plugLFO: jest.fn()}
+})
 
 beforeEach(()=>{
   cleanup();
 });
 
-describe(`Rendering`,()=>{
+describe.only(`Rendering`,()=>{
   const profile = {settings:Default};
 
   it(`renders the right amount of elements`,()=>{
@@ -20,14 +26,6 @@ describe(`Rendering`,()=>{
 
     expect(screen.getAllByRole(`radio`).length).toBe(8);
     expect(screen.getAllByRole(`slider`).length).toBe(1);
-  });
-
-  it(`renders the right input values`,()=>{
-    render(
-      <Profile.Provider value={profile}>
-        <LFO/>
-      </Profile.Provider>
-    )
 
     expect(screen.getByRole(`radio`,{name:`sine`})).toBeInTheDocument();
     expect(screen.getByRole(`radio`,{name:`square`})).toBeInTheDocument();
@@ -40,6 +38,16 @@ describe(`Rendering`,()=>{
     expect(screen.getByRole(`radio`,{name:`modulator`})).toBeInTheDocument();
     expect(screen.getByRole(`radio`,{name:`envelope`})).toBeInTheDocument();
     expect(screen.getByRole(`radio`,{name:`none`})).toBeInTheDocument();
+  });
+
+  it(`renders the right input values`,()=>{
+    render(
+      <Profile.Provider value={profile}>
+        <LFO/>
+      </Profile.Provider>
+    )
+    expect(screen.getByRole(`radio`,{name:`${profile.settings.lfo.type}`})).toBeChecked();
+    expect(screen.getByRole(`slider`,{name:`frequency`}).value).toBe(`${profile.settings.lfo.frequency}`);
   });
 });
 
