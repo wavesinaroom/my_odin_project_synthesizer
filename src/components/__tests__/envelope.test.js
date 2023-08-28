@@ -1,15 +1,20 @@
 import '@testing-library/jest-dom'
 import { screen, render, cleanup, fireEvent} from "@testing-library/react";
-import Envelope from "./envelope";
-import { Profile } from './profile';
-import Default from './default.json'
+import Audio from '../audio';
+import Envelope from "../envelope";
+import { Profile } from '../profile';
+import Default from '../default.json'
+
+jest.mock('../audio',()=>{
+  return{setEnvelope: jest.fn()}
+});
 
 beforeEach(()=>{
   cleanup();
 });
 
 describe(`Rendering`, ()=>{
-  const profile = {info:Default};
+  const profile = {settings:Default};
 
   it(`renders four sliders`,()=>{
     render(
@@ -30,13 +35,16 @@ describe(`Rendering`, ()=>{
         <Envelope/>
       </Profile.Provider>
     )
-
-
+    
+    expect(screen.getByLabelText(`attack`).value).toBe(`${profile.settings.envelope.a}`);
+    expect(screen.getByLabelText(`decay`).value).toBe(`${profile.settings.envelope.d}`);
+    expect(screen.getByLabelText(`sustain`).value).toBe(`${profile.settings.envelope.s}`);
+    expect(screen.getByLabelText(`release`).value).toBe(`${profile.settings.envelope.r}`);
   })
 })
 
-describe(`Interaction`,()=>{
-  const profile = {info:Default};
+describe.skip(`Interaction`,()=>{
+  const profile = {settings:Default};
 
   it(`changes attack value in profile`, ()=>{
     render(

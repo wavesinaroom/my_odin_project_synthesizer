@@ -27,24 +27,24 @@ const Envelope = () =>{
   useEffect(()=>{
     profile.settings.envelope = envelope;
     Audio.setEnvelope = envelope;
-  },[project.settings, envelope])
+  },[profile.settings, envelope])
 
   return(
     <>
       <label>
-        <input value={attack} type='range' min='0' max='1' step='0.1' onChange={handleAttack}/>      
+        <input value={envelope.a} type='range' min='0' max='1' step='0.1' onChange={handleAttack}/>      
         attack
       </label>
       <label>
-        <input value={decay} type='range' min='0' max='1' step='0.1' onChange={handleDecay}/>      
+        <input value={envelope.d} type='range' min='0' max='1' step='0.1' onChange={handleDecay}/>      
         decay
       </label>
       <label>
-        <input value={sustain} type='range' min='0' max='1' step='0.1' onChange={handleSustain}/>      
+        <input value={envelope.s} type='range' min='0' max='1' step='0.1' onChange={handleSustain}/>      
         sustain
       </label>
       <label>
-        <input value={release} type='range' min='0' max='1' step='0.1' onChange={handleRelease}/>      
+        <input value={envelope.r} type='range' min='0' max='1' step='0.1' onChange={handleRelease}/>      
         release
       </label>
     </>
