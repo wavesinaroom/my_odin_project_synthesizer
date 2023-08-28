@@ -1,27 +1,33 @@
-import {useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import Audio from './audio'
+import { Profile } from "./profile";
 
-const Envelope = ({settings}) =>{
-  const [attack,setAttack] = useState(settings.info.envelope.a);
-  const [decay, setDecay] = useState(settings.info.envelope.d);
-  const [sustain, setSustain] = useState(settings.info.envelope.s); 
-  const [release, setRelease] = useState(settings.info.envelope.r);
-
+const Envelope = () =>{
+  const profile = useContext(Profile);
+  const [envelope, setEnvelope] = useState({a: profile.settings.envelope.a,
+                                           d: profile.settings.envelope.d,
+                                           s: profile.settings.envelope.s,
+                                           r: profile.settings.envelope.r})
   function handleAttack(e){
-    setAttack(e.target.value);
-    settings.info.envelope.a = e.target.value;
+    setEnvelope({...envelope, a:e.target.value});
   }
+
   function handleDecay(e){
-    setDecay(e.target.value);
-    settings.info.envelope.d = e.target.value;
+    setEnvelope({...envelope, d:e.target.value});
   }
+
   function handleSustain(e){
-    setSustain(e.target.value);
-    settings.info.envelope.s = e.target.value;
+    setEnvelope({...envelope, s:e.target.value});
   }
+
   function handleRelease(e){
-    setRelease(e.target.value);
-    settings.info.envelope.r = e.target.value;
+    setEnvelope({...envelope, r:e.target.value});
   }
+
+  useEffect(()=>{
+    profile.settings.envelope = envelope;
+    Audio.setEnvelope = envelope;
+  },[project.settings, envelope])
 
   return(
     <>
