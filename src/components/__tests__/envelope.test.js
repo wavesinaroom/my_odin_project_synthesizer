@@ -43,7 +43,7 @@ describe(`Rendering`, ()=>{
   })
 })
 
-describe.only(`Interaction`,()=>{
+describe(`Interaction`,()=>{
   const profile = {settings:Default};
 
   it(`changes attack value in profile`, ()=>{
