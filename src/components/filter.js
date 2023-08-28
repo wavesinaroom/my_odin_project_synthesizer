@@ -90,7 +90,7 @@ const Filter = ()=>{
       </fieldset>
       <details>
         <summary>What&apos;s this?</summary>
-        <p>Filters let you remove a range of frequencies like colours from a pictures</p>
+        <p>Filters let you remove a range of frequencies like colours from a picture</p>
       </details>
     </>
   );

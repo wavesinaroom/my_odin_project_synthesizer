@@ -1,11 +1,11 @@
 import '@testing-library/jest-dom' 
 import {cleanup,fireEvent,render,screen} from "@testing-library/react";
-import Audio from './audio';
-import Filter from "./filter";
-import Default from "./default.json"
-import { Profile } from './profile';
+import Audio from '../audio';
+import Filter from "../filter";
+import Default from "../default.json"
+import { Profile } from '../profile';
 
-jest.mock('./audio',()=>{
+jest.mock('../audio',()=>{
   return {setFilter: jest.fn()}
 })
 beforeEach(()=>{
