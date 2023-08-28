@@ -5,18 +5,21 @@ import {Profile} from './profile'
 
 const Modulator = () =>{
   const profile = useContext(Profile);
+  const [modulator, setModulator] = {type: profile.settings.modulator.waveform,
+                                     ratio: profile.settings.modulator.ratio}
 
   function handleWaveformChoice(e){
-      profile.settings.modulator.type = e.target.value;
+    setModulator({...modulator, type: e.target.value});
   }
 
   function handleFrequencyRatio(e){
-    profile.settings.modulator.ratio = e.target.value;
+    setModulator({...modulator, ratio: e.target.value});)
   }
 
   useEffect(()=>{
-    Audio.setModulator(profile.settings.modulator);
-  },[profile.settings.modulator])
+    profile.settings.modulator = modulator;
+    Audio.setModulator(modulator);
+  },[profile.settings], modulator)
 
   return(
     <>
@@ -45,6 +48,11 @@ const Modulator = () =>{
             frequency ratio 
         </label>
       </fieldset>
+      <details>
+        <summary>What&apos;s this</summary>
+        <p>Modulator changes carrier frequecy with its own frequency.<br/>
+          it&apos;s weird but that&apos;s how FM synthesis works</p>
+      </details>
     </>
   );
 }
