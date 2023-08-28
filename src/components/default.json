@@ -5,8 +5,7 @@
   },
   "modulator":{
     "type":"sine",
-    "ratio":0,
-    "volume":1
+    "ratio":0
   },
   "filter":{
     "frequency":20,

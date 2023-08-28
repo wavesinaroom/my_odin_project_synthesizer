@@ -1,50 +1,50 @@
-import { useContext, useEffect} from "react";
+import { useContext, useEffect, useState} from "react";
 import Audio from "./audio";
 import {Profile} from './profile'
 
 
 const Modulator = () =>{
   const profile = useContext(Profile);
-  const [modulator, setModulator] = {type: profile.settings.modulator.waveform,
-                                     ratio: profile.settings.modulator.ratio}
+  const [modulator, setModulator] = useState({type: profile.settings.modulator.type,
+                                     ratio: profile.settings.modulator.ratio})
 
   function handleWaveformChoice(e){
     setModulator({...modulator, type: e.target.value});
   }
 
   function handleFrequencyRatio(e){
-    setModulator({...modulator, ratio: e.target.value});)
+    setModulator({...modulator, ratio: e.target.value});
   }
 
   useEffect(()=>{
     profile.settings.modulator = modulator;
     Audio.setModulator(modulator);
-  },[profile.settings], modulator)
+  },[profile.settings, modulator])
 
   return(
     <>
       <fieldset>
         <legend>Waveform</legend>
           <label>
-           <input value='sine' name='sine' type='radio' onChange={handleWaveformChoice} checked={profile.settings.carrier.type === 'sine'}/>
+           <input value='sine' name='sine' type='radio' onChange={handleWaveformChoice} checked={modulator.type === 'sine'}/>
             sine
           </label>
           <label>
-           <input value='square' name='square' type='radio' onChange={handleWaveformChoice} checked={profile.settings.carrier.type === 'square'}/>
+           <input value='square' name='square' type='radio' onChange={handleWaveformChoice} checked={modulator.type === 'square'}/>
             square
           </label>
           <label>
-           <input value='triangle' name='triangle' type='radio' onChange={handleWaveformChoice} checked={ profile.settings.carrier.type === 'triangle' }/>
+           <input value='triangle' name='triangle' type='radio' onChange={handleWaveformChoice} checked={ modulator.type === 'triangle' }/>
             triangle
           </label>
           <label>
-           <input value='sawtooth' name='sawtooth' type='radio' onChange={handleWaveformChoice} checked={profile.settings.carrier.type === 'sawtooth'}/>
+           <input value='sawtooth' name='sawtooth' type='radio' onChange={handleWaveformChoice} checked={modulator.type === 'sawtooth'}/>
             sawtooth
           </label>
       </fieldset>
       <fieldset>
         <label>
-          <input value={profile.settings.modulator.ratio} name='frequency' type='range' min='0' max='1' step='0.1' onChange={handleFrequencyRatio}/> 
+          <input value={modulator.ratio} name='frequency' type='range' min='0' max='1' step='0.1' onChange={handleFrequencyRatio}/> 
             frequency ratio 
         </label>
       </fieldset>
