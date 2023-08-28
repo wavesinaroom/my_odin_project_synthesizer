@@ -1,45 +1,48 @@
-import { useContext, useEffect} from "react";
+import { useContext, useEffect, useState} from "react";
 import Audio from "./audio";
 import {Profile} from './profile'
 
 const Carrier = () =>{
   const profile = useContext(Profile);
+  const [carrier, setCarrier] = useState({type: profile.settings.carrier.type,
+                                          detune: profile.settings.carrier.detune})
 
   function handleWaveformChoice(e){
-    profile.settings.carrier.type = e.target.value;
+    setCarrier({...carrier, type: e.target.value});
   }
 
   function handleDetune(e){
-    profile.settings.carrier.detune = e.target.value;
+    setCarrier({...carrier, detune: e.target.value});
   }
 
   useEffect(()=>{
-    Audio.setCarrier(profile.settings.carrier);
-  }, [profile.settings.carrier])
+    profile.settings.carrier = carrier;
+    Audio.setCarrier(carrier);
+  }, [profile.settings, carrier])
 
   return(
     <>
       <fieldset>
         <legend>Waveform</legend>
           <label>
-           <input value='sine' name='sine' type='radio' onChange={handleWaveformChoice} checked={profile.settings.carrier.type === 'sine'}/>
+           <input value='sine' name='sine' type='radio' onChange={handleWaveformChoice} checked={carrier.type === 'sine'}/>
             sine
           </label>
           <label>
-           <input value='square' name='square' type='radio' onChange={handleWaveformChoice} checked={profile.settings.carrier.type === 'square'}/>
+           <input value='square' name='square' type='radio' onChange={handleWaveformChoice} checked={carrier.type === 'square'}/>
             square
           </label>
           <label>
-           <input value='triangle' name='triangle' type='radio' onChange={handleWaveformChoice} checked={ profile.settings.carrier.type === 'triangle' }/>
+           <input value='triangle' name='triangle' type='radio' onChange={handleWaveformChoice} checked={ carrier.type === 'triangle' }/>
             triangle
           </label>
           <label>
-           <input value='sawtooth' name='sawtooth' type='radio' onChange={handleWaveformChoice} checked={profile.settings.carrier.type === 'sawtooth'}/>
+           <input value='sawtooth' name='sawtooth' type='radio' onChange={handleWaveformChoice} checked={carrier.type === 'sawtooth'}/>
             sawtooth
           </label>
       </fieldset>
       <label>
-        <input value={profile.settings.carrier.detune} name='detune' type='range' min="0.0001" step="1" max="100" onChange={handleDetune}/>
+        <input value={carrier.detune} name='detune' type='range' min="0.0001" step="1" max="100" onChange={handleDetune}/>
         detune
       </label>
     </>
