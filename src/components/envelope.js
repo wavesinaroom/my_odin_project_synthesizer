@@ -26,7 +26,7 @@ const Envelope = () =>{
 
   useEffect(()=>{
     profile.settings.envelope = envelope;
-    Audio.setEnvelope = envelope;
+    Audio.setEnvelope(envelope);
   },[profile.settings, envelope])
 
   return(
