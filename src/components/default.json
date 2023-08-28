@@ -16,9 +16,9 @@
     "type":"highpass"
   },
   "lfo":{
-    "type":"",
-    "frequency":0,
-    "target":""
+    "type":"sine",
+    "frequency":0.0001,
+    "target":"none"
   },
   "envelope":{
     "a":0,
