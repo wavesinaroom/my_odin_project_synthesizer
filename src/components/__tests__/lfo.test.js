@@ -14,7 +14,7 @@ beforeEach(()=>{
   cleanup();
 });
 
-describe.only(`Rendering`,()=>{
+describe(`Rendering`,()=>{
   const profile = {settings:Default};
 
   it(`renders the right amount of elements`,()=>{
@@ -40,7 +40,7 @@ describe.only(`Rendering`,()=>{
     expect(screen.getByRole(`radio`,{name:`none`})).toBeInTheDocument();
   });
 
-  it(`renders the right input values`,()=>{
+  it(`renders values from JSON profile`,()=>{
     render(
       <Profile.Provider value={profile}>
         <LFO/>
@@ -48,6 +48,7 @@ describe.only(`Rendering`,()=>{
     )
     expect(screen.getByRole(`radio`,{name:`${profile.settings.lfo.type}`})).toBeChecked();
     expect(screen.getByRole(`slider`,{name:`frequency`}).value).toBe(`${profile.settings.lfo.frequency}`);
+    expect(screen.getByRole(`radio`,{name:`${profile.settings.lfo.target}`})).toBeChecked();
   });
 });
 
@@ -65,6 +66,8 @@ describe(`Interaction`,()=>{
     fireEvent.click(type);
 
     expect(profile.settings.lfo.type).toBe(`square`);
+    expect(screen.getByRole(`radio`,{name:`square`})).toBeChecked();
+    expect(Audio.setLFO).toBeCalledWith(profile.settings.lfo);
   });
 
   it(`changes frequency value in profile`,()=>{
@@ -78,6 +81,8 @@ describe(`Interaction`,()=>{
     fireEvent.change(frequency, {target:{value:10}});
 
     expect(profile.settings.lfo.frequency).toBe(`10`);
+    expect(frequency.value).toBe(`10`);
+    expect(Audio.setLFO).toBeCalledWith(profile.settings.lfo);
   });
   it(`changes target value in profile`,()=>{
     render(
@@ -85,15 +90,11 @@ describe(`Interaction`,()=>{
         <LFO/>
       </Profile.Provider>
     )
-    const envelope = screen.getByRole(`radio`,{name:`envelope`});
     const modulator = screen.getByRole(`radio`,{name:`modulator`});
-
-    fireEvent.click(envelope);
-
-    expect(profile.settings.lfo.target).toBe(`envelope`);
 
     fireEvent.click(modulator);
 
     expect(profile.settings.lfo.target).toBe(`modulator`);
+    expect(Audio.setLFO).toBeCalledWith(profile.settings.lfo);
   });
 });
