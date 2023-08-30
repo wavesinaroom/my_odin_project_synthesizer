@@ -1,8 +1,14 @@
 import '@testing-library/jest-dom';
 import {cleanup,render,screen, fireEvent} from '@testing-library/react';
-import Modulator from './modulator';
-import Default from './default.json'
-import { Profile } from './profile';
+import Audio from '../audio';
+import Modulator from '../modulator';
+import Default from '../default.json'
+import { Profile } from '../profile';
+import exp from 'constants';
+
+jest.mock('../audio',()=>{
+  return {setModulator: jest.fn()}
+})
 
 beforeEach(()=>{
   cleanup();
@@ -10,7 +16,7 @@ beforeEach(()=>{
 
 describe(`Rendering`, ()=>{
   const profile = {settings: Default};
-  it(`renders waveform type radio buttons`,()=>{
+  it(`renders all elements`,()=>{
     render(
       <Profile.Provider value={profile}>
         <Modulator/>
@@ -18,20 +24,23 @@ describe(`Rendering`, ()=>{
     )
 
     expect(screen.getAllByRole(`radio`).length).toBe(4);
-    expect(screen.getAllByRole(`slider`).length).toBe(2);
+    expect(screen.getAllByRole(`slider`).length).toBe(1);
+    expect(screen.getByRole(`radio`,{name:`sine`})).toBeInTheDocument(); 
+    expect(screen.getByRole(`radio`,{name:`square`})).toBeInTheDocument(); 
+    expect(screen.getByRole(`radio`,{name:`triangle`})).toBeInTheDocument(); 
+    expect(screen.getByRole(`radio`,{name:`sawtooth`})).toBeInTheDocument(); 
   });
 
-  it(`check input labels`,()=>{
+  it(`renders values from profile JSON file`,()=>{
     render(
       <Profile.Provider value={profile}>
         <Modulator/>
       </Profile.Provider>
     )
 
-    expect(screen.getByRole(`radio`,{name:`sine`})).toBeInTheDocument(); 
-    expect(screen.getByRole(`radio`,{name:`square`})).toBeInTheDocument(); 
-    expect(screen.getByRole(`radio`,{name:`triangle`})).toBeInTheDocument(); 
-    expect(screen.getByRole(`radio`,{name:`sawtooth`})).toBeInTheDocument(); 
+    expect(screen.getByRole(`radio`,{name:`${profile.settings.modulator.type}`})).toBeChecked();
+    expect(screen.getByRole(`slider`,{name:`frequency ratio`}).value).toBe(`${profile.settings.modulator.ratio}`);
+
   });
 });
 
@@ -46,21 +55,15 @@ describe(`Interaction`,()=>{
       </Profile.Provider>
     )
 
+    expect(screen.getByRole(`radio`, {name:`${profile.settings.modulator.type}`})).toBeChecked();
     expect(profile.settings.modulator.type).toMatch(`sine`);
+
     fireEvent.click(screen.getByRole(`radio`,{name:`triangle`}));
+
     expect(profile.settings.modulator.type).toMatch(`triangle`);
-  });
+    expect(screen.getByRole(`radio`, {name:`${profile.settings.modulator.type}`})).toBeChecked();
 
-  it(`changes volume level`,()=>{
-    render(
-      <Profile.Provider value={profile}>
-        <Modulator/>
-      </Profile.Provider>
-    )
-    const volume = screen.getByRole(`slider`,{name:`volume`});
-
-    fireEvent.change(volume, {target:{value:0.32}});
-    expect(profile.settings.modulator.volume).toEqual(`-9.90`);
+    expect(Audio.setModulator).toBeCalled();
   });
 
   it(`sets ratio to modulate carrier`,()=>{
@@ -71,7 +74,13 @@ describe(`Interaction`,()=>{
     )
     const ratio = screen.getByRole(`slider`,{name:`frequency ratio`});
 
+    expect(ratio.value).toBe(`0`);
+    expect(profile.settings.modulator.ratio).toEqual(0);
+
     fireEvent.change(ratio, {target:{value:0.5}});
+
+    expect(ratio.value).toBe(`0.5`);
     expect(profile.settings.modulator.ratio).toEqual(`0.5`);
+    expect(Audio.setModulator).toBeCalled();
   });
 });
