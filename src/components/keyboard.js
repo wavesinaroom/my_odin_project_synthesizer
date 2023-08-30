@@ -1,6 +1,6 @@
 import {useContext} from "react";
 import Audio from './audio'
-import Profile from './profile'
+import {Profile }from './profile'
 
 const Keyboard = () =>{
   const profile = useContext(Profile); 
