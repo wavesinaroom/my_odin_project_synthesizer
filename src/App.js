@@ -1,13 +1,13 @@
+import './App.css';
 import {Profile} from './components/profile.js'
-import Carrier from "./components/carrier.js";
+import Keyboard from './components/keyboard.js';
 import Default from "./components/default.json"
 
 function App() {
-  const [signed,setSigned] = useState(false);
-
+  const profile = {settings: Default}
   return(
     <>
-      <Profile.Provider value={Default}>
+      <Profile.Provider value={profile}>
         <Keyboard/> 
       </Profile.Provider>
     </>
