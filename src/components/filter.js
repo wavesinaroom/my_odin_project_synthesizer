@@ -1,82 +1,97 @@
-import { useContext} from "react"
-import {Profile} from './profile'
+import { useContext, useEffect, useState} from "react"
+import Audio from "./audio";
+import { Profile } from "./profile";
 
 const Filter = ()=>{
   const profile = useContext(Profile);
+  const [filter, setFilter] = useState ({frequency: profile.settings.filter.frequency,
+                                         detune: profile.settings.filter.detune,
+                                         q: profile.settings.filter.q,
+                                         gain: profile.settings.filter.gain,
+                                         type: profile.settings.filter.type})
   
   function handleFrequency(e){
-    profile.settings.filter.frequency = e.target.value;
+    setFilter({...filter, frequency:e.target.value});
   }
 
   function handleDetune(e){
-    profile.settings.filter.detune = e.target.value;
+    setFilter({...filter, detune: e.target.value});
   }
 
   function handleQ(e){
-    profile.settings.filter.q = e.target.value;
+    setFilter({...filter, q: e.target.value});
   } 
 
   function handleVolume(e){
-    profile.settings.filter.volume = (Math.log10(e.target.value)*20).toFixed(2);
+    setFilter({...filter, gain: e.target.value})
   }
 
   function handleType(e){
-    profile.settings.filter.type = e.target.value;
+    setFilter({...filter, type: e.target.value});
   }
+
+  useEffect(()=>{
+    profile.settings.filter = filter;
+    Audio.setFilter(profile.settings.filter);
+  },[profile.settings, filter])
   
   return(
     <>
       <label>
-        <input value={profile.settings.filter.frequency} name='frequency' type='range' min='20' max='20000' step='1' onChange={handleFrequency}/>
+        <input value={filter.frequency} name='frequency' type='range' min='20' max='20000' step='1' onChange={handleFrequency}/>
         frequency
       </label>
       <label>
-        <input value={profile.settings.filter.detune} name='detune' type='range' min='0.0001' max='100' step='1' onChange={handleDetune}/>
+        <input value={filter.detune} name='detune' type='range' min='0.0001' max='100' step='1' onChange={handleDetune}/>
         detune
       </label>
       <label>
-        <input value={profile.settings.filter.q} name='q' type='range' min='0.0001' max='1000' step='1' onChange={handleQ}/>
+        <input value={filter.q} name='q' type='range' min='0.0001' max='1000' step='1' onChange={handleQ}/>
         q 
       </label>
       <label>
-        <input value={profile.settings.filter.volume} name='volume' type='range' min='0.0001' max='1' step='0.1' onChange={handleVolume}/>
-        volume
+        <input value={filter.gain} name='volume' type='range' min='0.0001' max='1' step='0.1' onChange={handleVolume}/>
+        gain
       </label>
       <fieldset>
-        <legend>Type</legend>
+        <legend>type</legend>
           <label>
-            <input value='lowpass' name='type' type='radio' onChange={handleType}/>
+            <input value='lowpass' name='type' type='radio' onChange={handleType} checked={filter.type === 'lowpass'}/>
             lowpass
           </label>
           <label>
-            <input value='highpass' name='type' type='radio' onChange={handleType} checked={true}/>
+            <input value='highpass' name='type' type='radio' onChange={handleType} checked={filter.type === 'highpass'}/>
             highpass
           </label>
           <label>
-            <input value='bandpass' name='type' type='radio' onChange={handleType}/>
+            <input value='bandpass' name='type' type='radio' onChange={handleType} checked={filter.type === 'bandpass'}/>
             bandpass
           </label>
           <label>
-            <input value='lowshelf' name='type' type='radio' onChange={handleType}/>
+            <input value='lowshelf' name='type' type='radio' onChange={handleType} checked={filter.type === 'lowshelf'}/>
             lowshelf
           </label>
           <label>
-            <input value='highshelf' name='type' type='radio' onChange={handleType}/>
+            <input value='highshelf' name='type' type='radio' onChange={handleType} checked={filter.type === 'highshelf'}/>
             highshelf
           </label>
           <label>
-            <input value='peaking' name='type' type='radio' onChange={handleType}/>
+            <input value='peaking' name='type' type='radio' onChange={handleType} checked={filter.type === 'peaking'}/>
             peaking
           </label>
           <label>
-            <input value='notch' name='type' type='radio' onChange={handleType}/>
+            <input value='notch' name='type' type='radio' onChange={handleType} checked={filter.type === 'notch'}/>
             notch
           </label>
           <label>
-            <input value='allpass' name='type' type='radio' onChange={handleType}/>
+            <input value='allpass' name='type' type='radio' onChange={handleType} checked={filter.type === 'allpass'}/>
             allpass
           </label>
       </fieldset>
+      <details>
+        <summary>What&apos;s this?</summary>
+        <p>Filters let you remove a range of frequencies like colours from a picture</p>
+      </details>
     </>
   );
 }
