@@ -7,11 +7,10 @@ const Audio = (()=>{
   const filter = new BiquadFilterNode(audioCtx);
 
   carrier.connect(envelope).connect(audioCtx.destination);
-  carrier.start();
 
   function setCarrier(settings){
     carrier.type = settings.type;
-    carrier.detune.setValueAtTime(settings.detune, 0);
+    carrier.detune.setValueAtTime(settings.detune, audioCtx.currentTime);
   }
 
   function setCarrierFrequency(frequency){
@@ -24,18 +23,19 @@ const Audio = (()=>{
 
   function setLFO(settings){
     lfo.type = settings.type;
-    lfo.frequency = settings.frequency;
+    lfo.frequency.setValueAtTime(settings.frequency, audioCtx.currentTime);
   }
 
   function setEnvelope(settings){
-    envelope.gain = settings.volume;
+    envelope.gain.setValueAtTime(settings.gain, audioCtx.currentTime); 
   }
 
   function setFilter(settings){
-    filter.frequency = settings.frequency;
-    filter.detune = settings.detune;
-    filter.q = settings.q;
-    filter.volume = settings.volume;
+    console.log(settings)
+    filter.frequency.setValueAtTime(settings.frequency, audioCtx.currentTime); 
+    filter.detune.setValueAtTime(settings.detune, audioCtx.currentTime);
+    filter.Q.setValueAtTime(settings.q, audioCtx.currentTime);
+    filter.gain.setValueAtTime(settings.gain, audioCtx.currentTime);
     filter.type = settings.type;
   }
 
