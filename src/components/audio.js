@@ -7,37 +7,7 @@ const Audio = (()=>{
   const filter = new BiquadFilterNode(audioCtx);
 
   carrier.connect(envelope).connect(audioCtx.destination);
-
-  function setCarrier(settings){
-    carrier.type = settings.type;
-    carrier.detune.setValueAtTime(settings.detune, audioCtx.currentTime);
-  }
-
-  function setCarrierFrequency(frequency){
-    carrier.frequency.setValueAtTime(frequency, audioCtx.currentTime);
-  }
-
-  function setModulator(settings){
-    modulator.type =  settings.type;
-  }
-
-  function setLFO(settings){
-    lfo.type = settings.type;
-    lfo.frequency.setValueAtTime(settings.frequency, audioCtx.currentTime);
-  }
-
-  function setEnvelope(settings){
-    envelope.gain.setValueAtTime(settings.gain, audioCtx.currentTime); 
-  }
-
-  function setFilter(settings){
-    console.log(settings)
-    filter.frequency.setValueAtTime(settings.frequency, audioCtx.currentTime); 
-    filter.detune.setValueAtTime(settings.detune, audioCtx.currentTime);
-    filter.Q.setValueAtTime(settings.q, audioCtx.currentTime);
-    filter.gain.setValueAtTime(settings.gain, audioCtx.currentTime);
-    filter.type = settings.type;
-  }
+  carrier.start();
 
   function envelopeOn(settings){
     envelope.gain.cancelScheduledValues(0);
@@ -67,20 +37,50 @@ const Audio = (()=>{
         break;
       default:
         break;
-     }
-   }
+    }
+  }
 
-   return {
-     setCarrier,
-     setCarrierFrequency,
-     setModulator,
-     setFilter,
-     setEnvelope,
-     setLFO,
-     envelopeOn,
-     envelopeOff,
-     plugLFO
+  function setCarrier(settings){
+    carrier.type = settings.type;
+    carrier.detune.setValueAtTime(settings.detune, audioCtx.currentTime);
+  }
+
+  function setCarrierFrequency(frequency){
+    carrier.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+  }
+
+  function setModulator(settings){
+    modulator.type =  settings.type;
+  }
+
+  function setLFO(settings){
+    lfo.type = settings.type;
+    lfo.frequency.setValueAtTime(settings.frequency, audioCtx.currentTime);
+  }
+
+  function setEnvelope(settings){
+    envelope.gain.setValueAtTime(settings.gain, audioCtx.currentTime); 
+  }
+
+  function setFilter(settings){
+    filter.frequency.setValueAtTime(settings.frequency, audioCtx.currentTime); 
+    filter.detune.setValueAtTime(settings.detune, audioCtx.currentTime);
+    filter.Q.setValueAtTime(settings.q, audioCtx.currentTime);
+    filter.gain.setValueAtTime(settings.gain, audioCtx.currentTime);
+    filter.type = settings.type;
+  }
+
+  return {
+    envelopeOn,
+    envelopeOff,
+    plugLFO,
+    setCarrier,
+    setCarrierFrequency,
+    setModulator,
+    setFilter,
+    setEnvelope,
+    setLFO,
    }
- })();
+ });
 
 export default Audio;

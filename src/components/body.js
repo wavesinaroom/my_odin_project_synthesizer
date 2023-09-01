@@ -1,5 +1,5 @@
 import Audio from "./audio"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Carrier from "./carrier"
 import Modulator from "./modulator"
 import Envelope from "./envelope"
@@ -10,15 +10,23 @@ import { Profile } from "./profile"
 import Default from "./default.json"
 
 const Body = () =>{
-  const [textToggle, setTextToogle] = useState(false);
+  const [toggle, setToggle] = useState(false);
 
-  function handleTextToggle(){
-    setTextToogle(!textToggle);
+  let Audio = null;
+
+  function handleToggle(){
+    setToggle(!toggle);
   }
   
+  useEffect(()=>{
+    if(toogle)
+      audio = Audio;
+
+    audio = null
+  },[toggle])
   return(
     <>
-      <button onClick={handleTextToggle}>{textToggle?`On`:`Off`}</button>
+      <button onClick={handleToggle}>{toggle?`On`:`Off`}</button>
       <Profile.Provider value={{settings:Default}}>
         <Carrier/>
         <Modulator/>
