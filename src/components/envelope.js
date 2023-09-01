@@ -7,7 +7,8 @@ const Envelope = () =>{
   const [envelope, setEnvelope] = useState({a: profile.settings.envelope.a,
                                            d: profile.settings.envelope.d,
                                            s: profile.settings.envelope.s,
-                                           r: profile.settings.envelope.r})
+                                           r: profile.settings.envelope.r,
+                                           gain: profile.settings.envelope.gain})
   function handleAttack(e){
     setEnvelope({...envelope, a:e.target.value});
   }
@@ -24,6 +25,10 @@ const Envelope = () =>{
     setEnvelope({...envelope, r:e.target.value});
   }
 
+  function handleGain(e){
+    setEnvelope({...envelope, gain:e.target.value});
+  }
+
   useEffect(()=>{
     profile.settings.envelope = envelope;
     Audio.setEnvelope(envelope);
@@ -32,20 +37,24 @@ const Envelope = () =>{
   return(
     <>
       <label>
-        <input value={envelope.a} type='range' min='0' max='1' step='0.1' onChange={handleAttack}/>      
+        <input value={envelope.a} type='range' min='0.0001' max='1' step='0.1' onChange={handleAttack}/>      
         attack
       </label>
       <label>
-        <input value={envelope.d} type='range' min='0' max='1' step='0.1' onChange={handleDecay}/>      
+        <input value={envelope.d} type='range' min='0.0001' max='1' step='0.1' onChange={handleDecay}/>      
         decay
       </label>
       <label>
-        <input value={envelope.s} type='range' min='0' max='1' step='0.1' onChange={handleSustain}/>      
+        <input value={envelope.s} type='range' min='0.0001' max='1' step='0.1' onChange={handleSustain}/>      
         sustain
       </label>
       <label>
-        <input value={envelope.r} type='range' min='0' max='1' step='0.1' onChange={handleRelease}/>      
+        <input value={envelope.r} type='range' min='0.0001' max='1' step='0.1' onChange={handleRelease}/>      
         release
+      </label>
+      <label>
+        <input value={envelope.gain} type='range' min='0.0001' max='1' step='0.1' onChange={handleGain}/>      
+        volume
       </label>
     </>
   );
