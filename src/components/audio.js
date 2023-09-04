@@ -40,6 +40,7 @@ const Audio = (()=>{
     }
   }
 
+
   function setCarrier(settings){
     carrier.type = settings.type;
     carrier.detune.setValueAtTime(settings.detune, audioCtx.currentTime);
@@ -70,6 +71,14 @@ const Audio = (()=>{
     filter.type = settings.type;
   }
 
+  function resumeAudioCtx(){
+    audioCtx.resume();
+  }
+
+  function suspendAudioCtx(){
+    audioCtx.suspend();
+  }
+
   return {
     envelopeOn,
     envelopeOff,
@@ -80,7 +89,9 @@ const Audio = (()=>{
     setFilter,
     setEnvelope,
     setLFO,
+    resumeAudioCtx,
+    suspendAudioCtx
    }
- });
+ })();
 
 export default Audio;

@@ -12,18 +12,14 @@ import Default from "./default.json"
 const Body = () =>{
   const [toggle, setToggle] = useState(false);
 
-  let Audio = null;
-
   function handleToggle(){
     setToggle(!toggle);
   }
   
   useEffect(()=>{
-    if(toogle)
-      audio = Audio;
-
-    audio = null
+    toggle?Audio.resumeAudioCtx():Audio.suspendAudioCtx();
   },[toggle])
+
   return(
     <>
       <button onClick={handleToggle}>{toggle?`On`:`Off`}</button>
