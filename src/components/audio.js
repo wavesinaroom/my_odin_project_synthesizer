@@ -11,14 +11,14 @@ const Audio = (()=>{
 
   function envelopeOn(settings){
     envelope.gain.cancelScheduledValues(0);
-    envelope.gain.setValueAtTime(0,audioCtx.currentTime);
-    envelope.gain.linearRampToValueAtTime(3, audioCtx.currentTime + settings.a);
+    envelope.gain.setValueAtTime(settings.gain,audioCtx.currentTime);
+    envelope.gain.linearRampToValueAtTime(settings.gain,audioCtx.currentTime + settings.a);
     envelope.gain.linearRampToValueAtTime(settings.s, audioCtx.currentTime + settings.a + settings.d);
   }
 
   function envelopeOff(settings){
     envelope.gain.cancelScheduledValues(0);
-    envelope.gain.setValueAtTime(envelope.gain.value,audioCtx.currentTime);
+    envelope.gain.setValueAtTime(0,audioCtx.currentTime);
     envelope.gain.linearRampToValueAtTime(0, audioCtx.currentTime + settings.r);
   }
 
@@ -77,6 +77,7 @@ const Audio = (()=>{
 
   function suspendAudioCtx(){
     audioCtx.suspend();
+    envelope.gain.setValueAtTime(0, audioCtx.currentTime);
   }
 
   return {
