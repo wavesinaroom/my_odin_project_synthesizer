@@ -11,15 +11,13 @@ const Audio = (()=>{
 
   function envelopeOn(settings){
     envelope.gain.cancelScheduledValues(0);
-    envelope.gain.setValueAtTime(settings.gain,audioCtx.currentTime);
-    envelope.gain.linearRampToValueAtTime(settings.gain,audioCtx.currentTime + settings.a);
-    envelope.gain.linearRampToValueAtTime(settings.s, audioCtx.currentTime + settings.a + settings.d);
+    envelope.gain.setTargetAtTime(settings.gain, audioCtx.currentTime, settings.a);
+    envelope.gain.setTargetAtTime(settings.gain-settings.d, audioCtx.currentTime, (settings.a+settings.d));
   }
 
   function envelopeOff(settings){
     envelope.gain.cancelScheduledValues(0);
-    envelope.gain.setValueAtTime(0,audioCtx.currentTime);
-    envelope.gain.linearRampToValueAtTime(0, audioCtx.currentTime + settings.r);
+    envelope.gain.setTargetAtTime(0, audioCtx.currentTime, settings.r);
   }
 
   function plugLFO(settings){
