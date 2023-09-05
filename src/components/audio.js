@@ -2,12 +2,17 @@ const Audio = (()=>{
   const audioCtx = new AudioContext();
   const carrier = new OscillatorNode(audioCtx);
   const modulator = new OscillatorNode(audioCtx);
+  const modulatorGain = new GainNode(audioCtx);
   const lfo = new OscillatorNode(audioCtx);
   const envelope = new GainNode(audioCtx);
   const filter = new BiquadFilterNode(audioCtx);
 
+  modulator.connect(modulatorGain);
+  modulatorGain.gain.setValueAtTime(100, audioCtx.currentTime)
+  modulatorGain.connect(carrier.frequency);
   carrier.connect(envelope).connect(audioCtx.destination);
   carrier.start();
+  modulator.start();
 
   function envelopeOn(settings){
     envelope.gain.cancelScheduledValues(0);
@@ -52,6 +57,10 @@ const Audio = (()=>{
     modulator.type =  settings.type;
   }
 
+  function setModulatorFrequency(settings, frequency){
+    modulator.frequency.setValueAtTime((settings.ratio * frequency), audioCtx.currentTime);
+  }
+
   function setLFO(settings){
     lfo.type = settings.type;
     lfo.frequency.setValueAtTime(settings.frequency, audioCtx.currentTime);
@@ -85,6 +94,7 @@ const Audio = (()=>{
     setCarrier,
     setCarrierFrequency,
     setModulator,
+    setModulatorFrequency,
     setFilter,
     setEnvelope,
     setLFO,

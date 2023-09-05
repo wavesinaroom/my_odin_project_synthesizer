@@ -7,6 +7,7 @@ const Keyboard = () =>{
 
   function handleMouseEnter(e){
     Audio.setCarrierFrequency(parseFloat(e.target.id));
+    Audio.setModulatorFrequency(profile.settings.modulator, parseFloat(e.target.id));
     Audio.envelopeOn(profile.settings.envelope);
   }
 

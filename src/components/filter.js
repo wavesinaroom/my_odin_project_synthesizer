@@ -91,7 +91,7 @@ const Filter = ()=>{
             notch
           </label>
           <label>
-            <input value='allpass' name='type' tyte='radio' onChange={handleType} checked={filter.type === 'allpass'}/>
+            <input value='allpass' name='type' type='radio' onChange={handleType} checked={filter.type === 'allpass'}/>
             allpass
           </label>
       </fieldset>
