@@ -27,6 +27,14 @@ const LFO = () =>{
 
   return(
     <>
+      <h3>Low Frequency Oscillator (LFO)</h3>
+        <details>
+          <summary>What&apos;s this?</summary>
+          <p>
+            Low frequency oscillators aren&apos;t different to other oscillators. However, they are used to modulate a parameter of a synth instead of generating sound by themselves <br/>
+            For instance, you can connect the LFO to the frequency another oscillator to create a sound vibration effect called vibrato or you can even connect it to an envelope to generate a quick succession of notes or tremolo
+          </p>
+        </details>
       <fieldset>
         <legend>Type</legend>
           <label>
