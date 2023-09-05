@@ -37,6 +37,13 @@ const Filter = ()=>{
   
   return(
     <>
+      <h3>Filter</h3>
+        <details>
+          <summary>What&apos;s this?</summary>
+          <p>
+            Filters remove ranges of sound frequency ranges. They work pretty similar to visual filter which let you see some colours in a picture.
+          </p>
+        </details> 
       <label>
         <input value={filter.frequency} name='frequency' type='range' min='20' max='20000' step='1' onChange={handleFrequency}/>
         frequency
