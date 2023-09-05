@@ -63,42 +63,38 @@ const Filter = ()=>{
       <fieldset>
         <legend>type</legend>
           <label>
-            <input value='lowpass' name='type' type='radio' onChange={handleType} checked={filter.type === 'lowpass'}/>
+            <input value='lowpass' name='filter' type='radio' onChange={handleType} checked={filter.type === 'lowpass'}/>
             lowpass
           </label>
           <label>
-            <input value='highpass' name='type' type='radio' onChange={handleType} checked={filter.type === 'highpass'}/>
+            <input value='highpass' name='filter' type='radio' onChange={handleType} checked={filter.type === 'highpass'}/>
             highpass
           </label>
           <label>
-            <input value='bandpass' name='type' type='radio' onChange={handleType} checked={filter.type === 'bandpass'}/>
+            <input value='bandpass' name='filter' type='radio' onChange={handleType} checked={filter.type === 'bandpass'}/>
             bandpass
           </label>
           <label>
-            <input value='lowshelf' name='type' type='radio' onChange={handleType} checked={filter.type === 'lowshelf'}/>
+            <input value='lowshelf' name='filter' type='radio' onChange={handleType} checked={filter.type === 'lowshelf'}/>
             lowshelf
           </label>
           <label>
-            <input value='highshelf' name='type' type='radio' onChange={handleType} checked={filter.type === 'highshelf'}/>
+            <input value='highshelf' name='filter' type='radio' onChange={handleType} checked={filter.type === 'highshelf'}/>
             highshelf
           </label>
           <label>
-            <input value='peaking' name='type' type='radio' onChange={handleType} checked={filter.type === 'peaking'}/>
+            <input value='peaking' name='filter' type='radio' onChange={handleType} checked={filter.type === 'peaking'}/>
             peaking
           </label>
           <label>
-            <input value='notch' name='type' type='radio' onChange={handleType} checked={filter.type === 'notch'}/>
+            <input value='notch' name='filter' type='radio' onChange={handleType} checked={filter.type === 'notch'}/>
             notch
           </label>
           <label>
-            <input value='allpass' name='type' type='radio' onChange={handleType} checked={filter.type === 'allpass'}/>
+            <input value='allpass' name='type' tyte='radio' onChange={handleType} checked={filter.type === 'allpass'}/>
             allpass
           </label>
       </fieldset>
-      <details>
-        <summary>What&apos;s this?</summary>
-        <p>Filters let you remove a range of frequencies like colours from a picture</p>
-      </details>
     </>
   );
 }

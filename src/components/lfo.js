@@ -38,19 +38,19 @@ const LFO = () =>{
       <fieldset>
         <legend>Type</legend>
           <label>
-            <input value='sine' type='radio' onChange={handleType} checked={lfo.type === 'sine'}/> 
+            <input value='sine' name="lfo-f" type='radio' onChange={handleType} checked={lfo.type === 'sine'}/> 
             sine
           </label>
           <label>
-            <input value='square' type='radio' onChange={handleType} checked={lfo.type === 'square'}/> 
+            <input value='square' name="lfo-f" type='radio' onChange={handleType} checked={lfo.type === 'square'}/> 
             square
           </label>
           <label>
-            <input value='sawtooth' type='radio' onChange={handleType} checked={lfo.type === 'sine'}/> 
+            <input value='sawtooth' name="lfo-f" type='radio' onChange={handleType} checked={lfo.type === 'sawtooth'}/> 
             sawtooth
           </label>
           <label>
-            <input value='triangle' type='radio' onChange={handleType} checked={lfo.type === 'sine'}/> 
+            <input value='triangle' name="lfo-f" type='radio' onChange={handleType} checked={lfo.type === 'triangle'}/> 
             triangle
           </label>
       </fieldset>
@@ -61,19 +61,19 @@ const LFO = () =>{
       <fieldset>
         <legend>Target</legend>
           <label>
-            <input value='carrier' type='radio' onChange={handleTarget} checked={lfo.target === 'carier'}/>
+            <input value='carrier' name="lfo-target" type='radio' onChange={handleTarget} checked={lfo.target === 'carier'}/>
             carrier
           </label>
           <label>
-            <input value='modulator' type='radio' onChange={handleTarget} checked={lfo.target === 'modulator'}/>
+            <input value='modulator' name="lfo-target" type='radio' onChange={handleTarget} checked={lfo.target === 'modulator'}/>
             modulator
           </label>
           <label>
-            <input value='envelope' type='radio' onChange={handleTarget} checked={lfo.target === 'envelope'}/>
+            <input value='envelope' name="lfo-target" type='radio' onChange={handleTarget} checked={lfo.target === 'envelope'}/>
             envelope
           </label>
           <label>
-            <input value='none' type='radio' onChange={handleTarget} checked={lfo.target === 'none'}/>
+            <input value='none' name="lfo-target" type='radio' onChange={handleTarget} checked={lfo.target === 'none'}/>
             none
           </label>
       </fieldset>

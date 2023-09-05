@@ -34,33 +34,26 @@ const Modulator = () =>{
       <fieldset>
         <legend>Waveform</legend>
           <label>
-           <input value='sine' name='sine' type='radio' onChange={handleWaveformChoice} checked={modulator.type === 'sine'}/>
+           <input value='sine' name='modulator' type='radio' onChange={handleWaveformChoice} checked={modulator.type === 'sine'}/>
             sine
           </label>
           <label>
-           <input value='square' name='square' type='radio' onChange={handleWaveformChoice} checked={modulator.type === 'square'}/>
+           <input value='square' name='modulator' type='radio' onChange={handleWaveformChoice} checked={modulator.type === 'square'}/>
             square
           </label>
           <label>
-           <input value='triangle' name='triangle' type='radio' onChange={handleWaveformChoice} checked={ modulator.type === 'triangle' }/>
+           <input value='triangle' name='modulator' type='radio' onChange={handleWaveformChoice} checked={ modulator.type === 'triangle' }/>
             triangle
           </label>
           <label>
-           <input value='sawtooth' name='sawtooth' type='radio' onChange={handleWaveformChoice} checked={modulator.type === 'sawtooth'}/>
+           <input value='sawtooth' name='modulator' type='radio' onChange={handleWaveformChoice} checked={modulator.type === 'sawtooth'}/>
             sawtooth
           </label>
       </fieldset>
-      <fieldset>
         <label>
           <input value={modulator.ratio} name='frequency' type='range' min='0' max='1' step='0.1' onChange={handleFrequencyRatio}/> 
             frequency ratio 
         </label>
-      </fieldset>
-      <details>
-        <summary>What&apos;s this</summary>
-        <p>Modulator changes carrier frequecy with its own frequency.<br/>
-          it&apos;s weird but that&apos;s how FM synthesis works</p>
-      </details>
     </>
   );
 }

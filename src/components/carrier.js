@@ -33,19 +33,19 @@ const Carrier = () =>{
       <fieldset>
         <legend>Waveform</legend>
           <label>
-           <input value='sine' name='sine' type='radio' onChange={handleWaveformChoice} checked={carrier.type === 'sine'}/>
+           <input value='sine' name='carrier' type='radio' onChange={handleWaveformChoice} checked={carrier.type === 'sine'}/>
             sine
           </label>
           <label>
-           <input value='square' name='square' type='radio' onChange={handleWaveformChoice} checked={carrier.type === 'square'}/>
+           <input value='square' name='carrier' type='radio' onChange={handleWaveformChoice} checked={carrier.type === 'square'}/>
             square
           </label>
           <label>
-           <input value='triangle' name='triangle' type='radio' onChange={handleWaveformChoice} checked={ carrier.type === 'triangle' }/>
+           <input value='triangle' name='carrier' type='radio' onChange={handleWaveformChoice} checked={ carrier.type === 'triangle' }/>
             triangle
           </label>
           <label>
-           <input value='sawtooth' name='sawtooth' type='radio' onChange={handleWaveformChoice} checked={carrier.type === 'sawtooth'}/>
+           <input value='sawtooth' name='carrier' type='radio' onChange={handleWaveformChoice} checked={carrier.type === 'sawtooth'}/>
             sawtooth
           </label>
       </fieldset>
