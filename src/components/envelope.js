@@ -36,6 +36,13 @@ const Envelope = () =>{
 
   return(
     <>
+      <h3>Envelope</h3>
+      <details>
+        <summary>What&apos;s this?</summary> 
+        <p>
+          Envelopes shape oscillators volume through time to give expresion to oscillators output.
+        </p>
+      </details>
       <label>
         <input value={envelope.a} type='range' min='0.0001' max='1' step='0.1' onChange={handleAttack}/>      
         attack
