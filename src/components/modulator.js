@@ -23,6 +23,13 @@ const Modulator = () =>{
 
   return(
     <>
+      <h3>Modulator Oscillator</h3>
+      <details>
+        <summary>What&apos;s this?</summary>
+        <p>
+          Modulator Oscillators in FM synths don&apos;t actually generate sound but influence on different oscillators sound generation.</br>
+          In other words, a modulator oscillator can shape  
+      </details>
       <fieldset>
         <legend>Waveform</legend>
           <label>

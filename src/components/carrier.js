@@ -22,6 +22,14 @@ const Carrier = () =>{
 
   return(
     <>
+      <h3>Carrier Oscillator</h3>
+      <details>
+        <summary>What&apos;s this?</summary> 
+        <p>
+          Oscillators generally work as sound sources in a synthesizer. They generate sound from four basic waveforms: sine, square, triangle and sawtooth.<br/>
+          Use the detune slide to change the oscillator pitch slightly.
+        </p>
+      </details>
       <fieldset>
         <legend>Waveform</legend>
           <label>
