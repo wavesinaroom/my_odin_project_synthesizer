@@ -1,27 +1,29 @@
 {
   "carrier":{
-     "type":"",
-     "volume":1
+     "type":"sine",
+     "detune":0.0001
   },
   "modulator":{
-    "type":"",
-    "ratio":0,
-    "volume":1
+    "type":"sine",
+    "ratio":0
   },
   "filter":{
-    "frequency":0,
-    "q":0
+    "frequency":20,
+    "detune":0.0001,
+    "q":0.0001,
+    "gain":0.0001,
+    "type":"highpass"
   },
   "lfo":{
-    "type":"",
-    "frequency":0,
-    "target":""
+    "type":"sine",
+    "frequency":0.0001,
+    "target":"none"
   },
   "envelope":{
-    "a":0.0001,
-    "d":0.0001,
-    "s":0.0001,
-    "r":0.0001,
+    "a":0.2,
+    "d":0.2,
+    "s":0.2,
+    "r":0.2,
     "gain": 1
   }
 }
