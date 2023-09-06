@@ -17,7 +17,7 @@ const Keyboard = () =>{
   return(
     <>
       <details>
-        <summary>Instructions</summary>
+        <summary>How do I play sound?</summary>
         <p>Hover over the circles to play some sound</p>
       </details>
       <svg viewBox="0 0 1500 1500">
