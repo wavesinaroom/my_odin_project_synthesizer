@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import Carrier from "./carrier"
 import Modulator from "./modulator"
 import Envelope from "./envelope"
-import LFO from "./lfo"
 import Filter from "./filter"
 import Keyboard from "./keyboard"
 import { Profile } from "./profile"
@@ -27,7 +26,6 @@ const Body = () =>{
         <Carrier/>
         <Modulator/>
         <Envelope/>
-        <LFO/>
         <Filter/>
         <Keyboard/>
       </Profile.Provider>

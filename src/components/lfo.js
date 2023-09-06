@@ -23,6 +23,7 @@ const LFO = () =>{
   useEffect(()=>{
     profile.settings.lfo = lfo;
     Audio.setLFO(lfo);
+    Audio.plugLFO(lfo);
   },[profile.settings, lfo])
 
   return(

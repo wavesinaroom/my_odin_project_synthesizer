@@ -57,11 +57,11 @@ const Filter = ()=>{
         detune
       </label>
       <label>
-        <input value={filter.q} name='q' type='range' min='0.0001' max='1000' step='1' onChange={handleQ}/>
+        <input value={filter.q} name='q' type='range' min='0.0001' max='1' step='0.1' onChange={handleQ}/>
         q 
       </label>
       <label>
-        <input value={filter.gain} name='volume' type='range' min='0.0001' max='1' step='0.1' onChange={handleVolume}/>
+        <input value={filter.gain} name='volume' type='range' min='-40' max='40' step='1' onChange={handleVolume}/>
         gain
       </label>
       <fieldset>
