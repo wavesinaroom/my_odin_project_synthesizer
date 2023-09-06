@@ -5,6 +5,7 @@ import Modulator from "./modulator"
 import Envelope from "./envelope"
 import Filter from "./filter"
 import Keyboard from "./keyboard"
+import Logout from "./logout"
 import { Profile } from "./profile"
 import Default from "./default.json"
 
@@ -23,6 +24,7 @@ const Body = () =>{
     <>
       <button onClick={handleToggle}>{toggle?`On`:`Off`}</button>
       <Profile.Provider value={{settings:Default}}>
+        <Logout/>
         <Carrier/>
         <Modulator/>
         <Envelope/>

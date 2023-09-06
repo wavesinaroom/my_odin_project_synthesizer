@@ -7,7 +7,6 @@ const Keyboard = () =>{
 
   function handleMouseEnter(e){
     Audio.setCarrierFrequency(parseFloat(e.target.id));
-    Audio.setModulatorFrequency(profile.settings.modulator, parseFloat(e.target.id));
     Audio.envelopeOn(profile.settings.envelope);
   }
 
@@ -18,10 +17,10 @@ const Keyboard = () =>{
   return(
     <>
       <details>
-        <summary>Instructions</summary>
+        <summary>How do I play sound?</summary>
         <p>Hover over the circles to play some sound</p>
       </details>
-      <svg viewBox="0 500 1500 1500">
+      <svg viewBox="0 0 1500 1500">
         <circle id="261.63" cx="100" cy="750" r="30" onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}/>
           <circle id="277.10" cx="200" cy="750" r="30" onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}/>
           <circle id="293.66" cx="300" cy="750" r="30" onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}/>
