@@ -66,10 +66,6 @@ const Audio = (()=>{
     lfo.frequency.setValueAtTime(settings.frequency, audioCtx.currentTime);
   }
 
-  function setEnvelope(settings){
-    envelope.gain.setValueAtTime(settings.gain, audioCtx.currentTime); 
-  }
-
   function setFilter(settings){
     filter.frequency.setValueAtTime(settings.frequency, audioCtx.currentTime); 
     filter.detune.setValueAtTime(settings.detune, audioCtx.currentTime);
@@ -96,7 +92,6 @@ const Audio = (()=>{
     setModulator,
     setModulatorFrequency,
     setFilter,
-    setEnvelope,
     setLFO,
     resumeAudioCtx,
     suspendAudioCtx

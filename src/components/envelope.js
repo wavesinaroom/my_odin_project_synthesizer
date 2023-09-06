@@ -10,28 +10,32 @@ const Envelope = () =>{
                                            r: profile.settings.envelope.r,
                                            gain: profile.settings.envelope.gain})
   function handleAttack(e){
-    setEnvelope({...envelope, a:e.target.value});
+    const change = parseFloat(e.target.value);
+    setEnvelope({...envelope, a:change});
   }
 
   function handleDecay(e){
-    setEnvelope({...envelope, d:e.target.value});
+    const change = parseFloat(e.target.value);
+    setEnvelope({...envelope, d:change});
   }
 
   function handleSustain(e){
-    setEnvelope({...envelope, s:e.target.value});
+    const change = parseFloat(e.target.value);
+    setEnvelope({...envelope, s:change});
   }
 
   function handleRelease(e){
-    setEnvelope({...envelope, r:e.target.value});
+    const change = parseFloat(e.target.value);
+    setEnvelope({...envelope, r:change});
   }
 
   function handleGain(e){
-    setEnvelope({...envelope, gain:e.target.value});
+    const change = parseFloat(e.target.value);
+    setEnvelope({...envelope, gain:change});
   }
 
   useEffect(()=>{
     profile.settings.envelope = envelope;
-    Audio.setEnvelope(envelope);
   },[profile.settings, envelope])
 
   return(
