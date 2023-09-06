@@ -11,19 +11,23 @@ const Filter = ()=>{
                                          type: profile.settings.filter.type})
   
   function handleFrequency(e){
-    setFilter({...filter, frequency:e.target.value});
+    const change = parseFloat(e.target.value);
+    setFilter({...filter, frequency:change});
   }
 
   function handleDetune(e){
-    setFilter({...filter, detune: e.target.value});
+    const change = parseFloat(e.target.value);
+    setFilter({...filter, detune: change});
   }
 
   function handleQ(e){
-    setFilter({...filter, q: e.target.value});
+    const change = parseFloat(e.target.value);
+    setFilter({...filter, q: change});
   } 
 
   function handleVolume(e){
-    setFilter({...filter, gain: e.target.value})
+    const change = parseFloat(e.target.value);
+    setFilter({...filter, gain: change})
   }
 
   function handleType(e){
