@@ -21,6 +21,20 @@ h3 {
   color: #de935f;
 }
 
+fieldset{
+  border: none;
+}
+
+input[type="range"]{
+  accent-color: #81a2be;
+}
+
+legend{
+  font-size: larger;
+  font-weight: bolder;
+  color: #cc6666;
+}
+
 details [open]> p{
   z-index: 1;
 }
@@ -29,7 +43,3 @@ summary {
   color: #b5bd68;
 }
 
-legend{
-  font-weight: bolder;
-  color: #cc6666;
-}
