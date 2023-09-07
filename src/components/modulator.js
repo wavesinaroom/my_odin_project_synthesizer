@@ -22,7 +22,7 @@ const Modulator = () =>{
   },[profile.settings, modulator])
 
   return(
-    <>
+    <div className="modulator">
       <h3>Modulator Oscillator</h3>
       <details>
         <summary>What&apos;s this?</summary>
@@ -54,7 +54,7 @@ const Modulator = () =>{
           <input value={modulator.ratio} name='frequency' type='range' min='0' max='1' step='0.1' onChange={handleFrequencyRatio}/> 
             frequency ratio 
         </label>
-    </>
+    </div>
   );
 }
 

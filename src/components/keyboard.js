@@ -15,7 +15,7 @@ const Keyboard = () =>{
   }
 
   return(
-    <>
+    <div>
       <details>
         <summary>How do I play sound?</summary>
         <p>Hover over the circles to play some sound</p>
@@ -35,7 +35,7 @@ const Keyboard = () =>{
           <circle id="493.88" cx="1200" cy="750" r="30" onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}/>
           <circle id="522.6" cx="1300" cy="750" r="30" onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}/>
       </svg>
-    </>
+    </div>
   )
 }
  export default Keyboard;
