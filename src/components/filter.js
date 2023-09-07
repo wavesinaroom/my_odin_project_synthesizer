@@ -40,7 +40,7 @@ const Filter = ()=>{
   },[profile.settings, filter])
   
   return(
-    <div className="filter">
+    <div style={styles}>
       <h3>Filter</h3>
         <details>
           <summary>What&apos;s this?</summary>
@@ -104,3 +104,7 @@ const Filter = ()=>{
 }
 
 export default Filter;
+
+const styles = {
+  gridArea: "filter"
+}

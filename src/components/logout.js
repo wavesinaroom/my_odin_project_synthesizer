@@ -28,10 +28,14 @@ const Logout = () =>{
     }
   }
   return(
-    <>
+    <div style={styles}>
       <button onClick={handleLogout}>Log Out</button>
-    </>
+    </div>
   )
 }
 
 export default Logout;
+
+const styles = {
+  gridArea:"logout"
+} 

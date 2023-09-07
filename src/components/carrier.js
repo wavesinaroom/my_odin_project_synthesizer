@@ -21,7 +21,7 @@ const Carrier = () =>{
   }, [profile.settings, carrier])
 
   return(
-    <div className="carrier">
+    <div style={styles}> 
       <h3>Carrier Oscillator</h3>
       <details>
         <summary>What&apos;s this?</summary> 
@@ -58,3 +58,7 @@ const Carrier = () =>{
 }
 
 export default Carrier;
+
+const styles = {
+  gridArea: "carrier"
+}

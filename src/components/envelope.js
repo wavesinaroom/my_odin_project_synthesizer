@@ -38,7 +38,7 @@ const Envelope = () =>{
   },[profile.settings, envelope])
 
   return(
-    <div>
+      <div style={styles}>
       <h3>Envelope</h3>
       <details>
         <summary>What&apos;s this?</summary> 
@@ -71,3 +71,7 @@ const Envelope = () =>{
 }
 
 export default Envelope;
+
+const styles = {
+  gridArea: "envelope"
+} 

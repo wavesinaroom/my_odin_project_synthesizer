@@ -22,7 +22,7 @@ const Modulator = () =>{
   },[profile.settings, modulator])
 
   return(
-    <div className="modulator">
+    <div style={styles}>
       <h3>Modulator Oscillator</h3>
       <details>
         <summary>What&apos;s this?</summary>
@@ -59,3 +59,7 @@ const Modulator = () =>{
 }
 
 export default Modulator;
+
+const styles = {
+  gridArea: "modulator"
+}

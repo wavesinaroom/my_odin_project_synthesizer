@@ -15,7 +15,7 @@ const Keyboard = () =>{
   }
 
   return(
-    <div>
+    <div style={styles}>
       <details>
         <summary>How do I play sound?</summary>
         <p>Hover over the circles to play some sound</p>
@@ -39,3 +39,7 @@ const Keyboard = () =>{
   )
 }
  export default Keyboard;
+
+const styles = {
+  gridArea: "keyboard"
+}
