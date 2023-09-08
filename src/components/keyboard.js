@@ -15,12 +15,12 @@ const Keyboard = () =>{
   }
 
   return(
-    <div style={styles}>
+    <div style={styles} className="keyboard">
       <details>
         <summary>How do I play sound?</summary>
         <p>Hover over the circles to play some sound</p>
       </details>
-      <svg viewBox="0 0 1500 1500">
+      <svg width="730" height="437.5">
           <circle id="261.63" cx="100" cy="220" r="30" onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}/>
           <circle id="277.10" cx="200" cy="157.5" r="30" onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}/>
           <circle id="293.66" cx="300" cy="95" r="30" onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}/>
