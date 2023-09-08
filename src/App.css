@@ -17,6 +17,15 @@ button:hover{
   background-color: #1d1f21;
 }
 
+circle{
+  fill: #f0c674;
+}
+
+circle:hover{
+  transition-duration: 200ms;
+  fill: #de935f;
+}
+
 h3 {
   color: #de935f;
 }
