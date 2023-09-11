@@ -21,7 +21,7 @@ const Body = () =>{
   },[toggle])
 
   return(
-    <div style={layout}>
+    <main style={layout} className="body">
       <button onClick={handleToggle}>{toggle?`On`:`Off`}</button>
       <Profile.Provider value={{settings:Default}}>
         <Logout/>
@@ -31,7 +31,7 @@ const Body = () =>{
         <Filter/>
         <Keyboard/>
       </Profile.Provider>
-    </div>
+    </main>
   )
 }
 
@@ -40,5 +40,6 @@ export default Body;
 const layout =  {
   display: `grid`,
   grid: `repeat(4, 25%)/repeat(4,auto)`,
-  gridTemplateAreas:'"off . . logout" "carrier modulator envelope filter" ". keyboard keyboard ."'
+  gridTemplateAreas:'"off . . logout" "carrier modulator envelope filter" ". keyboard keyboard ."',
+  gap: `1em` 
 }  

@@ -15,7 +15,7 @@ const Keyboard = () =>{
   }
 
   return(
-    <div style={styles} className="keyboard">
+    <section style={styles} className="keyboard">
       <details>
         <summary>How do I play sound?</summary>
         <p>Hover over the circles to play some sound</p>
@@ -35,7 +35,7 @@ const Keyboard = () =>{
           <circle id="493.88" cx="300" cy="345" r="30" onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}/>
           <circle id="522.6" cx="100" cy="282.5" r="20" onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}/>
       </svg>
-    </div>
+    </section>
   )
 }
  export default Keyboard;

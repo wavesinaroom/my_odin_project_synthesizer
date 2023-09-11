@@ -38,7 +38,7 @@ const Envelope = () =>{
   },[profile.settings, envelope])
 
   return(
-      <div style={styles}>
+    <section style={styles} className="envelope">
       <h3>Envelope</h3>
       <details>
         <summary>What&apos;s this?</summary> 
@@ -66,7 +66,7 @@ const Envelope = () =>{
         <input value={envelope.gain} type='range' min='0.0001' max='1' step='0.1' onChange={handleGain}/>      
         volume
       </label>
-    </div>
+    </section>
   );
 }
 

@@ -21,7 +21,7 @@ const Carrier = () =>{
   }, [profile.settings, carrier])
 
   return(
-    <div style={styles}> 
+    <section style={styles}> 
       <h3>Carrier Oscillator</h3>
       <details>
         <summary>What&apos;s this?</summary> 
@@ -53,7 +53,7 @@ const Carrier = () =>{
         <input value={carrier.detune} name='detune' type='range' min="0.0001" step="1" max="100" onChange={handleDetune}/>
         detune
       </label>
-    </div>
+    </section>
   );
 }
 

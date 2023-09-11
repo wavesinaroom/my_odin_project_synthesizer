@@ -40,7 +40,7 @@ const Filter = ()=>{
   },[profile.settings, filter])
   
   return(
-    <div style={styles}>
+    <section style={styles}>
       <h3>Filter</h3>
         <details>
           <summary>What&apos;s this?</summary>
@@ -99,7 +99,7 @@ const Filter = ()=>{
             allpass
           </label>
       </fieldset>
-    </div>
+    </section>
   );
 }
 

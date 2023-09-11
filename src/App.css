@@ -52,3 +52,15 @@ summary {
   color: #b5bd68;
 }
 
+section{
+  display: flex;
+  flex-direction: column;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+section:not(.keyboard, .logout){
+  background-color: red;
+  border: thick;
+  border-color:#c5c8c6 ;
+}
