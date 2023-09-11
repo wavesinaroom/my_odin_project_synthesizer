@@ -4,13 +4,13 @@ import Body from './components/body';
 import Login from './components/login'
 
 function App() {
-  const [tooglePanel, setTooglePanel] = useState(false)
+  const [logged, setLogged] = useState(false)
   return(
     <>
-      {tooglePanel?
-        <Body/>
+      {logged?
+        <Body setLogged={setLogged}/>
         :
-        <Login/>
+        <Login setLogged={setLogged}/>
       }
     </>
   );

@@ -9,7 +9,7 @@ import Logout from "./logout"
 import { Profile } from "./profile"
 import Default from "./default.json"
 
-const Body = () =>{
+const Body = ({setLogged}) =>{
   const [toggle, setToggle] = useState(false);
 
   function handleToggle(){
@@ -24,7 +24,7 @@ const Body = () =>{
     <main className="body">
       <button onClick={handleToggle}>{toggle?`On`:`Off`}</button>
       <Profile.Provider value={{settings:Default}}>
-        <Logout/>
+        <Logout setLogged={setLogged}/>
         <Carrier/>
         <Modulator/>
         <Envelope/>

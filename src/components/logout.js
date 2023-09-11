@@ -2,7 +2,7 @@ import supabase from '../config/supabaseClient'
 import { useContext } from 'react';
 import { Profile } from './profile';
 
-const Logout = () =>{
+const Logout = ({setLogged}) =>{
   const profile = useContext(Profile);
   let userId;
   async function handleLogout(){
@@ -26,6 +26,8 @@ const Logout = () =>{
     }catch(error){
       alert(error.message)
     }
+
+    setLogged(false);
   }
   return(
     <div style={styles} className="logout">

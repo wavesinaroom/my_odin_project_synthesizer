@@ -3,7 +3,7 @@ import { useState, useContext} from 'react';
 import Default from './default.json';
 import {Profile} from './profile.js'
 
-const Login = () =>{
+const Login = ({setLogged}) =>{
   const [user, setUser] = useState({email:'', password:''});
   const [exception, setException] = useState('');
   const [signup, setSignup] = useState(false);
@@ -51,6 +51,8 @@ const Login = () =>{
       setException(error.message);
       return;
     }  
+
+    setLogged(true);
   }
 
   async function handleSignup(e){
@@ -81,6 +83,8 @@ const Login = () =>{
       setException(error.message);
       return;
     }
+
+    setLogged(true);
   }
 
   return(
