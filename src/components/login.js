@@ -87,23 +87,22 @@ const Login = () =>{
     <>
       {signup?
         <form name='signup' onSubmit={handleSignup}>
-          <fieldset>
-            <legend>Please enter e-mail and password to create an account</legend> 
+            <h3>Please enter e-mail and password to create an account</h3> 
             <label>E-mail:
               <input value={user.email}  name='email' type='email' onChange={handleEmail} autoFocus required/>
             </label>
             <label>Password:
               <input value={user.password} name='password' type='password' onChange={handlePassword} required/>
             </label>
-            <p data-testid='exception'>{exception}</p>
-            <button type='submit'>Sign up</button>
-            <button onClick={handleSignupToggle}>Login</button>
-          </fieldset>
+              <p data-testid='exception'>{exception}</p>
+            <div className='signup-buttons'>
+              <button type='submit'>Sign up</button>
+              <button onClick={handleSignupToggle}>Login</button>
+            </div>
         </form>
         :
         <form name='login' onSubmit={handleLogin}>
-          <fieldset>
-            <legend>Please enter your e-mail and password</legend> 
+            <h3>Please enter your e-mail and password</h3> 
             <label>E-mail:
               <input value={user.email}  name='email' type='email' onChange={handleEmail} autoFocus required/>
             </label>
@@ -111,10 +110,11 @@ const Login = () =>{
               <input value={user.password} name='password' type='password' onChange={handlePassword} required/>
             </label>
             <p data-testid='exception'>{exception}</p>
-            <button type='submit'>Login</button>
-            <p>Don&apos;t have an account?</p>
-            <button onClick={handleSignupToggle}>Sign up</button>
-          </fieldset>
+            <div className='login-buttons'>
+              <button style={{gridArea:"login"}}type='submit'>Login</button>
+              <p style={{gridArea:"message"}}>Don&apos;t have an account?</p>
+              <button style={{gridArea:"signup"}}onClick={handleSignupToggle}>Sign up</button>
+            </div>
         </form>
       }
     </>
