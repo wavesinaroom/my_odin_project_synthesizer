@@ -21,7 +21,7 @@ const Body = () =>{
   },[toggle])
 
   return(
-    <main style={layout} className="body">
+    <main className="body">
       <button onClick={handleToggle}>{toggle?`On`:`Off`}</button>
       <Profile.Provider value={{settings:Default}}>
         <Logout/>
@@ -36,10 +36,3 @@ const Body = () =>{
 }
 
 export default Body;
-
-const layout =  {
-  display: `grid`,
-  grid: `repeat(4, 25%)/repeat(4,auto)`,
-  gridTemplateAreas:'"off . . logout" "carrier modulator envelope filter" ". keyboard keyboard ."',
-  gap: `1em` 
-}  

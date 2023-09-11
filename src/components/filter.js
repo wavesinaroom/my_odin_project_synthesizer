@@ -40,7 +40,7 @@ const Filter = ()=>{
   },[profile.settings, filter])
   
   return(
-    <section style={styles}>
+    <section style={{gridArea:"filter"}}>
       <h3>Filter</h3>
         <details>
           <summary>What&apos;s this?</summary>
@@ -65,7 +65,7 @@ const Filter = ()=>{
         gain
       </label>
       <fieldset>
-        <legend>type</legend>
+        <legend>Type</legend>
           <label>
             <input value='lowpass' name='filter' type='radio' onChange={handleType} checked={filter.type === 'lowpass'}/>
             lowpass
@@ -105,6 +105,3 @@ const Filter = ()=>{
 
 export default Filter;
 
-const styles = {
-  gridArea: "filter"
-}

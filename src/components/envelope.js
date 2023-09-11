@@ -38,7 +38,7 @@ const Envelope = () =>{
   },[profile.settings, envelope])
 
   return(
-    <section style={styles} className="envelope">
+    <section style={{gridArea:"envelope"}} className="envelope">
       <h3>Envelope</h3>
       <details>
         <summary>What&apos;s this?</summary> 
@@ -72,6 +72,3 @@ const Envelope = () =>{
 
 export default Envelope;
 
-const styles = {
-  gridArea: "envelope"
-} 
