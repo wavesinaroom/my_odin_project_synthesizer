@@ -14,7 +14,14 @@ button {
 } 
 
 button:hover{
+  transition-duration: 200ms ;
   background-color: #1d1f21;
+}
+
+button:active{
+  transition-duration: 220ms;
+  background-color: #c5c8c6;
+  color: #1d1f21;
 }
 
 circle{
