@@ -94,7 +94,7 @@ const Login = () =>{
             <label>Password:
               <input value={user.password} name='password' type='password' onChange={handlePassword} required/>
             </label>
-              <p data-testid='exception'>{exception}</p>
+            {exception!==''&&<p data-testid='exception'>{exception}</p>}
             <div className='signup-buttons'>
               <button type='submit'>Sign up</button>
               <button onClick={handleSignupToggle}>Login</button>
@@ -109,10 +109,10 @@ const Login = () =>{
             <label>Password:
               <input value={user.password} name='password' type='password' onChange={handlePassword} required/>
             </label>
-            <p data-testid='exception'>{exception}</p>
+            {exception!==''&&<p data-testid='exception'>{exception}</p>}
             <div className='login-buttons'>
-              <button style={{gridArea:"login"}}type='submit'>Login</button>
               <p style={{gridArea:"message"}}>Don&apos;t have an account?</p>
+              <button style={{gridArea:"login"}}type='submit'>Login</button>
               <button style={{gridArea:"signup"}}onClick={handleSignupToggle}>Sign up</button>
             </div>
         </form>

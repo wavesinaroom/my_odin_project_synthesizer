@@ -151,3 +151,12 @@ svg{
   grid-template-areas: ". message"
                         "login signup";
 }
+
+.signup-buttons{
+  padding-top: 2em;
+  display: grid;
+  grid-template-areas: "signup . login";
+  gap:9em;
+}
+
+
