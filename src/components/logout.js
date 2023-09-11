@@ -21,6 +21,7 @@ const Logout = ({setLogged}) =>{
         .update('settings')
         .eq('id', userId)
         .match(profile);
+        console.log(data);
       if(error)
         throw error
     }catch(error){
