@@ -1,4 +1,4 @@
-* {
+body {
   background-color: #1d1f21;
   font-family: Consolas, 'Gill Sans', Arial;
   color: #c5c8c6;
@@ -24,6 +24,16 @@ circle{
 circle:hover{
   transition-duration: 200ms;
   fill: #de935f;
+  transform: scale(2em);
+}
+
+ p{
+  position: absolute;
+  z-index: 1;
+  background-color: #1d1f21;
+  border: groove;
+  border-color: #c5c8c6;
+  padding: 1em;
 }
 
 h3 {
@@ -39,14 +49,31 @@ input[type="range"]{
   margin-right: 1em;
 }
 
+input[type="radio"]{
+  accent-color: #5f819d;
+  margin: 0.5em;
+}
+
+label{
+  display: flex;
+}
+
 legend{
   font-size: larger;
   font-weight: bolder;
   color: #cc6666;
 }
 
-details [open]> p{
-  z-index: 1;
+main{
+  position: absolute;
+  left: 36%;
+  top: 20%;
+  display: grid;
+  grid: repeat(4, 25%)/repeat(4,auto);
+  grid-template-areas:"off . . logout"
+                    "carrier modulator envelope filter"
+                    ". keyboard keyboard .";
+  gap: 2.5em; 
 }
 
 summary {
@@ -70,11 +97,14 @@ section > *{
   padding-bottom: 0.5em;
 }
 
-label{
-  display: flex;
+.keyboard summary{
+  padding: 0.7em;
+  background-color: #c5c8c6;
+  color: #1d1f21;
+  size: 2em;
 }
 
-input[type="radio"]{
-  accent-color: #5f819d;
-  margin: 0.5em;
+svg{
+  padding-top: 4em;
 }
+

@@ -18,7 +18,7 @@ const Keyboard = () =>{
       <section style={{gridArea: "keyboard"}} className="keyboard">
       <details>
         <summary>How do I play sound?</summary>
-        <p>Hover over the circles to play some sound</p>
+        <p>Hover over the circles to play some sound. Click on the left top corner to turn the synthesizer On/Off</p>
       </details>
       <svg width="730" height="437.5">
           <circle id="261.63" cx="100" cy="220" r="30" onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}/>
