@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/my_odin_project_synthesizer/static/css/main.22e671d4.css",
+    "main.js": "/my_odin_project_synthesizer/static/js/main.f2bc8926.js",
+    "index.html": "/my_odin_project_synthesizer/index.html",
+    "main.22e671d4.css.map": "/my_odin_project_synthesizer/static/css/main.22e671d4.css.map",
+    "main.f2bc8926.js.map": "/my_odin_project_synthesizer/static/js/main.f2bc8926.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.22e671d4.css",
+    "static/js/main.f2bc8926.js"
+  ]
+}
